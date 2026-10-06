@@ -148,6 +148,9 @@ export async function fichaCliente(id) {
 
 async function importar() {
   const txt = await lerArquivo('.csv,text/csv'); if (!txt) return;
+  await importarClientesTexto(txt);
+}
+export async function importarClientesTexto(txt, silencioso = false) {
   const rows = parseCSV(txt); const ops = [];
   for (const r of rows) {
     const nome = r.nome || r.cliente; if (!nome) continue;
@@ -158,6 +161,8 @@ async function importar() {
     ops.push({ op: 'set', col: 'clientes', id: ex ? ex.id : uid(), data: { ...(ex || {}), nome, whatsapp: fone || (ex || {}).whatsapp || '', email: r.email || (ex || {}).email || '', aniversario: aniv || (ex || {}).aniversario || '', endereco: r.endereco || (ex || {}).endereco || '', cidade: r.cidade || (ex || {}).cidade || '', tags: [...new Set([...((ex || {}).tags || []), ...sepEtiquetas(r.etiquetas || r.tags)])], limite: parseNum(r.limite), obs: r.obs || '', criadoEm: (ex || {}).criadoEm || Date.now() } });
   }
   ops.forEach(o => delete o.data.id);
-  if (!ops.length) return toast('Nenhuma linha válida. Use as colunas: nome; whatsapp; cidade; email; aniversario; endereco; etiquetas (separe várias com |); limite; obs', 'erro');
-  if (await commit(ops, `Importou ${ops.length} clientes`)) toast(`${ops.length} cliente(s) importados.`);
+  if (!ops.length) { toast('Nenhuma linha válida. Use as colunas: nome; whatsapp; cidade; email; aniversario; endereco; etiquetas (separe várias com |); limite; obs', 'erro'); return 0; }
+  const n = ops.length;
+  if (await commit(ops, `Importou ${n} clientes`)) { if (!silencioso) toast(`${n} cliente(s) importados.`); return n; }
+  return 0;
 }

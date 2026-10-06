@@ -37,6 +37,28 @@ export async function importarHistorico() {
   });
   m.$('#ok').onclick = async () => {
     m.$('#ok').disabled = true;
+    const res = await executarVendas(novas, grupoDe);
+    if (res) { m.fechar(); resumoVendas(res); } else m.$('#ok').disabled = false;
+  };
+}
+
+export async function importarVendasTexto(txt) {
+  const rows = parseCSV(txt).map(r => ({ ...r, iso: dataISO(r.data) })).filter(r => r.iso && r.cliente).sort((a, b) => a.iso.localeCompare(b.iso));
+  const ja = new Set(S.d.vendas.map(v => v.importKey).filter(Boolean)); S.d.consorcios.forEach(g => (g.importados || []).forEach(k => ja.add(k)));
+  const grupoDe = r => { const n = parseInt(String(r.grupo || '').replace(/\D/g, '')); return S.d.consorcios.find(g => g.grupo === n); };
+  return executarVendas(rows.filter(r => !ja.has(chave(r))), grupoDe);
+}
+
+function resumoVendas(res) {
+      modal({
+        titulo: 'Histórico importado',
+        corpo: `<ul><li><b>${res.vendas}</b> venda(s) importada(s)</li><li><b>${res.resgates}</b> venda(s) com crédito de consórcio — as participantes ficaram marcadas como “crédito usado”</li><li><b>${res.quitados}</b> participante(s) de consórcio com todas as parcelas quitadas</li>${res.ignoradas ? `<li class="t-perigo">${res.ignoradas} linha(s) ignorada(s) (grupo ou participante não encontrado)</li>` : ''}</ul>
+          ${res.parciais.length ? `<div class="aviso-box">${icon('alert')}<span><b>${res.parciais.length}</b> inscrição(ões) estavam “pagas parcialmente”: ${res.parciais.map(esc).join(', ')}. Em <b>Consórcios</b>, abra cada grupo e use <b>Marcar pagos até…</b>, depois toque no mês de quem estiver devendo para desfazer.</span></div>` : ''}`,
+        rodape: '<button class="btn pri" data-fechar>Ok</button>'
+      });
+}
+
+async function executarVendas(novas, grupoDe) {
     const ops = []; let numero = proxNumero('vendas');
     const clientes = new Map(S.d.clientes.map(c => [norm(c.nome), c]));
     const grupos = new Map(); // id → cópia editável
@@ -95,15 +117,6 @@ export async function importarHistorico() {
       }
     }
     grupos.forEach(g => { const { id, ...d } = g; ops.push({ op: 'upd', col: 'consorcios', id, data: { participantes: d.participantes || [], pagamentos: d.pagamentos || {}, importados: d.importados } }); });
-    if (!ops.length) { toast('Nada para importar.', 'aviso'); return m.fechar(); }
-    if (await commit(ops, `Importou histórico: ${res.vendas} vendas, ${res.resgates} resgates de consórcio`)) {
-      m.fechar();
-      modal({
-        titulo: 'Histórico importado',
-        corpo: `<ul><li><b>${res.vendas}</b> venda(s) importada(s)</li><li><b>${res.resgates}</b> venda(s) com crédito de consórcio — as participantes ficaram marcadas como “crédito usado”</li><li><b>${res.quitados}</b> participante(s) de consórcio com todas as parcelas quitadas</li>${res.ignoradas ? `<li class="t-perigo">${res.ignoradas} linha(s) ignorada(s) (grupo ou participante não encontrado)</li>` : ''}</ul>
-          ${res.parciais.length ? `<div class="aviso-box">${icon('alert')}<span><b>${res.parciais.length}</b> inscrição(ões) estavam “pagas parcialmente”: ${res.parciais.map(esc).join(', ')}. Em <b>Consórcios</b>, abra cada grupo e use <b>Marcar pagos até…</b>, depois toque no mês de quem estiver devendo para desfazer.</span></div>` : ''}`,
-        rodape: '<button class="btn pri" data-fechar>Ok</button>'
-      });
-    } else m.$('#ok').disabled = false;
-  };
+    if (!ops.length) return res;
+    return (await commit(ops, `Importou histórico: ${res.vendas} vendas, ${res.resgates} resgates de consórcio`)) ? res : null;
 }

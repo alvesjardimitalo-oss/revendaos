@@ -576,6 +576,20 @@ async function importar() {
   };
 }
 
+// importação direta (usada pelo "Importar dados iniciais"): torna-se curador se ninguém for, e publica
+export async function importarCatalogoTexto(txt) {
+  if (!S.curador) {
+    const d = await S.db.lerDoc('sistema/curadores').catch(() => null);
+    if (d) return { erro: 'Você não é curador(a) do catálogo.' };
+    await S.db.commit([{ op: 'set', path: 'sistema/curadores', data: { emails: [S.user.email.toLowerCase()] } }]);
+    S.curador = true; S.curadoresExiste = true;
+  }
+  const lidos = parseCSV(txt).map(mapear).filter(r => r.nome);
+  const grupos = {}; lidos.forEach(r => { if (r.marca) (grupos[r.marca] = grupos[r.marca] || []).push(r); });
+  let tot = 0; for (const [mk, its] of Object.entries(grupos)) tot += await publicarMarca(mk, its, 'mesclar');
+  return { tot };
+}
+
 // ---------------------------------------------------------------- fotos em lote → ZIP para o GitHub
 async function prepararFotos(slug) {
   const meta = (CAT.marcas || []).find(m => m.id === slug); if (!meta) return;

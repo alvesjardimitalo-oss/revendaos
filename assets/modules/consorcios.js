@@ -370,13 +370,13 @@ function contemplar(g) {
 }
 
 // ---------------- importar das etiquetas ----------------
-function semGrupo() {
+export function semGrupo() {
   const mapa = new Map();
   S.d.clientes.forEach(c => (c.tags || []).forEach(t => { const x = lerEtiqueta(t); if (!x) return; if (S.d.consorcios.some(g => g.grupo === x.grupo)) return; const k = x.grupo; if (!mapa.has(k)) mapa.set(k, { ...x, etiqueta: t, clientes: [] }); mapa.get(k).clientes.push(c); }));
   return [...mapa.values()].sort((a, b) => a.grupo - b.grupo);
 }
-async function importarEtiquetas(lista) {
-  if (!await ask(`Criar ${lista.length} grupo(s) a partir das etiquetas (${lista.map(x => `G${x.grupo}: ${x.clientes.length} cliente(s)`).join(', ')})? As etiquetas serão padronizadas no formato do sistema.`, { ok: 'Criar grupos' })) return;
+export async function importarEtiquetas(lista, silencioso = false) {
+  if (!silencioso && !await ask(`Criar ${lista.length} grupo(s) a partir das etiquetas (${lista.map(x => `G${x.grupo}: ${x.clientes.length} cliente(s)`).join(', ')})? As etiquetas serão padronizadas no formato do sistema.`, { ok: 'Criar grupos' })) return;
   const ops = [];
   for (const x of lista) {
     const id = uid();
@@ -384,5 +384,6 @@ async function importarEtiquetas(lista) {
     ops.push({ op: 'set', col: 'consorcios', id, data: g });
     x.clientes.forEach(c => ops.push(...opsEtiqueta(c.id, nomePadrao(g), x.etiqueta)));
   }
-  if (await commit(ops, `Criou ${lista.length} consórcio(s) a partir das etiquetas`)) toast(`${lista.length} grupo(s) criado(s). Agora marque os meses já pagos de cada participante.`);
+  if (await commit(ops, `Criou ${lista.length} consórcio(s) a partir das etiquetas`)) { if (!silencioso) toast(`${lista.length} grupo(s) criado(s). Agora marque os meses já pagos de cada participante.`); return lista.length; }
+  return 0;
 }

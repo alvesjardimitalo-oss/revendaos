@@ -154,7 +154,17 @@ async function importarHistorico() {
       <p class="mudo pq">As compras entram só no histórico e no contas a pagar — o estoque não é alterado.</p>`,
     rodape: `<button class="btn" data-fechar>Cancelar</button><button class="btn pri" id="ok" ${novos.length ? '' : 'disabled'}>${icon('check')}Importar</button>`
   });
-  m.$('#ok').onclick = async () => {
+  m.$('#ok').onclick = async () => { if (await executarCompras(novos)) { toast(`${novos.length} compra(s) importada(s).`); m.fechar(); } };
+}
+const sitCompra = r => { const n = norm(r.situacao); return n.startsWith('pag') ? 'pago' : n.startsWith('conf') || n.includes('estim') ? 'conferir' : 'apagar'; };
+export async function importarComprasTexto(txt) {
+  const ja = new Set(S.d.compras.map(c => c.importKey).filter(Boolean));
+  const ped = new Map(); parseCSV(txt).filter(r => r.pedido && r.data).forEach(r => { if (!ped.has(r.pedido)) ped.set(r.pedido, []); ped.get(r.pedido).push(r); });
+  const novos = [...ped.entries()].filter(([k]) => !ja.has('ped:' + k));
+  return (await executarCompras(novos)) ? novos.length : 0;
+}
+async function executarCompras(novos) {
+  const sit = sitCompra;
     const ops = []; let numero = proxNumero('compras');
     novos.sort((a, b) => iso(a[1][0].data).localeCompare(iso(b[1][0].data)));
     for (const [pedido, l] of novos) {
@@ -167,6 +177,6 @@ async function importarHistorico() {
       });
       ops.push({ op: 'set', col: 'compras', id, data: { numero: num, data: iso(r0.data), fornecedor: forn, ref: 'Pedido ' + pedido, itens, frete: parseNum(r0.frete), desconto: 0, total: parseNum(r0.total), parcelas: l.length, importado: true, importKey: 'ped:' + pedido, criadoEm: Date.now() } });
     }
-    if (await commit(ops, `Importou ${novos.length} compras do histórico`)) { toast(`${novos.length} compra(s) importada(s).`); m.fechar(); }
-  };
+    if (!ops.length) return true;
+    return commit(ops, `Importou ${novos.length} compras do histórico`);
 }
