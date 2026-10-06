@@ -97,25 +97,44 @@ export async function carregarTudo() {
 }
 
 // ---------------- correções pontuais nos dados trazidos (rodam uma vez por conta) ----------------
-const CORRECOES = [
-  {
-    id: 'jose-raimundo-15-09-2026', // venda com os itens e o crediário em 3x, como no Revendi
-    run: () => {
-      const v = S.d.vendas.find(x => x.importado && x.data === '2026-09-15' && /jos[eé] raimundo/i.test(x.clienteNome || '') && Math.abs(x.total - 238.9) < 0.01);
-      if (!v) return null;
-      const custo = Number(v.custoTotal) || 0, c1 = r2(custo * 58.9 / 238.9);
-      const ops = [{ op: 'upd', col: 'vendas', id: v.id, data: {
-        itens: [
-          { prodId: '', nome: 'Refil creme desodorante nutritivo para o corpo cereja negra e praliné', marca: 'Natura', categoria: 'Corpo e banho', qtd: 1, preco: 58.9, custo: c1, baixas: [] },
-          { prodId: '', nome: 'Desodorante colônia Kaiak Oceano masculino - 100 ml', marca: 'Natura', categoria: 'Perfumaria', qtd: 1, preco: 180, custo: r2(custo - c1), baixas: [] }
-        ], forma: 'Crediário', parcelas: 3 } }];
-      S.d.recebiveis.filter(r => r.vendaId === v.id).forEach(r => ops.push({ op: 'del', col: 'recebiveis', id: r.id }));
-      const base = { vendaId: v.id, numeroVenda: v.numero, clienteId: v.clienteId, clienteNome: v.clienteNome, clienteFone: v.clienteFone || '', criadoEm: Date.now() };
-      [[79.64, '2026-10-15'], [79.63, '2026-11-14'], [79.63, '2026-12-14']].forEach(([valor, venc], i) =>
-        ops.push({ op: 'set', col: 'recebiveis', id: uid(), data: { ...base, parcela: i + 1, totalParcelas: 3, valor, pago: 0, vencimento: venc, forma: 'Crediário', pagamentos: [] } }));
-      return ops;
-    }
+// acha a venda importada e devolve as operações para colocar os itens reais e as parcelas do crediário
+function corrigirVenda({ data, nome, total, itens, parcelas, obs, marca }) {
+  const v = S.d.vendas.find(x => x.importado && x.data === data && nome.test(x.clienteNome || '') && Math.abs(x.total - total) < 0.01);
+  if (!v) return null;
+  const custo = Number(v.custoTotal) || 0, soma = itens.reduce((a, i) => a + i[1] * (i[2] || 1), 0) || 1;
+  let resto = custo;
+  const its = itens.map(([n, preco, qtd = 1, mk = marca], k) => {
+    const c = k === itens.length - 1 ? r2(resto) : r2(custo * preco * qtd / soma); resto -= c;
+    return { prodId: '', nome: n, marca: mk || '', categoria: '', qtd, preco, custo: c, baixas: [] };
+  });
+  const ops = [{ op: 'upd', col: 'vendas', id: v.id, data: { itens: its, ...(parcelas ? { forma: v.consorcio ? `Crédito consórcio G${v.consorcio.grupo} + Crediário` : 'Crediário', parcelas: parcelas.length } : {}), ...(obs ? { obs } : {}) } }];
+  if (parcelas) {
+    const recs = S.d.recebiveis.filter(r => r.vendaId === v.id && !r.consorcio);
+    if (recs.some(r => (Number(r.pago) || 0) > 0)) return ops; // já tem pagamento registrado: não mexe nas parcelas
+    recs.forEach(r => ops.push({ op: 'del', col: 'recebiveis', id: r.id }));
+    const base = { vendaId: v.id, numeroVenda: v.numero, clienteId: v.clienteId, clienteNome: v.clienteNome, clienteFone: v.clienteFone || '', criadoEm: Date.now() };
+    parcelas.forEach(([valor, venc], k) => ops.push({ op: 'set', col: 'recebiveis', id: uid(), data: { ...base, parcela: k + 1, totalParcelas: parcelas.length, valor, pago: 0, vencimento: venc, forma: 'Crediário', pagamentos: [] } }));
   }
+  return ops;
+}
+const CORRECOES = [
+  { id: 'jose-raimundo-15-09-2026', run: () => corrigirVenda({ data: '2026-09-15', nome: /jos[eé] raimundo/i, total: 238.9, marca: 'Natura',
+      itens: [['Refil creme desodorante nutritivo para o corpo cereja negra e praliné', 58.9], ['Desodorante colônia Kaiak Oceano masculino - 100 ml', 180]],
+      parcelas: [[79.64, '2026-10-15'], [79.63, '2026-11-14'], [79.63, '2026-12-14']] }) },
+  { id: 'italo-15-09-2026', run: () => corrigirVenda({ data: '2026-09-15', nome: /italo alves/i, total: 459.05,
+      itens: [['Club 6 Prestige Eau de Parfum 95ml', 147.92, 1, 'Eudora'], ['Humor desodorante colônia Envolve para Todos 75ml', 125, 1, 'Natura'], ['Homem desodorante parfum Evolução 100ml', 186.13, 1, 'Natura']],
+      parcelas: [[153.02, '2026-10-15'], [153.02, '2026-11-14'], [153.01, '2026-12-14']] }) },
+  { id: 'karen-15-09-2026', run: () => corrigirVenda({ data: '2026-09-15', nome: /karen cristina/i, total: 353.69,
+      itens: [['Refil shampoo cachos e crespos', 21.2, 1, 'Natura'], ['Gelatina cachos e crespos - 240 g', 30.32, 1, 'Natura'], ['Ilía desodorante parfum Ilía Jardim Secreto feminino 50ml', 113.92, 1, 'Natura'],
+        ['Kiss Matte Batom Essência de Cranberry', 10.02, 1, 'Avon'], ['Renew Protetor Solar Toque Seco Matte FPS 30 - 40 g', 37.92, 1, 'Avon'], ['Renew Gel de Limpeza 30g', 12.08, 1, 'Avon'],
+        ['Body Spray Desodorante Eudora Absolu 100ml', 38.39, 1, 'Eudora'], ['Demais itens da venda (confira no Revendi)', 89.84, 4, '']].map(i => i[0].startsWith('Demais') ? [i[0], r2(89.84 / 4), 4, ''] : i),
+      parcelas: [[117.9, '2026-10-15'], [117.9, '2026-11-14'], [117.89, '2026-12-14']] }) },
+  { id: 'luzia-15-09-2026', run: () => corrigirVenda({ data: '2026-09-15', nome: /luzia juscelia/i, total: 509.7, marca: 'O Boticário',
+      obs: 'Valor da compra 509,70 — desconto do consórcio 500,00',
+      itens: [['Floratta Rose Sucrée Eau de Parfum 75ml', 310.1], ['Quasar Classic Desodorante Colônia 100ml', 189.9], ['Loção Hidratante Desodorante Corporal Nativa Spa Ameixa Negra 400ml', 9.7]],
+      parcelas: [[9.7, '2026-10-15']] }) },
+  { id: 'tia-leninha-17-09-2026', run: () => corrigirVenda({ data: '2026-09-17', nome: /tia leninha/i, total: 229.9, marca: 'O Boticário',
+      itens: [["Floratta Fleur d'Éclipse Eau de Parfum 75ml", 229.9]] }) }
 ];
 export async function correcoes() {
   if (!isAdmin() || !S.conta) return;
