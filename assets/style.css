@@ -737,3 +737,11 @@ img.falhou { visibility: hidden; }
 .sugestoes .sug-foto img { width: 100%; height: 100%; object-fit: contain; }
 .sugestoes .sug-foto.sem-foto::after { font-size: 0; }
 .sugestoes { top: 50px; max-height: min(60vh, 460px); border-radius: 14px; } .sugestoes b { font-weight: 600; }
+@media (min-width: 861px) {
+  .marca { width: 100%; min-width: 0; }
+  .marca b { display: block; width: 100%; white-space: normal; overflow-wrap: anywhere; font-size: 15px; }
+  .side { overflow-y: auto; scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--txt2) 40%, transparent) transparent; }
+  .side nav { flex: none; overflow: visible; }
+  .side-pe { margin-top: auto; }
+  .side::-webkit-scrollbar { width: 6px; } .side::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--txt2) 35%, transparent); border-radius: 6px; }
+}
