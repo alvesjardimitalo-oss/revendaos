@@ -387,3 +387,21 @@ export async function importarEtiquetas(lista, silencioso = false) {
   if (await commit(ops, `Criou ${lista.length} consórcio(s) a partir das etiquetas`)) { if (!silencioso) toast(`${lista.length} grupo(s) criado(s). Agora marque os meses já pagos de cada participante.`); return lista.length; }
   return 0;
 }
+
+// Parcelas de consórcio em aberto no formato das cobranças (para a central de cobrança, painel e alertas)
+export function parcelasAbertas() {
+  const out = [];
+  S.d.consorcios.filter(g => g.status !== 'encerrado').forEach(g => {
+    const ms = mesesEntre(g.inicio, g.fim);
+    (g.participantes || []).forEach(p => ms.forEach((m, i) => {
+      if (pago(g, p.clienteId, m)) return;
+      const c = cliPorId(p.clienteId) || {};
+      out.push({ id: `cons|${g.id}|${p.clienteId}|${m}`, consParc: true, grupoId: g.id, grupo: g.grupo, mes: m, clienteId: p.clienteId, clienteNome: p.nome, clienteFone: c.whatsapp || '', numeroVenda: 'G' + g.grupo, parcela: i + 1, totalParcelas: ms.length, valor: g.valor, pago: 0, pagamentos: [], vencimento: vencimento(g, m) });
+    }));
+  });
+  return out;
+}
+window.__consParcelas = () => parcelasAbertas();
+const gp = r => { const g = S.d.consorcios.find(x => x.id === r.grupoId); return [g, g && (g.participantes || []).find(x => x.clienteId === r.clienteId)]; };
+export function receberParcela(r) { const [g, p] = gp(r); if (g && p) clicarMes(g, p, r.mes); }
+export function cobrarParcela(r) { const [g, p] = gp(r); if (g && p) cobrar(g, p); }

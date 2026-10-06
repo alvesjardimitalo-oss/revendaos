@@ -12,7 +12,7 @@ export function render(el) {
   const totMes = vMes.reduce((s, v) => s + v.total, 0);
   const lucroMes = vMes.reduce((s, v) => s + v.total - (v.frete || 0) - (v.custoTotal || 0) - (v.taxaCartaoValor || 0), 0);
   const meta = pode('relatorios') ? Number(cfg().metaMensal) || 0 : Number(S.membro.meta) || 0;
-  const abertas = S.d.recebiveis.filter(r => !r.cancelado && saldoRec(r) > 0);
+  const abertas = [...S.d.recebiveis.filter(r => !r.cancelado && saldoRec(r) > 0), ...(window.__consParcelas ? window.__consParcelas() : [])];
   const vencidas = abertas.filter(r => r.vencimento < h).sort((a, b) => a.vencimento > b.vencimento ? 1 : -1);
   const prox = abertas.filter(r => r.vencimento >= h && diasAte(r.vencimento) <= 7).sort((a, b) => a.vencimento > b.vencimento ? 1 : -1);
   const dias = Number(cfg().diasValidade) || 30;
@@ -98,7 +98,7 @@ export function render(el) {
   ${pedidos.length && pode('loja') ? `<a class="aviso-box destaque" href="#/loja">${icon('bell')}<span><b>${pedidos.length} pedido(s) novo(s)</b> na loja virtual aguardando você.</span></a>` : ''}
   <div class="grid-dash">
     ${pode('vendas') ? `<div class="card span2"><div class="card-h"><h4>Vendas dos últimos 30 dias</h4><a href="#/vendas">Ver vendas</a></div><div class="graf"><canvas id="g"></canvas></div></div>` : ''}
-    ${card('Cobranças vencidas', 'cobrancas', lista(vencidas, r => `<li><span><b>${esc(r.clienteNome || 'Sem cliente')}</b><small>#${r.numeroVenda} · venceu ${fmtData(r.vencimento)}</small></span><em class="t-perigo">${brl(saldoRec(r))}</em></li>`, 'Nenhuma parcela vencida. 🎉'))}
+    ${card('Cobranças vencidas', 'cobrancas', lista(vencidas, r => `<li><span><b>${esc(r.clienteNome || 'Sem cliente')}</b><small>${r.consParc ? 'Consórcio G' + r.grupo : '#' + r.numeroVenda} · venceu ${fmtData(r.vencimento)}</small></span><em class="t-perigo">${brl(saldoRec(r))}</em></li>`, 'Nenhuma parcela vencida. 🎉'))}
     ${card('Vencem nos próximos 7 dias', 'cobrancas', lista(prox, r => `<li><span><b>${esc(r.clienteNome || 'Sem cliente')}</b><small>${r.vencimento === h ? 'hoje' : fmtData(r.vencimento)}</small></span><em>${brl(saldoRec(r))}</em></li>`, 'Nada para os próximos dias.'))}
     ${card(`Validade em até ${dias} dias`, 'produtos', lista(validade, p => { const d = diasAte(validadeProxima(p)); return `<li><span><b>${esc(p.nome)}</b><small>${esc(p.marca || '')} · ${qtdProduto(p)} un.</small></span>${badge(d < 0 ? 'vencido' : d === 0 ? 'hoje' : d + ' dias', d < 0 ? 'perigo' : 'aviso')}</li>`; }, 'Nenhum produto perto do vencimento.'))}
     ${card('Estoque baixo', 'produtos', lista(baixo, p => `<li><span><b>${esc(p.nome)}</b><small>${esc(p.marca || '')}</small></span>${badge(qtdProduto(p) + ' un.', qtdProduto(p) <= 0 ? 'perigo' : 'aviso')}</li>`, 'Estoque em dia.'))}

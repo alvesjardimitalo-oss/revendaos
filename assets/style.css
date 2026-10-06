@@ -749,3 +749,4 @@ img.falhou { visibility: hidden; }
 .abas { scrollbar-width: none; overflow-y: hidden; } .abas::-webkit-scrollbar { display: none; }
 .cat-foto.sem-foto::after { font-size: 48px; }
 .passos-lista { margin: 6px 0 12px; padding-left: 20px; display: grid; gap: 8px; } .passos-lista li { line-height: 1.5; }
+.chip-cons { display: inline-block; font-size: 12px; font-weight: 650; padding: 2px 9px; border-radius: 99px; background: var(--sup2); color: var(--acc) !important; white-space: nowrap; }

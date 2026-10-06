@@ -1,5 +1,6 @@
 // Central de cobrança: parcelas, recebimentos, Pix e lembretes por WhatsApp
 import { $, $$, esc, brl, nfmt, parseNum, uid, r2, norm, fmtData, hoje, diasAte, mesAtual, waLink, preencher, pixPayload, copiar, fmtFone, reduzirImagem } from '../utils.js';
+import { parcelasAbertas, receberParcela, cobrarParcela } from './consorcios.js';
 import { S, cfg, pode, icon, modal, toast, commit, cliPorId, saldoRec, statusRec, STATUS_REC, badge, vazio, FORMAS, navegar } from '../core.js';
 
 let F = { aba: 'abertas', q: '', vis: 'parcelas' };
@@ -9,7 +10,7 @@ const foneDe = r => { const c = cliPorId(r.clienteId); return c ? c.whatsapp : r
 
 export function render(el) {
   const ed = pode('cobrancas', 'editar');
-  const rs = ativos();
+  const rs = [...ativos(), ...parcelasAbertas()];
   const abertas = rs.filter(r => saldoRec(r) > 0.004);
   const venc = abertas.filter(r => r.vencimento < hoje());
   const prox7 = abertas.filter(r => { const d = diasAte(r.vencimento); return d >= 0 && d <= 7; });
@@ -37,7 +38,7 @@ export function render(el) {
   } else {
     corpo = l.length ? `<div class="tabela-w"><table class="tabela"><thead><tr><th>Cliente</th><th>Venda</th><th>Parcela</th><th>Vencimento</th><th class="n">Valor</th><th class="n">Saldo</th><th>Status</th><th></th></tr></thead><tbody>
       ${l.map(r => { const s = statusRec(r), d = diasAte(r.vencimento); return `<tr>
-        <td><b>${esc(r.clienteNome || 'Sem cliente')}</b></td><td><a href="#" data-venda="${r.vendaId}">#${r.numeroVenda}</a></td>
+        <td><b>${esc(r.clienteNome || 'Sem cliente')}</b></td><td>${r.consParc ? `<a href="#/consorcios" class="chip-cons">Consórcio G${r.grupo}</a>` : `<a href="#" data-venda="${r.vendaId}">#${r.numeroVenda}</a>`}</td>
         <td>${r.consorcio ? 'Consórcio' : r.parcela === 0 ? 'Entrada' : r.parcela + '/' + r.totalParcelas}</td>
         <td>${fmtData(r.vencimento)}${s === 'vencido' ? `<small class="bl t-perigo">há ${-d} dia(s)</small>` : s === 'aberto' && d <= 7 ? `<small class="bl mudo">${d === 0 ? 'hoje' : 'em ' + d + ' dia(s)'}</small>` : ''}</td>
         <td class="n">${brl(r.valor)}</td><td class="n"><b>${brl(Math.max(0, saldoRec(r)))}</b></td><td>${badge(...STATUS_REC[s])}</td>
@@ -65,7 +66,7 @@ export function render(el) {
   $$('[data-aba]', el).forEach(b => b.onclick = () => { F.aba = b.dataset.aba; re(); });
   $$('[data-vis]', el).forEach(b => b.onclick = () => { F.vis = b.dataset.vis; re(); });
   $('#q', el).oninput = e => { F.q = e.target.value; re(); const i = $('#q', el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); };
-  const R = id => S.d.recebiveis.find(r => r.id === id);
+  const R = id => rs.find(r => r.id === id);
   $$('[data-rec]', el).forEach(b => b.onclick = () => receber(R(b.dataset.rec)));
   $$('[data-pix]', el).forEach(b => b.onclick = () => enviarPix(R(b.dataset.pix)));
   $$('[data-cob]', el).forEach(b => b.onclick = () => cobrar(R(b.dataset.cob)));
@@ -92,6 +93,7 @@ function opsPagamento(lista, valor, data, forma, descricao, comprovante = '') {
 
 export function receber(r) {
   if (!r) return;
+  if (r.consParc) return receberParcela(r);
   const outras = ativos().filter(x => x.vendaId === r.vendaId && x.id !== r.id && saldoRec(x) > 0).sort((a, b) => a.vencimento > b.vencimento ? 1 : -1);
   const totVenda = r2(saldoRec(r) + outras.reduce((s, x) => s + saldoRec(x), 0));
   const m = modal({
@@ -199,6 +201,7 @@ export function enviarPix(r, valorFixo) {
 // ---------------- lembretes ----------------
 const TPL_COB = 'Olá {cliente}! Tudo bem? 😊\nPassando para lembrar da parcela {parcela} da sua compra nº {numero}, no valor de {valor}, {situacao} {vencimento}.\n{pix}\nQualquer dúvida, estou à disposição!\n{loja}';
 export function cobrar(r) {
+  if (r && r.consParc) return cobrarParcela(r);
   const fone = foneDe(r);
   if (!fone) return toast('Cliente sem WhatsApp cadastrado.', 'aviso');
   const s = statusRec(r), cod = codigoPix(saldoRec(r));
@@ -212,10 +215,10 @@ export function cobrar(r) {
 }
 export function cobrarCliente(clienteId) {
   const c = cliPorId(clienteId);
-  const lista = ativos().filter(r => (r.clienteId || '') === (clienteId || '') && saldoRec(r) > 0).sort((a, b) => a.vencimento > b.vencimento ? 1 : -1);
+  const lista = [...ativos(), ...parcelasAbertas().filter(r => r.vencimento <= hoje())].filter(r => (r.clienteId || '') === (clienteId || '') && saldoRec(r) > 0).sort((a, b) => a.vencimento > b.vencimento ? 1 : -1);
   const fone = c ? c.whatsapp : (lista[0] && lista[0].clienteFone);
   if (!fone) return toast('Cliente sem WhatsApp cadastrado.', 'aviso');
   const tot = r2(lista.reduce((s, r) => s + saldoRec(r), 0)), cod = codigoPix(tot);
-  const linhas = lista.map(r => `• Compra nº ${r.numeroVenda} (${r.parcela === 0 ? 'entrada' : r.parcela + '/' + r.totalParcelas}) — ${brl(saldoRec(r))} ${r.vencimento < hoje() ? '⚠️ venceu' : 'vence'} ${fmtData(r.vencimento)}`).join('\n');
+  const linhas = lista.map(r => `• ${r.consParc ? `Consórcio G${r.grupo}` : `Compra nº ${r.numeroVenda}`} (${r.parcela === 0 ? 'entrada' : r.parcela + '/' + r.totalParcelas}) — ${brl(saldoRec(r))} ${r.vencimento < hoje() ? '⚠️ venceu' : 'vence'} ${fmtData(r.vencimento)}`).join('\n');
   window.open(waLink(fone, `Olá ${(c ? c.nome : lista[0].clienteNome || '').split(' ')[0]}! Tudo bem? 😊\nSegue o resumo das suas parcelas em aberto:\n\n${linhas}\n\n*Total: ${brl(tot)}*${cod ? `\n\nPix copia e cola (valor total):\n${cod}` : ''}\n\nQualquer dúvida, estou à disposição!`), '_blank');
 }

@@ -142,7 +142,7 @@ function montarShell() {
 function atualizarShell() {
   const c = S.conta.config || {};
   $('#marca').innerHTML = `${c.logo ? `<img src="${c.logo}" alt="">` : `<span class="marca-ini">${esc((S.conta.nome || 'R')[0])}</span>`}<b>${esc(S.conta.nome || 'Minha Revenda')}</b>`;
-  const vencidas = S.d.recebiveis.filter(r => statusRec(r) === 'vencido').length;
+  const vencidas = S.d.recebiveis.filter(r => statusRec(r) === 'vencido').length + (window.__consParcelas ? window.__consParcelas().filter(r => r.vencimento < new Date().toISOString().slice(0, 10)).length : 0);
   const pedidos = S.d.pedidos.filter(p => p.status === 'novo').length;
   const cont = { cobrancas: vencidas, loja: pedidos };
   $('#nav').innerHTML = MODS.filter(m => pode(m.id)).map(m =>
