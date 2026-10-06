@@ -35,7 +35,16 @@ async function firebaseDB() {
   return {
     modo: 'firebase',
     onAuth: cb => A.onAuthStateChanged(auth, u => cb(u ? { uid: u.uid, nome: u.displayName || (u.email || '').split('@')[0], email: (u.email || '').toLowerCase(), foto: u.photoURL || '' } : null)),
-    loginGoogle: () => A.signInWithPopup(auth, new A.GoogleAuthProvider()),
+    loginGoogle: async () => {
+      const prov = new A.GoogleAuthProvider(); prov.setCustomParameters({ prompt: 'select_account' });
+      try { return await A.signInWithPopup(auth, prov); }
+      catch (e) {
+        // celular: popup bloqueado/fechado pelo navegador → tenta pelo redirecionamento
+        if (['auth/popup-blocked', 'auth/popup-closed-by-user', 'auth/cancelled-popup-request', 'auth/operation-not-supported-in-this-environment', 'auth/web-storage-unsupported'].includes(e.code)) { sessionStorage.setItem('rv-redir', '1'); return A.signInWithRedirect(auth, prov); }
+        throw e;
+      }
+    },
+    resultadoRedirect: () => A.getRedirectResult(auth),
     loginEmail: (e, s) => A.signInWithEmailAndPassword(auth, e, s),
     cadastrar: async (e, s, n) => { const r = await A.createUserWithEmailAndPassword(auth, e, s); if (n) await A.updateProfile(r.user, { displayName: n }); },
     resetSenha: e => A.sendPasswordResetEmail(auth, e),

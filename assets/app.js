@@ -59,6 +59,16 @@ function telaLogin(erro = '') {
   </div>`;
   let cadastro = false;
   const f = $('#f');
+  const ua = navigator.userAgent || '';
+  const embutido = /GSA\/|FBAN|FBAV|Instagram|WhatsApp|Line\//.test(ua);
+  const celular = /iPhone|iPad|Android/i.test(ua);
+  if (celular) {
+    const dica = document.createElement('p'); dica.className = 'mudo pq'; dica.style.marginTop = '10px';
+    dica.innerHTML = embutido
+      ? '<b>Abra no Safari ou no Chrome</b>: dentro do app do Google/WhatsApp/Instagram o login com Google não funciona. Toque em ⋯ ou no ícone de compartilhar → "Abrir no navegador".'
+      : 'Se o Google não abrir no celular, entre com e-mail e senha. Já entrou com Google no computador? Digite o mesmo Gmail abaixo e toque em <b>Esqueci a senha</b> para criar uma senha da mesma conta.';
+    $('#g').after(dica);
+  }
   $('#g').onclick = () => S.db.loginGoogle().catch(e => telaLogin(msgErro(e)));
   $('#alterna').onclick = e => {
     e.preventDefault(); cadastro = !cadastro;
@@ -84,7 +94,7 @@ function msgErro(e) {
   return ({
     'auth/invalid-credential': 'E-mail ou senha incorretos.', 'auth/wrong-password': 'Senha incorreta.', 'auth/user-not-found': 'Usuário não encontrado.',
     'auth/email-already-in-use': 'Este e-mail já tem cadastro.', 'auth/weak-password': 'A senha precisa ter ao menos 6 caracteres.',
-    'auth/popup-closed-by-user': 'Login cancelado.', 'auth/unauthorized-domain': 'Domínio não autorizado: adicione o endereço do GitHub Pages em Firebase > Authentication > Configurações > Domínios autorizados.',
+    'auth/popup-closed-by-user': 'O login com Google foi fechado antes de terminar. Tente de novo ou use e-mail e senha.', 'auth/popup-blocked': 'O navegador bloqueou a janela do Google. Permita pop-ups ou use e-mail e senha.', 'auth/unauthorized-domain': 'Domínio não autorizado: adicione o endereço do GitHub Pages em Firebase > Authentication > Configurações > Domínios autorizados.',
     'auth/operation-not-allowed': 'Método de login não ativado no Firebase (Authentication > Método de login).'
   })[c] || (e && e.message) || 'Erro inesperado.';
 }
@@ -193,6 +203,7 @@ async function iniciar() {
   aplicarTema();
   try { S.db = await getDB(); }
   catch (e) { document.body.innerHTML = `<div class="login"><div class="login-card"><h1>Falha ao carregar</h1><p>${esc(e.message)}</p></div></div>`; return; }
+  if (S.db.resultadoRedirect && sessionStorage.getItem('rv-redir')) { sessionStorage.removeItem('rv-redir'); S.db.resultadoRedirect().then(r => { if (!r) setTimeout(() => { if (!S.user) telaLogin('O Google não concluiu o login neste navegador. Use e-mail e senha (se já entrou com Google no computador, toque em "Esqueci a senha" com o mesmo Gmail).'); }, 1500); }).catch(e => telaLogin(msgErro(e))); }
   S.db.onAuth(async user => {
     unsubs.forEach(f => f && f()); unsubs = []; unsubPedidos && unsubPedidos(); unsubPedidos = null; slugPedidos = null;
     unsubConvites && unsubConvites(); unsubConvites = null;
