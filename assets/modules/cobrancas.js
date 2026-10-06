@@ -101,7 +101,7 @@ export function receber(r) {
     <form class="form grid2" id="fr">
       <label>Valor recebido (R$)<input name="valor" inputmode="decimal" required value="${nfmt(saldoRec(r), 2)}"></label>
       <label>Data<input type="date" name="data" value="${hoje()}"></label>
-      <label class="span2">Forma<select name="forma">${FORMAS.filter(x => !x.startsWith('Fiado')).map(x => `<option>${x}</option>`).join('')}</select></label>
+      <label class="span2">Forma<select name="forma">${FORMAS.filter(x => !x.startsWith('Crediário')).map(x => `<option>${x}</option>`).join('')}</select></label>
       <label class="span2">Comprovante (foto ou print, opcional)<input type="file" accept="image/*" name="comp"><small class="mudo">Fica guardado junto do pagamento para consulta.</small></label>
       ${outras.length ? `<p class="span2 mudo pq">Se o valor for maior que o saldo da parcela, a diferença abate as próximas parcelas desta venda.</p>` : ''}
     </form>`,
@@ -128,7 +128,7 @@ export function receberCliente(clienteId) {
     titulo: 'Receber de ' + (c ? c.nome : 'cliente'),
     corpo: `<p>Saldo total em aberto: <b>${brl(tot)}</b> em ${lista.length} parcela(s). O valor abate primeiro as parcelas mais antigas.</p>
     <form class="form grid2" id="fr"><label>Valor (R$)<input name="valor" inputmode="decimal" value="${nfmt(tot, 2)}"></label><label>Data<input type="date" name="data" value="${hoje()}"></label>
-    <label class="span2">Forma<select name="forma">${FORMAS.filter(x => !x.startsWith('Fiado')).map(x => `<option>${x}</option>`).join('')}</select></label>
+    <label class="span2">Forma<select name="forma">${FORMAS.filter(x => !x.startsWith('Crediário')).map(x => `<option>${x}</option>`).join('')}</select></label>
       <label class="span2">Comprovante (foto ou print, opcional)<input type="file" accept="image/*" name="comp"><small class="mudo">Fica guardado junto do pagamento para consulta.</small></label></form>`,
     rodape: `<button class="btn" data-fechar>Cancelar</button><button class="btn pri" id="ok">${icon('check')}Confirmar</button>`
   });

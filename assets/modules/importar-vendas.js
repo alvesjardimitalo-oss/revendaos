@@ -113,7 +113,7 @@ async function executarVendas(novas, grupoDe) {
       } else res.vendas++;
       if (total > 0) {
         const pago = pag === 'pago' ? total : 0;
-        ops.push({ op: 'set', col: 'recebiveis', id: uid(), data: { ...base, parcela: 1, totalParcelas: 1, valor: total, pago, vencimento: r.iso, forma: pag === 'pago' ? 'Importado' : 'Fiado / a prazo', pagamentos: pago ? [{ data: r.iso, valor: pago, forma: 'Importado' }] : [], ...(pag === 'parcial' ? { obs: 'Pago parcialmente no sistema antigo' } : {}) } });
+        ops.push({ op: 'set', col: 'recebiveis', id: uid(), data: { ...base, parcela: 1, totalParcelas: 1, valor: total, pago, vencimento: r.iso, forma: pag === 'pago' ? 'Importado' : 'Crediário', pagamentos: pago ? [{ data: r.iso, valor: pago, forma: 'Importado' }] : [], ...(pag === 'parcial' ? { obs: 'Pago parcialmente no sistema antigo' } : {}) } });
       }
     }
     grupos.forEach(g => { const { id, ...d } = g; ops.push({ op: 'upd', col: 'consorcios', id, data: { participantes: d.participantes || [], pagamentos: d.pagamentos || {}, importados: d.importados } }); });

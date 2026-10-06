@@ -214,7 +214,7 @@ export function novaVenda(pre = {}) {
     m.$('#avisos').innerHTML = av.map(a => `<div class="aviso-box">${icon('alert')}<span>${a}</span></div>`).join('');
   };
   f.addEventListener('input', calc); f.addEventListener('change', calc);
-  f.forma.addEventListener('change', () => { if (f.forma.value === 'Fiado / a prazo') f.recebido.checked = false; calc(); });
+  f.forma.addEventListener('change', () => { if (f.forma.value === 'Crediário') f.recebido.checked = false; calc(); });
   m.$('#novocli').onclick = () => formCliente(null, c => { f.cliente.innerHTML = selectClientes(c.id); calc(); });
   desenhar();
 

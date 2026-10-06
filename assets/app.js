@@ -124,6 +124,7 @@ function montarShell() {
       ${S.db.modo === 'demo' ? `<div class="faixa-demo">Modo demonstração — configure o Firebase em <b>assets/config.js</b> para usar login real e salvar na nuvem.</div>` : ''}
       <main id="main"></main>
     </div>
+    <nav class="tabbar" id="tabbar"></nav>
   </div>`;
   $('#abrir').onclick = () => document.body.classList.add('menu-aberto');
   $('#sidebg').onclick = () => document.body.classList.remove('menu-aberto');
@@ -146,6 +147,10 @@ function atualizarShell() {
   const cont = { cobrancas: vencidas, loja: pedidos };
   $('#nav').innerHTML = MODS.filter(m => pode(m.id)).map(m =>
     `<a href="#/${m.id}" class="nav-item ${S.rota === m.id ? 'ativo' : ''}">${icon(m.ic)}<span>${m.nome}</span>${cont[m.id] ? `<i class="cont">${cont[m.id]}</i>` : ''}</a>`).join('');
+  // barra de baixo no celular (igual ao app do Revendi)
+  const TAB = [['dashboard', 'home', 'Início'], ['produtos', 'box', 'Estoque'], ['vendas', 'cart', 'Vendas'], ['clientes', 'users', 'Clientes']].filter(([id]) => pode(id));
+  $('#tabbar').innerHTML = TAB.map(([id, ic, t]) => `<a href="#/${id}" class="${S.rota === id ? 'ativo' : ''}">${icon(ic)}<span>${t}</span></a>`).join('') + `<button id="tabmenu" class="${TAB.some(([id]) => id === S.rota) ? '' : 'ativo'}">${icon('menu')}<span>Menu</span></button>`;
+  $('#tabmenu').onclick = () => document.body.classList.add('menu-aberto');
   const n = notificacoes.contagem(); const ns = $('#nsino'); ns.hidden = !n; ns.textContent = n > 9 ? '9+' : n;
   const u = S.user;
   $('#eu').innerHTML = `${u.foto ? `<img src="${esc(u.foto)}" alt="" referrerpolicy="no-referrer">` : `<span class="av">${esc((S.membro.nome || u.nome || '?')[0])}</span>`}
@@ -217,7 +222,7 @@ async function iniciar() {
     } catch (e) { console.error(e); telaLogin('Não foi possível abrir sua conta: ' + (e.code || e.message) + '. Verifique se as regras do Firestore foram publicadas.'); return; }
     montarShell(); lerRota(); assinar(); render(true);
     // primeiro acesso: traz automaticamente os dados do Revendi que estão no repositório
-    setTimeout(async () => { try { const d = await import('./modules/dados-iniciais.js'); await new Promise(r => setTimeout(r, 1500)); if (S.conta && d.precisaCarga()) d.carregarTudo(); } catch (e) { console.warn(e); } }, 1500);
+    setTimeout(async () => { try { const d = await import('./modules/dados-iniciais.js'); await new Promise(r => setTimeout(r, 1500)); if (S.conta && d.precisaCarga()) await d.carregarTudo(); else await d.correcoes(); } catch (e) { console.warn(e); } }, 1500);
   });
 }
 iniciar();

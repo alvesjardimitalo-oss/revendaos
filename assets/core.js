@@ -25,7 +25,7 @@ export const MODS = [
   { id: 'config', nome: 'Configurações', ic: 'gear' }
 ];
 
-export const FORMAS = ['Dinheiro', 'Pix', 'Cartão de débito', 'Cartão de crédito', 'Fiado / a prazo', 'Boleto', 'Outro'];
+export const FORMAS = ['Dinheiro', 'Pix', 'Cartão de débito', 'Cartão de crédito', 'Crediário', 'Boleto', 'Outro'];
 export const ENTREGA = { pendente: 'Pendente', separado: 'Separado', enviado: 'Enviado', entregue: 'Entregue' };
 
 export const cfg = () => S.conta.config || {};

@@ -261,7 +261,7 @@ function clicarMes(g, p, mes) {
     corpo: `<form class="form grid2" id="fr">
       <label class="span2">Meses pagos<select name="qtd">${abertos.map((x, i) => `<option value="${i + 1}" ${x === mes && i === abertos.length - 1 ? '' : ''}>${i + 1 === 1 ? nomeMes(abertos[0]) : `${i + 1} parcelas (${curto(abertos[0])} a ${curto(abertos[i])})`}</option>`).join('')}</select><small class="mudo">Começa pela parcela mais antiga em aberto.</small></label>
       <label>Data<input type="date" name="data" value="${hoje()}"></label>
-      <label>Forma<select name="forma">${FORMAS.filter(x => !x.startsWith('Fiado')).map(x => `<option ${x === 'Pix' ? 'selected' : ''}>${x}</option>`).join('')}</select></label>
+      <label>Forma<select name="forma">${FORMAS.filter(x => !x.startsWith('Crediário')).map(x => `<option ${x === 'Pix' ? 'selected' : ''}>${x}</option>`).join('')}</select></label>
       <label class="span2">Comprovante (opcional)<input type="file" accept="image/*" name="comp"></label>
       <div class="span2 total-box"><span>Total</span><b id="tot"></b></div>
     </form>`,

@@ -83,6 +83,7 @@ export async function carregarTudo() {
 
     await commit([{ op: 'upd', col: '@conta', data: { dadosIniciais: Date.now() } }]);
     }
+    await new Promise(r => setTimeout(r, 800)); await correcoes();
     box.querySelector('h3').textContent = 'Pronto! Seus dados estão no sistema.';
     box.querySelector('.modal-b p').innerHTML = 'Confira em Consórcios os grupos e use <b>Marcar pagos até…</b> para as parcelas que estavam "pagas parcialmente".';
     const b = document.createElement('div'); b.className = "modal-f"; b.innerHTML = '<span class="grow"></span><button class="btn pri">Começar</button>';
@@ -92,5 +93,38 @@ export async function carregarTudo() {
     box.querySelector('h3').textContent = 'Não consegui terminar';
     box.querySelector('.modal-b p').textContent = 'Erro: ' + (e.code || e.message) + '. Recarregue a página para tentar de novo (o que já entrou não é duplicado).';
     toast('Erro ao trazer os dados: ' + (e.code || e.message), 'erro');
+  }
+}
+
+// ---------------- correções pontuais nos dados trazidos (rodam uma vez por conta) ----------------
+const CORRECOES = [
+  {
+    id: 'jose-raimundo-15-09-2026', // venda com os itens e o crediário em 3x, como no Revendi
+    run: () => {
+      const v = S.d.vendas.find(x => x.importado && x.data === '2026-09-15' && /jos[eé] raimundo/i.test(x.clienteNome || '') && Math.abs(x.total - 238.9) < 0.01);
+      if (!v) return null;
+      const custo = Number(v.custoTotal) || 0, c1 = r2(custo * 58.9 / 238.9);
+      const ops = [{ op: 'upd', col: 'vendas', id: v.id, data: {
+        itens: [
+          { prodId: '', nome: 'Refil creme desodorante nutritivo para o corpo cereja negra e praliné', marca: 'Natura', categoria: 'Corpo e banho', qtd: 1, preco: 58.9, custo: c1, baixas: [] },
+          { prodId: '', nome: 'Desodorante colônia Kaiak Oceano masculino - 100 ml', marca: 'Natura', categoria: 'Perfumaria', qtd: 1, preco: 180, custo: r2(custo - c1), baixas: [] }
+        ], forma: 'Crediário', parcelas: 3 } }];
+      S.d.recebiveis.filter(r => r.vendaId === v.id).forEach(r => ops.push({ op: 'del', col: 'recebiveis', id: r.id }));
+      const base = { vendaId: v.id, numeroVenda: v.numero, clienteId: v.clienteId, clienteNome: v.clienteNome, clienteFone: v.clienteFone || '', criadoEm: Date.now() };
+      [[79.64, '2026-10-15'], [79.63, '2026-11-14'], [79.63, '2026-12-14']].forEach(([valor, venc], i) =>
+        ops.push({ op: 'set', col: 'recebiveis', id: uid(), data: { ...base, parcela: i + 1, totalParcelas: 3, valor, pago: 0, vencimento: venc, forma: 'Crediário', pagamentos: [] } }));
+      return ops;
+    }
+  }
+];
+export async function correcoes() {
+  if (!isAdmin() || !S.conta) return;
+  const feitas = S.conta.correcoes || [];
+  for (const c of CORRECOES) {
+    if (feitas.includes(c.id)) continue;
+    const ops = c.run();
+    if (!ops) continue; // dados ainda não estão aqui
+    ops.push({ op: 'upd', col: '@conta', data: { correcoes: [...feitas, c.id] } });
+    if (await commit(ops)) feitas.push(c.id);
   }
 }
