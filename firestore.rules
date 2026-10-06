@@ -1,0 +1,111 @@
+rules_version = '2';
+// Regras de segurança do RevendaOS
+// Cole no Firebase Console > Firestore Database > Regras > Publicar
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function logado() { return request.auth != null; }
+    function emailUsuario() { return request.auth.token.email.lower(); }
+    function caminhoMembro(cid) { return /databases/$(database)/documents/contas/$(cid)/membros/$(request.auth.uid); }
+    function membro(cid) { return logado() && exists(caminhoMembro(cid)); }
+    function admin(cid) { return membro(cid) && get(caminhoMembro(cid)).data.papel == 'admin'; }
+    function membroDepois(cid) { return logado() && existsAfter(caminhoMembro(cid)); }
+
+    // Vínculo usuário -> conta (cada pessoa só mexe no próprio)
+    match /usuarios/{uid} {
+      allow read: if logado() && request.auth.uid == uid;
+      allow create, update: if logado() && request.auth.uid == uid && membroDepois(request.resource.data.contaId);
+    }
+
+    // Convites de equipe (id do documento = e-mail em minúsculas)
+    match /convites/{email} {
+      allow read: if logado() && (emailUsuario() == email || admin(resource.data.contaId));
+      allow create, update: if admin(request.resource.data.contaId);
+      allow delete: if logado() && (emailUsuario() == email || admin(resource.data.contaId));
+    }
+
+    match /contas/{cid} {
+      allow read: if membro(cid);
+      allow create: if logado() && request.resource.data.dono == request.auth.uid;
+      allow update: if admin(cid) && request.resource.data.dono == resource.data.dono;
+
+      match /membros/{uid} {
+        allow read: if membro(cid);
+        // 1) dono criando a própria conta  2) pessoa aceitando um convite  3) administrador
+        allow create: if logado() && (
+          (uid == request.auth.uid && getAfter(/databases/$(database)/documents/contas/$(cid)).data.dono == request.auth.uid && request.resource.data.papel == 'admin')
+          || (uid == request.auth.uid
+              && exists(/databases/$(database)/documents/convites/$(emailUsuario()))
+              && get(/databases/$(database)/documents/convites/$(emailUsuario())).data.contaId == cid
+              && request.resource.data.papel == get(/databases/$(database)/documents/convites/$(emailUsuario())).data.papel)
+          || admin(cid));
+        allow update: if admin(cid)
+          || (uid == request.auth.uid && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['papel', 'permissoes', 'comissao', 'meta']));
+        allow delete: if admin(cid) && uid != request.auth.uid;
+      }
+
+      // Histórico: só cria e lê, nunca altera
+      match /logs/{id} {
+        allow read, create: if membro(cid);
+      }
+
+      // Dados do negócio
+      match /{col}/{id} {
+        allow read, write: if membro(cid) && col in ['produtos', 'clientes', 'vendas', 'recebiveis', 'lancamentos', 'compras', 'promocoes', 'consorcios'];
+      }
+    }
+
+    // ---------- Catálogo de marcas (compartilhado entre todas as contas) ----------
+    function curador() {
+      return logado() && exists(/databases/$(database)/documents/sistema/curadores)
+        && request.auth.token.email.lower() in get(/databases/$(database)/documents/sistema/curadores).data.emails;
+    }
+    match /sistema/curadores {
+      allow read: if logado();
+      // o primeiro curador se cadastra pelo próprio sistema; depois, só curadores alteram a lista
+      allow create: if logado() && request.resource.data.emails == [request.auth.token.email.lower()];
+      allow update: if curador() && request.resource.data.emails.size() > 0;
+    }
+    match /catalogo/{marca} {
+      allow read: if logado();
+      allow write: if curador();
+      match /partes/{parte} {
+        allow read: if logado();
+        allow write: if curador();
+      }
+    }
+    match /catalogo_ean/{ean} {
+      allow read: if logado();
+      allow write: if curador();
+    }
+    match /catalogo_ref/{id} {
+      allow read: if logado();
+      allow write: if curador();
+    }
+    match /catalogo_sugestoes/{ean} {
+      allow create: if logado() && request.resource.data.por == request.auth.uid && request.resource.data.nome is string;
+      allow read, update, delete: if curador();
+    }
+
+    // Loja virtual pública
+    match /lojas/{slug} {
+      allow read: if true;
+      allow create: if admin(request.resource.data.contaId);
+      allow update: if admin(resource.data.contaId) && request.resource.data.contaId == resource.data.contaId;
+
+      match /itens/{id} {
+        allow read: if true;
+        allow write: if membro(get(/databases/$(database)/documents/lojas/$(slug)).data.contaId);
+      }
+      match /pedidos/{id} {
+        // Qualquer visitante pode enviar pedido, com validação básica
+        allow create: if request.resource.data.status == 'novo'
+          && request.resource.data.itens is list && request.resource.data.itens.size() > 0 && request.resource.data.itens.size() <= 100
+          && request.resource.data.total is number
+          && request.resource.data.cliente.nome is string && request.resource.data.cliente.nome.size() <= 120
+          && get(/databases/$(database)/documents/lojas/$(slug)).data.ativa == true;
+        allow read, update, delete: if membro(get(/databases/$(database)/documents/lojas/$(slug)).data.contaId);
+      }
+    }
+  }
+}

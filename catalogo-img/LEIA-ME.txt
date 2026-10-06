@@ -1,0 +1,2 @@
+Fotos do catálogo de marcas: uma pasta por marca (o identificador que aparece no sistema) e um arquivo por produto, com o nome igual ao código do produto.
+Exemplo: catalogo-img/natura/73852.jpg

@@ -1,0 +1,106 @@
+﻿data;cliente;itens;total;pagamento;entrega;lucro;tipo;grupo
+29/09/2026;Ireni Alves Pinheiro Jardim;1;45,00;Pago;Entregue;6,84;venda;
+17/09/2026;Tia Leninha;1;229,90;Pago Parcialmente;A entregar;34,48;venda;
+16/09/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;5;316,96;Pago;Entregue;77,65;venda;
+15/09/2026;Karen Cristina Alves Duarte Martins;11;353,69;Pendente;Entregue;4,32;venda;
+15/09/2026;Italo Alves Jardim;3;459,05;Pendente;Entregue;-0,32;venda;
+15/09/2026;Mauro Gustavo;1;52,90;Pago;Entregue;7,94;venda;
+15/09/2026;WAGNER RODRIGUES DE SOUZA;1;99,90;Pago;Entregue;24,98;venda;
+15/09/2026;Alber Neto;5;0,00;Pago;Entregue;-454,61;resgate;G5
+15/09/2026;Luzia Juscelia;3;9,70;Pendente;Entregue;-423,56;resgate;G3
+15/09/2026;MARCOS DE SOUZA FERREIRA;2;74,80;Pago;Entregue;-232,31;resgate;G1
+15/09/2026;José Raimundo Jardim;2;238,90;Pendente;Entregue;129,07;venda;
+31/08/2026;Marco Aurélio;1;244,90;Pago;Entregue;48,97;venda;
+20/08/2026;Edilene Master;2;0,00;Pago;Entregue;-412,08;resgate;G3
+17/08/2026;Anderson Prefeitura;1;229,90;Pago;Entregue;34,48;venda;
+17/08/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;4;146,60;Pago;Entregue;34,92;venda;
+12/08/2026;ELLEM MARESSA DA SILVA COUTINHO;5;0,00;Pago;Entregue;-385,61;resgate;G5
+11/08/2026;SILVANA APARECIDA DUARTE;4;214,60;Pago;Entregue;-258,31;resgate;G1
+19/07/2026;Ireni Alves Pinheiro Jardim;1;75,00;Pago;Entregue;22,50;venda;
+19/07/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;4;127,70;Pago;Entregue;40,54;venda;
+11/07/2026;MARIA ANITA DUARTE SENA;6;0,00;Pago;Entregue;-282,14;resgate;G1
+11/07/2026;Gilsilene Ferreira Neto;3;0,00;Pago;Entregue;-412,00;resgate;G5
+11/07/2026;Adrieny Karla;5;17,50;Pago;Entregue;-394,34;resgate;G3
+06/07/2026;SILVANA APARECIDA DUARTE;1;34,90;Pago;Entregue;10,47;venda;
+22/06/2026;Maria Aparecida (Cida Prefeitura);1;160,00;Pago;Entregue;41,08;venda;
+20/06/2026;Joelma Monteiro de Oliveira;2;36,60;Pago;Entregue;-31,32;venda;
+20/06/2026;Samile;6;17,40;Pago;Entregue;-443,60;resgate;G3
+20/06/2026;ELIZETH FREIRE DORNELAS;6;0,00;Pago;Entregue;-411,56;resgate;G5
+18/06/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;5;232,20;Pago;Entregue;84,50;venda;
+16/06/2026;Ireni Alves Pinheiro Jardim;3;64,89;Pago;Entregue;-209,59;resgate;G1
+09/06/2026;SILVANA APARECIDA DUARTE;2;69,80;Pago;Entregue;20,94;venda;
+06/06/2026;Nilma Garajau;1;184,90;Pago;Entregue;6,48;venda;
+01/06/2026;Nilma Garajau;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Christine Teles Araújo;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Simony Souza Santos;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Regina Mattos Farias;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Alber Neto;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Gilsilene Ferreira Neto;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;ELLEM MARESSA DA SILVA COUTINHO;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Elton Lopes Pasos;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+01/06/2026;Aline Lourenço Duarte;4;209,00;Pago;Entregue;32,44;venda;
+01/06/2026;Jackeline Teles;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+29/05/2026;Valdivino Aguiar;1;160,00;Pago;Entregue;24,08;venda;
+26/05/2026;WAGNER RODRIGUES DE SOUZA;2;360,00;Pago;Entregue;127,05;venda;
+26/05/2026;Maria Aparecida (Cida Prefeitura);1;159,90;Pago;Entregue;53,74;venda;
+11/05/2026;Leia De Oliveira;3;5,70;Pago;Entregue;5,70;venda;
+11/05/2026;Priscila de Souza Silva Peitieiros;2;108,30;Pago;Entregue;21,66;venda;
+06/05/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;4;69,10;Pago;Entregue;-245,88;resgate;G1
+03/05/2026;Neuza Pereira;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;Ireni Alves Pinheiro Jardim;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;GABRIELA MARTINS DE CASTRO;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;SILVANA APARECIDA DUARTE;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;LARISSA NASCIMENTO SILVA;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;LUANA SABINO DOS SANTOS;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;MARIA ANITA DUARTE SENA;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;MARCOS DE SOUZA FERREIRA;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G4
+01/05/2026;ELIZETH FREIRE DORNELAS;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+11/04/2026;Ireni Alves Pinheiro Jardim;2;0,02;Pago;Entregue;-39,81;venda;
+10/04/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;2;260,00;Pago;Entregue;99,21;venda;
+10/04/2026;Mauro Gustavo;1;160,00;Pago;Entregue;53,84;venda;
+07/04/2026;Priscila de Souza Silva Peitieiros;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G5
+03/04/2026;Jessica Alves;7;0,02;Pago;Entregue;-12,58;venda;
+02/04/2026;SILVANA APARECIDA DUARTE;2;272,80;Pago;Entregue;54,54;venda;
+01/04/2026;Aline Lourenço Duarte;5;13,48;Pago;Entregue;-55,10;venda;
+12/03/2026;Joelma Monteiro de Oliveira;5;0,01;Pago;Entregue;0,01;venda;
+12/03/2026;Neuza Pereira;3;0,01;Pago;Entregue;0,01;venda;
+12/03/2026;Rosania Pinheiro;1;284,90;Pago;Entregue;42,74;venda;
+07/03/2026;Simony Souza Santos;6;0,01;Pago;Entregue;0,01;venda;
+05/03/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;7;193,89;Pago;Entregue;176,39;venda;
+05/03/2026;Adrieny Karla;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Jessica Alves;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Samile;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Rafael Cornelio;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Luzia Juscelia;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Leia De Oliveira;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;JUSCELIA ALMEIDA DE MATOS FERNANDES;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Juliano Juscelia;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Edilene Master;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Delci;1;500,00;Pago Parcialmente;Entregue;500,00;consorcio;G3
+05/03/2026;Ramierlley Miranda;3;58,60;Pago;Entregue;58,60;venda;
+04/03/2026;Maria Aparecida (Cida Prefeitura);1;230,00;Pago;Entregue;21,83;venda;
+03/03/2026;Ireni Alves Pinheiro Jardim;1;244,90;Pago;Entregue;36,74;venda;
+03/03/2026;José Raimundo Jardim;1;160,00;Pago;Entregue;24,00;venda;
+27/01/2026;MARCOS DE SOUZA FERREIRA;2;59,80;Pago;Entregue;0,12;venda;
+04/01/2026;Helia Sandra;2;232,89;Pago;Entregue;45,94;venda;
+31/08/2025;Ramierlley Miranda;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Jessica Mareco;1;250,00;Pago;Entregue;37,50;consorcio;G2
+01/08/2025;Neuza Pereira;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Cristiane Barbosa;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Virlene Lucia;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Simony Souza Santos;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Nilma Garajau;1;250,00;Pago;Entregue;0,00;consorcio;G2
+01/08/2025;Milza Barbosa;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Jackeline Teles;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;Aline Lourenço Duarte;1;250,00;Pago;Entregue;250,00;consorcio;G2
+01/08/2025;SILVANA APARECIDA DUARTE;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G1
+01/07/2025;MARCOS DE SOUZA FERREIRA;1;350,00;Pago;Entregue;350,00;consorcio;G1
+01/07/2025;JUSCELIA ALMEIDA DE MATOS FERNANDES;1;350,00;Pago;Entregue;350,00;consorcio;G1
+01/07/2025;Ireni Alves Pinheiro Jardim;1;350,00;Pago;Entregue;350,00;consorcio;G1
+01/07/2025;WAGNER RODRIGUES DE SOUZA;1;350,00;Pago;Entregue;350,00;consorcio;G1
+01/07/2025;Joelma Monteiro de Oliveira;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G1
+01/07/2025;MARIA ANITA DUARTE SENA;1;350,00;Pago Parcialmente;Entregue;350,00;consorcio;G1
+01/07/2025;Maiara Oliveira Leite;1;350,00;Pago;Entregue;0,00;consorcio;G1
+01/07/2025;LARISSA NASCIMENTO SILVA;1;350,00;Pago;Entregue;350,00;consorcio;G1
+01/07/2025;Italo Alves Jardim;1;350,00;Pago;Entregue;350,00;consorcio;G1
