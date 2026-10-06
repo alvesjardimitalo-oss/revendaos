@@ -20,5 +20,19 @@
 <body>
   <div class="carregando"><div class="spin"></div><p>Carregando…</p></div>
   <script type="module" src="assets/app.js"></script>
+  <script>
+    // Se algum arquivo falhar ao carregar (ex.: GitHub Pages instável logo após publicar), oferece recarregar em vez de girar para sempre
+    setTimeout(function () {
+      if (!window.__appIniciado && document.querySelector('.carregando p') && document.querySelector('.carregando p').textContent === 'Carregando…') {
+        document.querySelector('.carregando').innerHTML = '<p>Não consegui carregar o sistema.</p><p><button onclick="limparERecarregar()" style="padding:10px 18px;border-radius:10px;border:0;background:#c2185b;color:#fff;font-weight:600;cursor:pointer">Recarregar</button></p>';
+      }
+    }, 12000);
+    function limparERecarregar() {
+      var p = [];
+      if (window.caches) p.push(caches.keys().then(function (ks) { return Promise.all(ks.map(function (k) { return caches.delete(k); })); }));
+      if (navigator.serviceWorker) p.push(navigator.serviceWorker.getRegistrations().then(function (rs) { return Promise.all(rs.map(function (r) { return r.unregister(); })); }));
+      Promise.all(p).finally(function () { location.reload(); });
+    }
+  </script>
 </body>
 </html>

@@ -189,6 +189,7 @@ function ligarConvites() {
 }
 
 async function iniciar() {
+  window.__appIniciado = true;
   aplicarTema();
   try { S.db = await getDB(); }
   catch (e) { document.body.innerHTML = `<div class="login"><div class="login-card"><h1>Falha ao carregar</h1><p>${esc(e.message)}</p></div></div>`; return; }
