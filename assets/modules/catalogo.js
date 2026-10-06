@@ -468,7 +468,16 @@ function abaGerenciar(a) {
   const ms = CAT.marcas;
   const minhas = {};
   S.d.produtos.filter(p => p.marca && p.ativo !== false).forEach(p => (minhas[p.marca] = minhas[p.marca] || []).push(p));
+  const REPO = 'https://github.com/alvesjardimitalo-oss/revendaos';
   a.innerHTML = `
+  <section class="card"><h4>${icon('book')} Revista nova a cada ciclo (automático)</h4>
+    <p class="mudo pq">Envie o PDF da revista e o próprio GitHub converte em catálogo: tira as fotos, os códigos e os preços. Em uns 10 minutos o catálogo aparece aqui atualizado.</p>
+    <ol class="passos-lista">
+      <li><b>PDF no celular ou computador:</b> abra <a href="${REPO}/releases/new" target="_blank">Nova versão no GitHub</a>, em "Tag" escreva por exemplo <code>boticario-16</code>, arraste o PDF em "Attach binaries" e toque em <b>Publish release</b>. O nome do arquivo precisa ter a marca (ex.: <code>boticario_ciclo16.pdf</code>).</li>
+      <li><b>Ou um link:</b> cole o link do PDF (Google Drive público) no arquivo <a href="${REPO}/edit/main/revistas/links.txt" target="_blank">revistas/links.txt</a>. Ele confere os links toda segunda-feira e também na hora em que você salvar.</li>
+    </ol>
+    <div class="barra"><a class="btn" href="${REPO}/actions" target="_blank">${icon('eye')}Ver conversões</a></div>
+  </section>
   <section class="card"><h4>${icon('up')} Importar tabela de uma marca</h4>
     <p class="mudo pq">Use a planilha de produtos e preços que a marca disponibiliza no portal da revendedora (Excel ou CSV). Colunas reconhecidas: <code>marca</code>, <code>codigo_barras</code>, <code>codigo_revista</code>, <code>nome</code>, <code>categoria</code>, <code>linha</code>, <code>preco</code>, <code>foto_url</code> e <code>descricao</code>. Nomes parecidos também funcionam, como "Produto", "EAN", "Preço sugerido" e "Código".</p>
     <div class="barra"><button class="btn pri" id="imp">${icon('up')}Escolher planilha</button><button class="btn" id="modelo">${icon('down')}Baixar modelo</button></div>
@@ -689,4 +698,24 @@ async function prepararFotos(slug) {
     if (await publicarMarca(meta.nome, novos, 'mesclar')) { toast(`${novos.length} foto(s) salvas no catálogo.`); m.fechar(); redesenhar(); }
     else m.$('#direto').disabled = false;
   };
+}
+
+// ---------- revistas convertidas automaticamente (pasta catalogo-auto/ do repositório) ----------
+export async function atualizarCatalogoAuto() {
+  let man; try { const r = await fetch('catalogo-auto/manifest.json', { cache: 'no-store' }); if (!r.ok) return; man = await r.json(); } catch { return; }
+  const marcas = Object.entries(man.marcas || {}); if (!marcas.length) return;
+  if (!S.curador) { const d = await S.db.lerDoc('sistema/curadores').catch(() => null); if (d) return; }
+  const metas = await S.db.lerCol('catalogo').catch(() => []);
+  for (const [slug, m] of marcas) {
+    const meta = metas.find(x => x.id === slug) || {};
+    if (meta.versaoAuto === m.gerado) continue;
+    try {
+      const txt = await (await fetch(m.csv, { cache: 'no-store' })).text();
+      const r = await importarCatalogoTexto(txt);
+      if (r.erro) return;
+      await S.db.commit([{ op: 'upd', path: `catalogo/${slug}`, data: { versaoAuto: m.gerado, ciclo: m.ciclo || '' } }]);
+      IDX = null; TODOS = null;
+      toast(`Catálogo ${m.marca}${m.ciclo ? ' (ciclo ' + m.ciclo.split('-')[1] + ')' : ''} atualizado: ${r.tot} produtos.`);
+    } catch (e) { console.warn('catálogo automático', slug, e); }
+  }
 }

@@ -748,3 +748,4 @@ img.falhou { visibility: hidden; }
 
 .abas { scrollbar-width: none; overflow-y: hidden; } .abas::-webkit-scrollbar { display: none; }
 .cat-foto.sem-foto::after { font-size: 48px; }
+.passos-lista { margin: 6px 0 12px; padding-left: 20px; display: grid; gap: 8px; } .passos-lista li { line-height: 1.5; }

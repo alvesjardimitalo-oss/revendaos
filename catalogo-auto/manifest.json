@@ -1,0 +1,20 @@
+{
+ "marcas": {},
+ "processados": {
+  "0dc6f77572d787472e89ffbcfe017b1ee38d6b49b494cec0aaeb07fee8baff73": {
+   "arquivo": "catalogo_boticario_202615.pdf",
+   "marca": "o-boticario",
+   "em": "2026-10-06"
+  },
+  "af2ccaffb06db57714a83329542c9fe33c526c747ae7b2a57f4897e069109723": {
+   "arquivo": "catalogo_eudora_202615.pdf",
+   "marca": "eudora",
+   "em": "2026-10-06"
+  },
+  "3eb4e15f5657d519468506ea3a8891bd6d0f8d1a48966848e49add3990fabc60": {
+   "arquivo": "catalogo_oui_202614.pdf",
+   "marca": "oui",
+   "em": "2026-10-06"
+  }
+ }
+}

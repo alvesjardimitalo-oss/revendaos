@@ -1,0 +1,5 @@
+# Coloque aqui o link do PDF da revista de cada ciclo (um por linha), com o nome da marca antes.
+# O link precisa abrir o PDF sem login (ex.: Google Drive com "Qualquer pessoa com o link").
+# Exemplos:
+# boticario ciclo 16: https://drive.google.com/file/d/XXXXXXXX/view
+# eudora ciclo 16: https://drive.google.com/file/d/YYYYYYYY/view

@@ -226,7 +226,7 @@ async function iniciar() {
     } catch (e) { console.error(e); telaLogin('Não foi possível abrir sua conta: ' + (e.code || e.message) + '. Verifique se as regras do Firestore foram publicadas.'); return; }
     montarShell(); lerRota(); assinar(); render(true);
     // primeiro acesso: traz automaticamente os dados do Revendi que estão no repositório
-    setTimeout(async () => { try { const d = await import('./modules/dados-iniciais.js'); await new Promise(r => setTimeout(r, 1500)); if (S.conta && d.precisaCarga()) await d.carregarTudo(); else await d.correcoes(); } catch (e) { console.warn(e); } }, 1500);
+    setTimeout(async () => { try { const d = await import('./modules/dados-iniciais.js'); await new Promise(r => setTimeout(r, 1500)); if (S.conta && d.precisaCarga()) await d.carregarTudo(); else await d.correcoes(); if (isAdmin()) (await import('./modules/catalogo.js')).atualizarCatalogoAuto(); } catch (e) { console.warn(e); } }, 1500);
   });
 }
 iniciar();
