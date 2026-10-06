@@ -1,18 +1,35 @@
 // Carga automática dos dados trazidos do Revendi (pasta dados-iniciais/ do repositório).
 // Roda sozinha no primeiro acesso da administradora, quando a conta ainda está vazia.
 import { S, isAdmin, commit, toast } from '../core.js';
+import { parseCSV, parseNum, uid, r2 } from '../utils.js';
+import { opsItemLoja } from './loja-sync.js';
 
 const ARQ = {
   clientes: 'dados-iniciais/clientes-revendaos.csv',
   vendas: 'dados-iniciais/vendas-revendi.csv',
   compras: 'dados-iniciais/compras-revendi.csv',
+  estoque: 'dados-iniciais/estoque-revendi.csv',
   catalogo: ['dados-iniciais/catalogo-boticario.csv', 'dados-iniciais/catalogo-eudora.csv', 'dados-iniciais/catalogo-oui.csv']
 };
 const ler = async u => { const r = await fetch(u, { cache: 'no-store' }); if (!r.ok) throw new Error('arquivo ' + u + ' não encontrado'); return r.text(); };
 const esperar = async (cond, ms = 8000) => { const t = Date.now(); while (!cond() && Date.now() - t < ms) await new Promise(r => setTimeout(r, 200)); };
 
-export function precisaCarga() {
-  return isAdmin() && !(S.conta && S.conta.dadosIniciais) && !S.d.clientes.length && !S.d.vendas.length && !S.d.compras.length;
+const faltaBase = () => !(S.conta && S.conta.dadosIniciais) && !S.d.clientes.length && !S.d.vendas.length && !S.d.compras.length;
+const faltaEstoque = () => !(S.conta && S.conta.estoqueInicial) && !S.d.produtos.length;
+export function precisaCarga() { return isAdmin() && (faltaBase() || faltaEstoque()); }
+
+// estoque: produtos com quantidade, preço, custo (quando conhecido) e foto; descontos viram promoções
+async function importarEstoque(txt) {
+  const rows = parseCSV(txt).filter(r => r.nome);
+  const ops = [], promo = {};
+  for (const r of rows) {
+    const id = uid(), preco = parseNum(r.preco), pp = parseNum(r.preco_promocional), custo = parseNum(r.custo), qtd = parseNum(r.quantidade) || 0;
+    ops.push({ op: 'set', col: 'produtos', id, data: { nome: r.nome, marca: r.marca || '', categoria: r.categoria || '', sku: r.codigo_revista || '', codigo: '', preco, precoLoja: 0, custo, estoqueMin: null, descricao: '', naLoja: preco > 0, ativo: true, foto: r.foto || '', fotos: [], kit: [], lotes: qtd ? [{ id: uid(), qtd, validade: '', custo }] : [], criadoEm: Date.now(), atualizadoEm: Date.now() } });
+    ops.push(...opsItemLoja({ id, ...ops[ops.length - 1].data }));
+    if (pp && preco && pp < preco) { const pct = Math.round((1 - pp / preco) * 100); (promo[pct] = promo[pct] || []).push(id); }
+  }
+  Object.entries(promo).forEach(([pct, ids]) => ops.push({ op: 'set', col: 'promocoes', id: uid(), data: { nome: `Promoção ${pct}% (trazida do Revendi)`, alvo: 'produtos', canal: 'todos', categoria: '', marca: '', tipo: 'percentual', valor: +pct, inicio: '', fim: '', ativa: true, ids, criadoEm: Date.now() } }));
+  return (await commit(ops, `Cadastrou ${rows.length} produtos do estoque do Revendi`)) ? rows.length : 0;
 }
 
 export async function carregarTudo() {
@@ -23,8 +40,17 @@ export async function carregarTudo() {
   const ul = box.querySelector('#passos');
   const passo = t => { const li = document.createElement('li'); li.innerHTML = `<span>${t}</span><b>…</b>`; ul.appendChild(li); return v => li.querySelector('b').textContent = v; };
   const resumo = {};
+  const base = faltaBase(), est = faltaEstoque();
   try {
-    let fim = passo('Clientes');
+    let fim;
+    if (est) {
+      fim = passo('Estoque');
+      resumo.estoque = await importarEstoque(await ler(ARQ.estoque));
+      await commit([{ op: 'upd', col: '@conta', data: { estoqueInicial: Date.now() } }]);
+      fim(resumo.estoque + ' produtos ✓');
+    }
+    if (base) {
+    fim = passo('Clientes');
     const { importarClientesTexto } = await import('./clientes.js');
     resumo.clientes = await importarClientesTexto(await ler(ARQ.clientes), true);
     await esperar(() => S.d.clientes.length >= resumo.clientes);
@@ -56,6 +82,7 @@ export async function carregarTudo() {
     if (tot >= 0) fim(tot + ' produtos ✓');
 
     await commit([{ op: 'upd', col: '@conta', data: { dadosIniciais: Date.now() } }]);
+    }
     box.querySelector('h3').textContent = 'Pronto! Seus dados estão no sistema.';
     box.querySelector('.modal-b p').innerHTML = 'Confira em Consórcios os grupos e use <b>Marcar pagos até…</b> para as parcelas que estavam "pagas parcialmente".';
     const b = document.createElement('div'); b.className = "modal-f"; b.innerHTML = '<span class="grow"></span><button class="btn pri">Começar</button>';
