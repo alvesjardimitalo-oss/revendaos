@@ -1,6 +1,6 @@
 // Relatórios gerenciais
-import { $, $$, esc, brl, nfmt, pct, r2, fmtData, hoje, addMeses, mesAtual, toCSV, baixar } from '../utils.js';
-import { S, cfg, icon, vendasValidas, vazio, qtdProduto, saldoRec, ehKit, badge } from '../core.js';
+import { $, $$, esc, brl, nfmt, pct, r2, fmtData, hoje, addMeses, mesAtual, toCSV, baixar, categoriaPorNome } from '../utils.js';
+import { S, cfg, icon, vendasValidas, vazio, qtdProduto, saldoRec, ehKit, badge, prodPorId } from '../core.js';
 
 let F = { per: 'mes', de: '', ate: '', aba: 'vendas', grupo: 'marca' };
 let graf;
@@ -9,7 +9,7 @@ function intervalo() {
   const h = hoje(), ym = mesAtual();
   switch (F.per) {
     case 'mes': return [ym + '-01', h];
-    case 'mespass': { const m = addMeses(ym + '-15', -1).slice(0, 7); return [m + '-01', m + '-31']; }
+    case 'mespass': { const m = addMeses(ym + '-15', -1).slice(0, 7); const [y, mm] = m.split('-').map(Number); return [m + '-01', m + '-' + String(new Date(y, mm, 0).getDate()).padStart(2, '0')]; }
     case '3m': return [addMeses(ym + '-01', -2), h];
     case '12m': return [addMeses(ym + '-01', -11), h];
     case 'ano': return [h.slice(0, 4) + '-01-01', h];
@@ -98,7 +98,7 @@ function relVendas(el) {
   const nItens = itens.reduce((s, i) => s + i.qtd, 0);
 
   const prods = agrupar(itens, i => i.nome).slice(0, 15);
-  const cats = agrupar(itens, i => i.categoria || 'Sem categoria');
+  const cats = agrupar(itens, i => i.categoria || (prodPorId(i.prodId) || {}).categoria || (/importado/i.test(i.nome) ? 'Vendas antigas (sem detalhe)' : categoriaPorNome(i.nome)) || 'Outros');
   const marcas = agrupar(itens, i => i.marca || 'Sem marca');
   const clientes = (() => { const g = {}; vs.forEach(v => { const k = v.clienteNome || 'Consumidor final'; const x = g[k] = g[k] || { k, n: 0, rec: 0 }; x.n++; x.rec += v.total; }); return Object.values(g).sort((a, b) => b.rec - a.rec).slice(0, 10); })();
   const formas = (() => { const g = {}; vs.forEach(v => { const x = g[v.forma] = g[v.forma] || { k: v.forma, n: 0, rec: 0 }; x.n++; x.rec += v.total; }); return Object.values(g).sort((a, b) => b.rec - a.rec); })();

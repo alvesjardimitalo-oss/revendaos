@@ -2,7 +2,7 @@
 // - Revendedoras navegam por marca, selecionam produtos e cadastram no estoque em lote.
 // - Código de barras: busca no catálogo e, se não achar, no Open Beauty Facts.
 // - Curadoria: importa tabelas das marcas (CSV/Excel), publica a partir do estoque e aprova sugestões.
-import { $, $$, esc, brl, nfmt, parseNum, uid, norm, slugify, soDigitos, hoje, parseCSV, baixar, toCSV, fmtDataHora, reduzirImagem, nomeBonito, tratarFotoProduto, linkBuscaFoto } from '../utils.js';
+import { $, $$, esc, brl, nfmt, parseNum, uid, norm, slugify, soDigitos, hoje, parseCSV, baixar, toCSV, fmtDataHora, reduzirImagem, nomeBonito, tratarFotoProduto, linkBuscaFoto, categoriaPorNome } from '../utils.js';
 import { S, cfg, pode, isAdmin, icon, modal, ask, toast, commit, qtdProduto, vazio, badge } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
 
@@ -34,7 +34,7 @@ async function carregarItens(slug) {
   if (CAT.itens[slug]) return CAT.itens[slug];
   const partes = await S.db.lerCol(`catalogo/${slug}/partes`);
   const meta = (CAT.marcas || []).find(m => m.id === slug) || {};
-  CAT.itens[slug] = partes.sort((a, b) => +a.id - +b.id).flatMap(p => p.itens || []).map(i => ({ ...i, nome: nomeBonito(i.nome), marcaSlug: slug, marca: meta.nome || slug }));
+  CAT.itens[slug] = partes.sort((a, b) => +a.id - +b.id).flatMap(p => p.itens || []).map(i => ({ ...i, nome: nomeBonito(i.nome), categoria: !i.categoria || i.categoria === 'Outros' ? (categoriaPorNome(i.nome) || 'Outros') : i.categoria, marcaSlug: slug, marca: meta.nome || slug }));
   return CAT.itens[slug];
 }
 
@@ -84,6 +84,13 @@ const BASE_IMG = new URL('catalogo-img/', location.href.replace(/[?#].*$/, '').r
 export const chaveFoto = i => normRef(i.ref) || soDigitos(i.codigo);
 export const urlFotoRepo = (i, slug) => { const k = chaveFoto(i); return k ? `${BASE_IMG}${slug || i.marcaSlug || slugify(i.marca)}/${k}.jpg` : ''; };
 const cacheImg = new Map();
+let IDX = null;
+export async function indiceFotos() {
+  if (IDX) return IDX;
+  try { const r = await fetch(BASE_IMG + 'index.json', { cache: 'no-cache' }); const j = await r.json(); IDX = Object.fromEntries(Object.entries(j).map(([k, v]) => [k, new Set(v)])); } catch { IDX = {}; }
+  return IDX;
+}
+const temFotoRepo = i => { const k = chaveFoto(i), sl = i.marcaSlug || slugify(i.marca); return !!(IDX && k && IDX[sl] && IDX[sl].has(k)); };
 export function existeImagem(url) {
   if (!url) return Promise.resolve(false);
   if (!cacheImg.has(url)) cacheImg.set(url, new Promise(res => { const im = new Image(); const t = setTimeout(() => res(false), 5000); im.onload = () => { clearTimeout(t); res(true); }; im.onerror = () => { clearTimeout(t); res(false); }; im.src = url; }));
@@ -302,6 +309,7 @@ function abaCatalogo(a) {
     Promise.all(faltam.map(carregarItens)).then(redesenhar).catch(e => { toast('Erro ao carregar: ' + (e.code || e.message), 'erro'); });
     return;
   }
+  if (!IDX) { indiceFotos().then(redesenhar); }
   const todos = slugs.flatMap(s => CAT.itens[s]);
   const cats = [...new Set(todos.map(i => i.categoria).filter(Boolean))].sort();
   if (F.cat && !cats.includes(F.cat)) F.cat = '';
@@ -309,6 +317,7 @@ function abaCatalogo(a) {
   let l = todos.filter(i => (!F.cat || i.categoria === F.cat)
     && (!n || n.split(/\s+/).every(w => norm(`${i.nome} ${i.linha || ''} ${i.marca} ${i.categoria || ''}`).includes(w)) || (normRef(F.q) && /\d/.test(F.q) && (normRef(i.ref).startsWith(normRef(F.q)) || (normRef(F.q).length >= 4 && normRef(i.ref).includes(normRef(F.q))))) || (qd.length >= 6 && (i.codigo || '').includes(qd)))
     && (!F.soNovos || !existente(i)));
+  if (IDX) l = l.map((i, n) => [i.foto || temFotoRepo(i) ? 0 : 1, n, i]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(x => x[2]);
   const k = i => i.marcaSlug + ':' + i.id;
   const ed = pode('produtos', 'editar');
   html += `<div class="barra">
@@ -323,7 +332,7 @@ function abaCatalogo(a) {
     const ex = existente(i), s = F.sel.has(k(i));
     return `<div class="cat-item ${s ? 'sel' : ''}" data-k="${esc(k(i))}">
       ${ed ? `<span class="cat-ck">${s ? icon('check') : ''}</span>` : ''}
-      <div class="cat-foto">${(i.foto || urlFotoRepo(i)) ? `<img src="${esc(i.foto || urlFotoRepo(i))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}${icon('box')}${S.curador ? `<button class="cat-cam" data-foto title="Trocar foto deste produto">${icon('up')}</button>` : ''}</div>
+      <div class="cat-foto ${i.foto || temFotoRepo(i) ? '' : 'sem-foto'}" data-ini="${esc((i.marca || '?')[0])}">${i.foto || temFotoRepo(i) ? `<img src="${esc(i.foto || urlFotoRepo(i))}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ''}${S.curador ? `<button class="cat-cam" data-foto title="Trocar foto deste produto">${icon('up')}</button>` : ''}</div>
       <div class="cat-info"><small>${esc(i.marca)}${i.ref ? ' · ' + esc(i.ref) : ''}</small><b>${esc(i.nome)}</b>
         ${i.linha || i.categoria ? `<small>${esc([i.linha, i.categoria].filter(Boolean).join(' · '))}</small>` : ''}
         <div class="cat-pe"><span>${i.preco ? brl(i.preco) : '<span class="mudo">sem preço</span>'}</span>${ex ? badge('No estoque · ' + nfmt(qtdProduto(ex)), 'ok') : ed ? `<button class="btn sm" data-add>${icon('plus')}Adicionar</button>` : ''}</div></div>

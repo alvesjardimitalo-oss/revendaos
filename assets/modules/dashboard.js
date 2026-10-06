@@ -18,7 +18,7 @@ export function render(el) {
   const dias = Number(cfg().diasValidade) || 30;
   const ativos = S.d.produtos.filter(p => p.ativo !== false);
   const validade = ativos.filter(p => { const v = validadeProxima(p); return v && diasAte(v) <= dias; }).sort((a, b) => validadeProxima(a) > validadeProxima(b) ? 1 : -1);
-  const baixo = ativos.filter(p => qtdProduto(p) <= (Number(p.estoqueMin ?? cfg().estoqueMin ?? 0) || 0)).sort((a, b) => qtdProduto(a) - qtdProduto(b));
+  const baixo = ativos.filter(p => !(p.kit && p.kit.length) && qtdProduto(p) < (Number(p.estoqueMin ?? cfg().estoqueMin ?? 0) || 0)).sort((a, b) => qtdProduto(a) - qtdProduto(b));
   const anivs = aniversariantes().filter(c => c.aniversario.slice(8) >= h.slice(8));
   const pedidos = S.d.pedidos.filter(p => p.status === 'novo');
   const entregas = vs.filter(v => v.statusEntrega && v.statusEntrega !== 'entregue');

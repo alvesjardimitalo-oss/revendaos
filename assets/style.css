@@ -745,3 +745,6 @@ img.falhou { visibility: hidden; }
   .side-pe { margin-top: auto; }
   .side::-webkit-scrollbar { width: 6px; } .side::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--txt2) 35%, transparent); border-radius: 6px; }
 }
+
+.abas { scrollbar-width: none; overflow-y: hidden; } .abas::-webkit-scrollbar { display: none; }
+.cat-foto.sem-foto::after { font-size: 48px; }

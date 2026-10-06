@@ -195,3 +195,10 @@ export function tratarFotoProduto(fonte, lado = 900, q = 0.86) {
   });
 }
 export const linkBuscaFoto = (nome, marca) => 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent([marca, nome].filter(Boolean).join(' '));
+
+// categoria pelo nome do produto (para itens sem categoria)
+const CATS_NOME = [['Kits e presentes', /\b(kit|presente|estojo|caixa|lata|combo)\b/], ['Maquiagem', /\b(batom|base|mascara para cilios|sombra|paleta|blush|corretivo|delineador|gloss|lapis|primer|iluminador|esmalte|rimel|lip|tint)\b/],
+  ['Perfumaria', /\b(colonia|parfum|perfume|eau de|body splash|body spray|deo colonia)\b/], ['Cabelos', /\b(shampoo|condicionador|capilar|cabelo|leave|finalizador|cachos|gelatina)\b/], ['Barba', /\b(barba|barbear)\b/],
+  ['Cuidados com o rosto', /\b(facial|rosto|serum|micelar|demaquilante|antissinais|gel de limpeza)\b/], ['Protetor solar', /\b(fps|solar)\b/], ['Desodorantes', /\b(antitranspirante|aerossol|roll.?on)\b/],
+  ['Corpo e banho', /\b(hidratante|locao|sabonete|oleo|creme|esfoliante|bruma|mousse|manteiga|refil)\b/], ['Acessórios', /\b(necessaire|bolsa|sacola|porta|pincel|esponja|luvas)\b/]];
+export function categoriaPorNome(nome) { const n = norm(nome); for (const [c, rx] of CATS_NOME) if (rx.test(n)) return c; return ''; }

@@ -10,7 +10,7 @@ const diasAlerta = () => Number(cfg().diasValidade) || 30;
 function situacao(p) {
   const q = qtdProduto(p), v = validadeProxima(p), min = Number(p.estoqueMin ?? cfg().estoqueMin ?? 0) || 0;
   const d = diasAte(v);
-  return { q, v, d, zerado: q <= 0, baixo: q > 0 && q <= min, vencido: v && d < 0, vencendo: v && d >= 0 && d <= diasAlerta() };
+  return { q, v, d, zerado: q <= 0, baixo: q > 0 && q < min, vencido: v && d < 0, vencendo: v && d >= 0 && d <= diasAlerta() };
 }
 
 export function render(el) {
@@ -93,7 +93,7 @@ export function render(el) {
         <td>${esc(p.categoria || '—')}</td>
         <td class="n">${s.zerado ? badge('0', 'perigo') : s.baixo ? badge(nfmt(s.q), 'aviso') : nfmt(s.q)}</td>
         <td>${s.v ? (s.vencido ? badge(fmtData(s.v), 'perigo') : s.vencendo ? badge(fmtData(s.v), 'aviso') : fmtData(s.v)) : '<span class="mudo">—</span>'}</td>
-        <td class="n">${brl(p.custo)}</td><td class="n"><b>${brl(p.preco)}</b></td><td class="n">${p.preco ? pct(mg) : '—'}</td>
+        <td class="n">${brl(p.custo)}</td><td class="n"><b>${brl(p.preco)}</b></td><td class="n">${p.preco && p.custo ? pct(mg) : '<span class="mudo" title="Informe o custo para ver a margem">—</span>'}</td>
         <td class="acoes">${ed && !ehKit(p) ? `<button class="btn-ic" data-aj="${p.id}" title="Entrada/saída de estoque">${icon('box')}</button>` : ''}</td>
       </tr>`;
     }).join('')}</tbody></table></div>`
