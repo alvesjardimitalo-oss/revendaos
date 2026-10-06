@@ -52,7 +52,8 @@ export async function buscarNoCatalogo(q, lim = 8) {
   for (const i of await todosItens()) {
     const nn = norm(i.nome + ' ' + (i.marca || '')), r = normRef(i.ref); let sc = -1;
     if (nr && r === nr) sc = 100;
-    else if (temNum && nr.length >= 3 && r.startsWith(nr)) sc = 60;
+    else if (temNum && nr.length >= 2 && r.startsWith(nr)) sc = 60 - r.length;
+    else if (temNum && nr.length >= 4 && (r.includes(nr) || String(i.codigo || '').includes(nr))) sc = 45;
     else if (ws.length && ws.every(w => nn.includes(w))) sc = 30 + (norm(i.nome).startsWith(ws[0]) ? 10 : 0) - Math.min(9, i.nome.length / 20);
     if (sc >= 0) res.push([sc, i]);
   }
@@ -306,7 +307,7 @@ function abaCatalogo(a) {
   if (F.cat && !cats.includes(F.cat)) F.cat = '';
   const n = norm(F.q), qd = soDigitos(F.q);
   let l = todos.filter(i => (!F.cat || i.categoria === F.cat)
-    && (!n || n.split(/\s+/).every(w => norm(`${i.nome} ${i.linha || ''} ${i.marca} ${i.categoria || ''}`).includes(w)) || (normRef(F.q) && normRef(i.ref).startsWith(normRef(F.q)) && /\d/.test(F.q)) || (qd.length >= 6 && (i.codigo || '').includes(qd)))
+    && (!n || n.split(/\s+/).every(w => norm(`${i.nome} ${i.linha || ''} ${i.marca} ${i.categoria || ''}`).includes(w)) || (normRef(F.q) && /\d/.test(F.q) && (normRef(i.ref).startsWith(normRef(F.q)) || (normRef(F.q).length >= 4 && normRef(i.ref).includes(normRef(F.q))))) || (qd.length >= 6 && (i.codigo || '').includes(qd)))
     && (!F.soNovos || !existente(i)));
   const k = i => i.marcaSlug + ':' + i.id;
   const ed = pode('produtos', 'editar');

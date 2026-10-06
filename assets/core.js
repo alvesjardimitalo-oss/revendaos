@@ -249,7 +249,8 @@ export function buscaProduto(container, onPick, { placeholder = 'Código do prod
   const achar = q => {
     const n = norm(q), nr = normRefC(q);
     return S.d.produtos.filter(p => p.ativo !== false && (!soComEstoque || qtdProduto(p) > 0) &&
-      (norm(p.nome).includes(n) || norm(p.marca).includes(n) || String(p.codigo || '') === q.trim() || (nr && normRefC(p.sku) === nr))).slice(0, 12);
+      (n.split(/\s+/).every(w => norm(p.nome + ' ' + (p.marca || '')).includes(w)) || (q.trim().length >= 4 && String(p.codigo || '').includes(q.trim())) || (nr && normRefC(p.sku).startsWith(nr))))
+      .sort((a, b) => (normRefC(b.sku) === nr) - (normRefC(a.sku) === nr)).slice(0, 12);
   };
   const mostrar = () => {
     const q = inp.value.trim(); if (!q) { sug.innerHTML = ''; sug.hidden = true; return; }

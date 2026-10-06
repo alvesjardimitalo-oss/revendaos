@@ -142,7 +142,7 @@ export async function copiar(txt) {
 const MINUSC = new Set(['de', 'da', 'do', 'das', 'dos', 'e', 'com', 'para', 'em', 'a', 'o', 'ao', 'na', 'no', 'por', 'sem', 'ml', 'g', 'kg', 'mg', 'un', 'x']);
 const SIGLAS = new Set(['FPS', 'EDP', 'EDT', 'SPF', 'UV', 'UVA', 'UVB', 'BB', 'CC', 'DD', 'II', 'III', 'IV', 'PP', 'P', 'M', 'G', 'GG', 'XG', 'AHA', 'VIT', 'C', 'K']);
 export function nomeBonito(n) {
-  let s = String(n || '').replace(/\s+/g, ' ').replace(/\u2212/g, '–').replace(/^[\s–—\-;:,.•]+/, '').replace(/[\s–—\-;:,]+$/, '').trim();
+  let s = String(n || '').replace(/\s+/g, ' ').replace(/\u2212/g, '–').replace(/([A-Za-zÀ-ÿ])- (?=[A-Za-zÀ-ÿ])/g, '$1').replace(/^[\s–—\-;:,.•]+/, '').replace(/[\s–—\-;:,]+$/, '').trim();
   const letras = s.replace(/[^A-Za-zÀ-ÿ]/g, ''); const maius = letras.replace(/[^A-ZÀ-Þ]/g, '');
   if (letras.length > 3 && maius.length / letras.length > 0.6) {
     s = s.toLowerCase().split(' ').map((w, i) => {
