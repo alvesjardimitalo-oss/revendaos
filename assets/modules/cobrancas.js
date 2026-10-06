@@ -3,7 +3,11 @@ import { $, $$, esc, brl, nfmt, parseNum, uid, r2, norm, fmtData, hoje, diasAte,
 import { parcelasAbertas, receberParcela, cobrarParcela } from './consorcios.js';
 import { S, cfg, pode, icon, modal, toast, commit, cliPorId, saldoRec, statusRec, STATUS_REC, badge, vazio, FORMAS, navegar } from '../core.js';
 
-let F = { aba: 'abertas', q: '', vis: 'parcelas' };
+let F = { aba: 'abertas', q: '', vis: 'parcelas', ate: 'mes' };
+// até quando considerar o que está a receber (vencidos sempre entram)
+const ATE = { hoje: 'Vencido até hoje', mes: 'Até o fim do mês', prox: 'Até o fim do próximo mês', d90: 'Próximos 90 dias', ano: 'Até o fim do ano', tudo: 'Tudo, até a última parcela' };
+function limite() { const h = hoje(), [y, m] = h.split('-').map(Number), fim = (yy, mm) => { const d = new Date(yy, mm, 0); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  return F.ate === 'hoje' ? h : F.ate === 'mes' ? fim(y, m) : F.ate === 'prox' ? fim(y, m + 1) : F.ate === 'd90' ? new Date(Date.now() + 90 * 864e5).toISOString().slice(0, 10) : F.ate === 'ano' ? y + '-12-31' : '9999-12-31'; }
 
 const ativos = () => S.d.recebiveis.filter(r => !r.cancelado);
 const foneDe = r => { const c = cliPorId(r.clienteId); return c ? c.whatsapp : r.clienteFone; };
@@ -11,7 +15,8 @@ const foneDe = r => { const c = cliPorId(r.clienteId); return c ? c.whatsapp : r
 export function render(el) {
   const ed = pode('cobrancas', 'editar');
   const rs = [...ativos(), ...parcelasAbertas()];
-  const abertas = rs.filter(r => saldoRec(r) > 0.004);
+  const lim = limite();
+  const abertas = rs.filter(r => saldoRec(r) > 0.004 && r.vencimento <= lim);
   const venc = abertas.filter(r => r.vencimento < hoje());
   const prox7 = abertas.filter(r => { const d = diasAte(r.vencimento); return d >= 0 && d <= 7; });
   const recMes = S.d.recebiveis.flatMap(r => r.pagamentos || []).filter(p => (p.data || '').startsWith(mesAtual())).reduce((s, p) => s + p.valor, 0);
@@ -49,7 +54,7 @@ export function render(el) {
 
   el.innerHTML = `
   <div class="kpis">
-    <div class="kpi"><span>Total a receber</span><b>${brl(abertas.reduce((s, r) => s + saldoRec(r), 0))}</b><small>${abertas.length} parcela(s)</small></div>
+    <div class="kpi"><span>A receber</span><b>${brl(abertas.reduce((s, r) => s + saldoRec(r), 0))}</b><small>${abertas.length} parcela(s) · ${F.ate === 'tudo' ? 'todas as datas' : 'até ' + fmtData(lim)}</small></div>
     <div class="kpi ${venc.length ? 'alerta' : ''}"><span>Vencido</span><b>${brl(venc.reduce((s, r) => s + saldoRec(r), 0))}</b><small>${new Set(venc.map(r => r.clienteId)).size} cliente(s)</small></div>
     <div class="kpi"><span>Vence em 7 dias</span><b>${brl(prox7.reduce((s, r) => s + saldoRec(r), 0))}</b><small>${prox7.length} parcela(s)</small></div>
     <div class="kpi"><span>Recebido no mês</span><b>${brl(recMes)}</b></div>
@@ -57,6 +62,7 @@ export function render(el) {
   <div class="abas">${tabs.map(([k, t, n]) => `<button data-aba="${k}" class="${F.aba === k ? 'ativo' : ''}">${t}${n ? ` <i>${n}</i>` : ''}</button>`).join('')}</div>
   <div class="barra">
     <div class="campo-ic grow">${icon('search')}<input type="search" id="q" placeholder="Buscar cliente ou nº da venda" value="${esc(F.q)}"></div>
+    <select id="ate" style="width:auto">${Object.entries(ATE).map(([k, t]) => `<option value="${k}" ${F.ate === k ? 'selected' : ''}>${t}</option>`).join('')}</select>
     <div class="seg"><button data-vis="parcelas" class="${F.vis === 'parcelas' ? 'ativo' : ''}">Por parcela</button><button data-vis="clientes" class="${F.vis === 'clientes' ? 'ativo' : ''}">Por cliente</button></div>
   </div>
   ${!cfg().pixChave ? `<div class="aviso-box">${icon('pix')}<span>Cadastre sua chave Pix em <a href="#/config">Configurações</a> para gerar QR Code e "copia e cola" nas cobranças.</span></div>` : ''}
@@ -65,6 +71,7 @@ export function render(el) {
   const re = () => render(el);
   $$('[data-aba]', el).forEach(b => b.onclick = () => { F.aba = b.dataset.aba; re(); });
   $$('[data-vis]', el).forEach(b => b.onclick = () => { F.vis = b.dataset.vis; re(); });
+  $('#ate', el).onchange = e => { F.ate = e.target.value; re(); };
   $('#q', el).oninput = e => { F.q = e.target.value; re(); const i = $('#q', el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); };
   const R = id => rs.find(r => r.id === id);
   $$('[data-rec]', el).forEach(b => b.onclick = () => receber(R(b.dataset.rec)));

@@ -93,7 +93,7 @@ export function render(el) {
     <div class="kpi"><span>Vendas em ${nomeMes(ym).split(' ')[0]}</span><b>${brl(totMes)}</b>
       ${meta ? `<div class="prog"><i style="width:${Math.min(100, totMes / meta * 100)}%"></i></div><small>${nfmt(totMes / meta * 100)}% da meta de ${brl(meta)}</small>` : `<small>${vMes.length} venda(s)${pode('config') ? ' · <a href="#/config">definir meta</a>' : ''}</small>`}</div>
     ${pode('relatorios') ? `<div class="kpi"><span>Lucro bruto no mês</span><b>${brl(lucroMes)}</b><small>${totMes ? nfmt(lucroMes / totMes * 100, 1) + '% de margem' : ''}</small></div>` : ''}
-    ${pode('cobrancas') ? `<div class="kpi ${vencidas.length ? 'alerta' : ''}" data-ir="cobrancas"><span>A receber</span><b>${brl(abertas.reduce((s, r) => s + saldoRec(r), 0))}</b><small>${vencidas.length ? `<span class="t-perigo">${brl(vencidas.reduce((s, r) => s + saldoRec(r), 0))} vencido</span>` : 'nada vencido'}</small></div>` : ''}
+    ${pode('cobrancas') ? `<div class="kpi ${vencidas.length ? 'alerta' : ''}" data-ir="cobrancas"><span>A receber até o fim do mês</span><b>${brl(abertas.filter(r => r.vencimento <= ym + '-31').reduce((s, r) => s + saldoRec(r), 0))}</b><small>${vencidas.length ? `<span class="t-perigo">${brl(vencidas.reduce((s, r) => s + saldoRec(r), 0))} vencido</span>` : 'nada vencido'}</small></div>` : ''}
   </div>
   ${pedidos.length && pode('loja') ? `<a class="aviso-box destaque" href="#/loja">${icon('bell')}<span><b>${pedidos.length} pedido(s) novo(s)</b> na loja virtual aguardando você.</span></a>` : ''}
   <div class="grid-dash">
