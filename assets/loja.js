@@ -1,7 +1,8 @@
 // Vitrine pública da loja virtual (não exige login)
 import { getDB } from './db.js';
-import { $, $$, esc, brl, norm, soDigitos, fmtFone, waLink, pixPayload, copiar } from './utils.js';
+import { $, $$, esc, brl, norm, soDigitos, fmtFone, waLink, pixPayload, copiar, slugify } from './utils.js';
 
+const fotoItem = i => i.foto || (i.ref && i.marca ? `catalogo-img/${slugify(i.marca)}/${String(i.ref).toUpperCase().replace(/[^A-Z0-9]/g, '').replace(/^0+(?=\d)/, '')}.jpg` : '');
 const slug = new URLSearchParams(location.search).get('l') || location.hash.replace('#', '');
 const KC = 'revendaos:carrinho:' + slug;
 let db, loja, itens = [], cat = '', q = '';
@@ -25,8 +26,8 @@ async function iniciar() {
   if (!loja || !loja.ativa) return fim('Esta loja não está disponível no momento.');
   itens = (await db.lojaItens(slug)).filter(i => i.disponivel || loja.mostrarEsgotados !== false).sort((a, b) => (b.disponivel - a.disponivel) || a.nome.localeCompare(b.nome));
   Object.keys(carrinho).forEach(id => { if (!itens.find(i => i.id === id && i.disponivel)) delete carrinho[id]; });
-  document.documentElement.style.setProperty('--pri', loja.cor || '#c2185b');
-  $('meta[name=theme-color]').content = loja.cor || '#c2185b';
+  document.documentElement.style.setProperty('--pri', loja.cor || '#7209b7');
+  $('meta[name=theme-color]').content = loja.cor || '#7209b7';
   document.title = loja.titulo || loja.nomeConta || 'Loja';
   montar();
 }
@@ -54,7 +55,7 @@ function grade() {
   const n = norm(q);
   const l = itens.filter(i => (!cat || i.categoria === cat) && (!n || norm(i.nome + ' ' + i.marca + ' ' + i.categoria).includes(n)));
   $('#grade').innerHTML = l.length ? l.map(i => `<article class="v-item ${i.disponivel ? '' : 'esgotado'}" data-id="${i.id}">
-    <div class="v-foto">${i.foto ? `<img src="${i.foto}" alt="" loading="lazy">` : '<span></span>'}${!i.disponivel ? '<em>Esgotado</em>' : emPromo(i) ? `<em class="promo">-${Math.round((1 - i.precoPromo / i.preco) * 100)}%</em>` : ''}${(i.fotos || []).length ? `<i class="v-nfotos">+${i.fotos.length}</i>` : ''}</div>
+    <div class="v-foto ${fotoItem(i) ? '' : 'sem-foto'}" data-ini="${esc((i.marca || i.nome || '?')[0])}">${fotoItem(i) ? `<img src="${fotoItem(i)}" alt="" loading="lazy">` : ''}${!i.disponivel ? '<em>Esgotado</em>' : emPromo(i) ? `<em class="promo">-${Math.round((1 - i.precoPromo / i.preco) * 100)}%</em>` : ''}${(i.fotos || []).length ? `<i class="v-nfotos">+${i.fotos.length}</i>` : ''}</div>
     <div class="v-info"><small>${esc(i.marca || '')}</small><h3>${esc(i.nome)}</h3>${i.descricao ? `<p>${esc(i.descricao)}</p>` : ''}
     <div class="v-preco">${emPromo(i) ? `<span><s class="mudo">${brl(i.preco)}</s> <b>${brl(i.precoPromo)}</b></span>` : `<b>${brl(i.preco)}</b>`}${i.qtd != null && i.disponivel ? `<small>${i.qtd} disp.</small>` : ''}</div>
     ${i.disponivel ? (carrinho[i.id] ? `<div class="qtd"><button data-m>−</button><span>${carrinho[i.id]}</span><button data-p>+</button></div>` : `<button class="btn pri cheio" data-add>Adicionar</button>`) : ''}</div></article>`).join('')
@@ -78,7 +79,7 @@ function barra() {
 }
 
 function detalhe(i) {
-  const fotos = [i.foto, ...(i.fotos || [])].filter(Boolean);
+  const fotos = [fotoItem(i), ...(i.fotos || [])].filter(Boolean);
   const bg = document.createElement('div'); bg.className = 'modal-bg';
   bg.innerHTML = `<div class="modal"><div class="modal-h"><h3>${esc(i.nome)}</h3><button class="btn-ic" data-x>✕</button></div><div class="modal-b">
     ${fotos.length ? `<div class="galeria"><img id="gp" src="${fotos[0]}" alt="">${fotos.length > 1 ? `<div class="miniaturas">${fotos.map((f, k) => `<img src="${f}" data-k="${k}" alt="">`).join('')}</div>` : ''}</div>` : ''}
@@ -161,3 +162,5 @@ function sacola() {
 }
 
 iniciar();
+
+document.addEventListener('error', e => { const i = e.target; if (i && i.tagName === 'IMG') { const pai = i.parentElement; i.remove(); if (pai) pai.classList.add('sem-foto'); } }, true);

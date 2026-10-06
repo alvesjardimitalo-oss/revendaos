@@ -1,5 +1,5 @@
 // Estoque / Produtos
-import { $, $$, esc, brl, nfmt, pct, parseNum, uid, r2, norm, slugify, fmtData, diasAte, hoje, toCSV, parseCSV, baixar, lerArquivo, reduzirImagem } from '../utils.js';
+import { $, $$, esc, brl, nfmt, pct, parseNum, uid, r2, norm, slugify, fmtData, diasAte, hoje, toCSV, parseCSV, baixar, lerArquivo, reduzirImagem, fotoProduto } from '../utils.js';
 import { S, cfg, pode, icon, modal, ask, toast, commit, qtdProduto, validadeProxima, prodPorId, scanner, datalist, vazio, badge, ehKit, custoKit, buscaProduto, promoAtiva } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
 import { buscarEAN, buscarRef, normRef, sugerir, escolherItem } from './catalogo.js';
@@ -52,7 +52,7 @@ export function render(el) {
     <div class="mtopo"><div class="campo-ic mbusca">${icon('search')}<input type="search" id="qm" placeholder="Buscar" value="${esc(F.q)}"><button class="btn-ic" id="scanm" title="Código de barras">${icon('scan')}</button></div>
       <button class="mfiltro ${F.filtro !== 'todos' || F.marca || F.cat ? 'on' : ''}" id="mf">${icon('filtro')}</button></div>
     <div class="mkpis"><div class="mkpi"><i>${icon('box')}</i><div><span>Produtos</span><b>${ps.filter(p => p.ativo !== false).length}</b></div></div><div class="mkpi"><i>${icon('dado')}</i><div><span>Unidades</span><b>${nfmt(unid)}</b></div></div></div>
-    ${l.length ? `<div class="mlista">${l.map(p => { const q = qtdProduto(p), pr = promoAtiva(p); return `<div class="mrow prod" data-id="${p.id}"><div class="mfoto">${p.foto ? `<img src="${esc(p.foto)}" alt="" loading="lazy">` : icon('box')}</div>
+    ${l.length ? `<div class="mlista">${l.map(p => { const q = qtdProduto(p), pr = promoAtiva(p); return `<div class="mrow prod" data-id="${p.id}"><div class="mfoto ${fotoProduto(p) ? '' : 'sem-foto'}" data-ini="${esc((p.marca || p.nome || '?')[0])}">${fotoProduto(p) ? `<img src="${esc(fotoProduto(p))}" alt="" loading="lazy">` : ''}</div>
       <div class="mrow-m"><b>${esc(p.nome)}</b><small>${esc(p.marca || '')}${p.sku ? ' • ' + esc(p.sku) : ''}</small>
       <div class="mpreco"><b class="valor">${pr ? brl(pr.preco) : p.preco ? brl(p.preco) : 'Sem preço'}</b>${pr ? `<s>${brl(pr.base)}</s>` : ''}<span class="pill ${q > 0 ? 'mudo' : 'cinza'}">${q > 0 ? nfmt(q) + ' un.' : 'Sem estoque'}</span></div></div></div>`; }).join('')}</div>`
       : `<div class="mvazio">${icon('box')}<p>${ps.length ? 'Nenhum produto com esses filtros' : 'Nenhum produto cadastrado'}</p></div>`}
@@ -88,7 +88,7 @@ export function render(el) {
     <tbody>${l.map(p => {
       const s = situacao(p); const mg = p.preco ? (p.preco - (p.custo || 0)) / p.preco * 100 : 0;
       return `<tr data-id="${p.id}" class="clicavel">
-        <td class="foto-c">${p.foto ? `<img src="${p.foto}" alt="" loading="lazy">` : `<span class="mini-ph">${icon('box')}</span>`}</td>
+        <td class="foto-c"><div class="mfoto mini ${fotoProduto(p) ? '' : 'sem-foto'}" data-ini="${esc((p.marca || p.nome || '?')[0])}">${fotoProduto(p) ? `<img src="${esc(fotoProduto(p))}" alt="" loading="lazy">` : ''}</div></td>
         <td><b>${esc(p.nome)}</b><small class="bl mudo">${ehKit(p) ? badge('Kit', 'info') + ' ' : ''}${promoAtiva(p) ? badge('Promoção', 'aviso') + ' ' : ''}${p.sku ? 'cód. ' + esc(p.sku) + ' · ' : ''}${esc(p.marca || '')}${p.naLoja ? ' · ' + icon('store', 'mini') : ''}</small></td>
         <td>${esc(p.categoria || '—')}</td>
         <td class="n">${s.zerado ? badge('0', 'perigo') : s.baixo ? badge(nfmt(s.q), 'aviso') : nfmt(s.q)}</td>
@@ -219,14 +219,14 @@ export function formProduto(p, aoSalvar) {
   m.$('#addl').onclick = () => { m.$('#lotes').insertAdjacentHTML('beforeend', linhaLote({ id: uid(), qtd: 0 })); };
   m.$('#lotes').onclick = e => { if (e.target.closest('[data-rl]')) e.target.closest('tr').remove(); };
   const setFoto = v => { foto = v; m.$('#prev').innerHTML = v ? `<img src="${v}">` : icon('box'); };
-  m.$('#arq').onchange = async e => { const a = e.target.files[0]; if (a) setFoto(await reduzirImagem(a)); };
+  m.$('#arq').onchange = async e => { const a = e.target.files[0]; if (a) setFoto(await reduzirImagem(a, 900, 0.82)); };
   const sf = m.$('#semfoto'); if (sf) sf.onclick = () => setFoto('');
   // fotos adicionais
   let fotos = [...(p.fotos || [])];
   const desenharFotos = () => {
     m.$('#fotos').innerHTML = fotos.map((x, k) => `<div class="mini-foto"><img src="${x}"><button type="button" data-rf="${k}" title="Remover">×</button></div>`).join('')
       + (fotos.length < 4 && ed ? `<label class="mini-foto add">${icon('plus')}<input type="file" accept="image/*" multiple hidden id="arqs"></label>` : '');
-    const a = m.$('#arqs'); if (a) a.onchange = async e => { for (const fl of [...e.target.files].slice(0, 4 - fotos.length)) fotos.push(await reduzirImagem(fl)); desenharFotos(); };
+    const a = m.$('#arqs'); if (a) a.onchange = async e => { for (const fl of [...e.target.files].slice(0, 4 - fotos.length)) fotos.push(await reduzirImagem(fl, 700, 0.8)); desenharFotos(); };
     m.$$('[data-rf]').forEach(b => b.onclick = () => { fotos.splice(+b.dataset.rf, 1); desenharFotos(); });
   };
   desenharFotos();

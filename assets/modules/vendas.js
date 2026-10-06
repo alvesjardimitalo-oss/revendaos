@@ -1,5 +1,5 @@
 // Vendas: lista, nova venda (PDV), detalhes, recibo e cancelamento
-import { $, $$, esc, brl, nfmt, parseNum, uid, r2, norm, fmtData, hoje, addMeses, addDias, mesAtual, waLink, preencher, fmtFone } from '../utils.js';
+import { $, $$, esc, brl, nfmt, parseNum, uid, r2, norm, fmtData, hoje, addMeses, addDias, mesAtual, waLink, preencher, fmtFone, fotoProduto } from '../utils.js';
 import { creditosCliente, opsResgate } from './consorcios.js';
 import { S, cfg, pode, icon, modal, ask, toast, commit, qtdProduto, prodPorId, cliPorId, buscaProduto, selectClientes, saldoRec, statusRec, STATUS_REC, badge, vazio, FORMAS, ENTREGA, baixarLotes, devolverLotes, proxNumero, abertoCliente, ehKit, precoVenda, promoAtiva, taxaCartao, selecionarVarios, avatar } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
@@ -348,7 +348,7 @@ export function verVenda(id) {
   const ed = pode('vendas', 'editar'), edc = pode('cobrancas', 'editar');
   const recs = recsDaVenda(id), pago = r2(pagoVenda(id)), resta = r2(Math.max(0, v.total - pago));
   const lucro = lucroVenda(v), entregue = v.statusEntrega === 'entregue';
-  const foto = i => { const p = prodPorId(i.prodId) || S.d.produtos.find(x => norm(x.nome) === norm(i.nome)); return p && p.foto ? `<img src="${esc(p.foto)}" alt="" loading="lazy">` : `<span>${icon('box')}</span>`; };
+  const foto = i => { const p = prodPorId(i.prodId) || S.d.produtos.find(x => norm(x.nome) === norm(i.nome)); const u = p ? fotoProduto(p) : ''; return u ? `<img src="${esc(u)}" alt="" loading="lazy">` : ''; };
   const nomeRec = r => r.consorcio ? 'Crédito do consórcio' : r.forma === 'Crediário' || !r.forma ? 'Crediário' : r.forma;
   const m = modal({
     titulo: 'Detalhes da venda', largo: true,
@@ -357,7 +357,7 @@ export function verVenda(id) {
       <div class="vd-tot"><b>${brl(v.total)}</b>${v.cancelada ? '<span class="pill mudo">Cancelada</span>' : `<button class="pill-ent ${entregue ? 'ok' : 'aviso'}" id="ent" ${ed ? '' : 'disabled'}>${icon(entregue ? 'check' : 'truck')}${entregue ? 'Já entregue' : 'A entregar'}</button>`}</div>
       ${v.obs ? `<div class="vd-obs"><div><small>Observações</small><p>${esc(v.obs)}</p></div>${ed ? `<button class="btn-ic" id="obs">${icon('edit')}</button>` : ''}</div>` : ed ? `<a href="#" class="vd-addobs" id="obs">${icon('nota')}Adicionar observações</a>` : ''}
       <div class="vd-abas"><button data-aba="itens" class="ativo">Itens</button><button data-aba="pag">Pagamento</button><button data-aba="det">Detalhes</button></div>
-      <div data-painel="itens"><div class="vd-itens">${v.itens.map(i => `<div class="vd-item"><div class="vd-foto">${foto(i)}</div><div><b>${esc(i.nome)}</b><small>${i.preco ? brl(i.preco) + ' - ' : ''}${nfmt(i.qtd)} unidade${i.qtd > 1 ? 's' : ''}</small></div></div>`).join('')}</div></div>
+      <div data-painel="itens"><div class="vd-itens">${v.itens.map(i => `<div class="vd-item"><div class="vd-foto ${foto(i) ? '' : 'sem-foto'}" data-ini="${esc((i.marca || i.nome || '?')[0])}">${foto(i)}</div><div><b>${esc(i.nome)}</b><small>${i.preco ? brl(i.preco) + ' - ' : ''}${nfmt(i.qtd)} unidade${i.qtd > 1 ? 's' : ''}</small></div></div>`).join('')}</div></div>
       <div data-painel="pag" hidden>
         <div class="vd-prog"><div><small>Total pago</small><b>${brl(pago)}</b></div><div class="ta-d"><small>Restante</small><b>${brl(resta)}</b></div></div>
         <div class="prog grossa"><i style="width:${v.total ? Math.min(100, pago / v.total * 100) : 0}%"></i></div>

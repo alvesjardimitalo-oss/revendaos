@@ -2,7 +2,7 @@
 // - Revendedoras navegam por marca, selecionam produtos e cadastram no estoque em lote.
 // - Código de barras: busca no catálogo e, se não achar, no Open Beauty Facts.
 // - Curadoria: importa tabelas das marcas (CSV/Excel), publica a partir do estoque e aprova sugestões.
-import { $, $$, esc, brl, nfmt, parseNum, uid, norm, slugify, soDigitos, hoje, parseCSV, baixar, toCSV, fmtDataHora, reduzirImagem } from '../utils.js';
+import { $, $$, esc, brl, nfmt, parseNum, uid, norm, slugify, soDigitos, hoje, parseCSV, baixar, toCSV, fmtDataHora, reduzirImagem, nomeBonito } from '../utils.js';
 import { S, cfg, pode, isAdmin, icon, modal, ask, toast, commit, qtdProduto, vazio, badge } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
 
@@ -34,7 +34,7 @@ async function carregarItens(slug) {
   if (CAT.itens[slug]) return CAT.itens[slug];
   const partes = await S.db.lerCol(`catalogo/${slug}/partes`);
   const meta = (CAT.marcas || []).find(m => m.id === slug) || {};
-  CAT.itens[slug] = partes.sort((a, b) => +a.id - +b.id).flatMap(p => p.itens || []).map(i => ({ ...i, marcaSlug: slug, marca: meta.nome || slug }));
+  CAT.itens[slug] = partes.sort((a, b) => +a.id - +b.id).flatMap(p => p.itens || []).map(i => ({ ...i, nome: nomeBonito(i.nome), marcaSlug: slug, marca: meta.nome || slug }));
   return CAT.itens[slug];
 }
 
@@ -126,7 +126,7 @@ export async function buscarRef(ref, marca = '') {
   try { l = await S.db.consultar('catalogo_ref', 'refN', r); } catch (e) { console.warn(e); }
   const ms = slugify(marca);
   if (ms) { const so = l.filter(x => x.marcaSlug === ms); if (so.length) l = so; }
-  return Promise.all(l.map(x => completarFoto({ ...x, fonte: 'catálogo ' + (x.marca || '') })));
+  return Promise.all(l.map(x => completarFoto({ ...x, nome: nomeBonito(x.nome), fonte: 'catálogo ' + (x.marca || '') })));
 }
 export function escolherItem(lista, aoEscolher) {
   const m = modal({
@@ -220,7 +220,7 @@ function mapear(r) {
   let nome = g(r, 'nome', 'produto', 'nome do produto', 'descricao do produto', 'item'), descricao = g(r, 'descricao', 'detalhes', 'observacao');
   if (!nome && descricao) { nome = descricao; descricao = ''; }
   return {
-    marca: g(r, 'marca', 'fabricante'), nome, codigo, ref, descricao,
+    marca: g(r, 'marca', 'fabricante'), nome: nomeBonito(nome), codigo, ref, descricao,
     categoria: g(r, 'categoria', 'departamento', 'secao'), linha: g(r, 'linha', 'colecao', 'familia'),
     preco: parseNum(g(r, 'preco', 'preco sugerido', 'preco_sugerido', 'preco de venda', 'preco revista', 'valor', 'pvp')),
     foto: g(r, 'foto', 'foto_url', 'imagem', 'url da imagem', 'url imagem', 'image')

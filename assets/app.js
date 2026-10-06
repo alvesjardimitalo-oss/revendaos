@@ -245,3 +245,5 @@ function rotularTabelas() {
 }
 let rotT = null;
 new MutationObserver(() => { clearTimeout(rotT); rotT = setTimeout(rotularTabelas, 30); }).observe(document.body, { childList: true, subtree: true });
+
+document.addEventListener('error', e => { const i = e.target; if (i && i.tagName === 'IMG') { const pai = i.parentElement; i.remove(); if (pai) pai.classList.add('sem-foto'); } }, true);

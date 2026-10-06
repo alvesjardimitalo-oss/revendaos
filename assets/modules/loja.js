@@ -110,7 +110,7 @@ function abaConfig(a, ed, raiz) {
       <label>Endereço (identificador) *<input name="slug" required pattern="[a-z0-9\\-]{3,40}" value="${esc(lj.slug || sugest)}"><small class="mudo">Somente letras minúsculas, números e hífen. Ex.: ${esc(sugest)}</small></label>
       <label>Nome exibido na loja<input name="titulo" value="${esc(lj.titulo || S.conta.nome || '')}"></label>
       <label>WhatsApp que recebe os pedidos *<input name="whatsapp" inputmode="tel" required value="${esc(fmtFone(lj.whatsapp || cfg().telefone || ''))}"></label>
-      <label>Cor principal<input type="color" name="cor" value="${lj.cor || cfg().cor || '#c2185b'}"></label>
+      <label>Cor principal<input type="color" name="cor" value="${lj.cor || cfg().cor || '#7209b7'}"></label>
       <label class="span2">Mensagem de boas-vindas<textarea name="descricao" rows="2" placeholder="Ex.: Produtos originais com entrega rápida na sua casa 💖">${esc(lj.descricao || '')}</textarea></label>
       <label>Opções de entrega<input name="entregas" value="${esc(lj.entregas || 'Retirar comigo; Entrega na minha região')}"><small class="mudo">Separe por ponto e vírgula.</small></label>
       <label>Taxa de entrega (R$)<input name="taxa" inputmode="decimal" value="${lj.taxa ? nfmt(lj.taxa, 2) : ''}" placeholder="0,00 = grátis / a combinar"></label>

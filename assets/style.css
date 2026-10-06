@@ -565,3 +565,150 @@ section.card { margin-bottom: 14px; }
   .side-pe .nav-item { flex: 1; flex-direction: row; min-height: 0; padding: 12px; }
   .menu-aberto .side-bg { background: rgba(0,0,0,.5); }
 }
+
+/* =====================================================================
+   Acabamento v2 — sistema de design
+   Violeta (marca) · lilás (destaque no escuro) · superfícies tonais
+   Raios por hierarquia: contêiner 20 · cartão 16 · controle 12 · etiqueta 999
+   ===================================================================== */
+:root {
+  --f: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bg: #f5f2f8; --sup: #ffffff; --sup2: #f0ebf5; --borda: #e7e0ee;
+  --txt: #1e1824; --txt2: #6e6577;
+  --ok: #1f8a57; --ok-s: #e3f5ec; --perigo: #c93c3c; --perigo-s: #fcebea; --aviso: #a8650c; --aviso-s: #fdf1dc; --info: #2c62c9; --info-s: #e7eefc;
+  --r-c: 20px; --r-k: 16px; --r-ctl: 12px; --raio: 16px;
+  --sombra: 0 1px 0 rgba(40,20,60,.04);
+  --sombra-flut: 0 18px 50px -12px rgba(40,10,70,.35);
+}
+:root[data-theme="dark"] {
+  --bg: #17131b; --sup: #211c26; --sup2: #2b2531; --borda: #362f3d;
+  --txt: #f3eef7; --txt2: #a89fb2;
+  --ok: #5fd39a; --ok-s: #173126; --perigo: #ff8a80; --perigo-s: #3a1d22; --aviso: #ffc865; --aviso-s: #362a14; --info: #8ab4ff; --info-s: #1b2740;
+  --sombra: none; --sombra-flut: 0 18px 50px -10px rgba(0,0,0,.6);
+}
+body { font-family: var(--f); font-size: 14.5px; line-height: 1.5; letter-spacing: .005em; }
+input, select, textarea, button { font-family: var(--f); }
+h1, h2, h3 { letter-spacing: -.015em; }
+b, strong { font-weight: 650; }
+.kpi > b, .mkpi b, .mcard b, .vd-tot > b, .tabela td, .valor { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--acc) !important; outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--pri) 30%, transparent); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* controles: campos preenchidos, sem moldura até receber foco */
+input, select, textarea { height: 44px; border-radius: var(--r-ctl); border: 1px solid transparent; background: var(--sup2); padding: 0 14px; transition: border-color .15s, background .15s; }
+textarea { padding: 11px 14px; }
+input:hover, select:hover, textarea:hover { border-color: var(--borda); }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--pri); background: var(--sup); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pri) 18%, transparent); }
+select { appearance: none; -webkit-appearance: none; padding-right: 34px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23968ba1' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; }
+input[type=checkbox], input[type=radio] { height: 18px; width: 18px; }
+.campo-ic input { padding-left: 40px; } .campo-ic .ic { left: 14px; }
+.form label, label.form { font-size: 13px; font-weight: 600; color: var(--txt2); gap: 6px; }
+
+/* botões */
+.btn { height: 42px; padding: 0 16px; border-radius: var(--r-ctl); border: 0; background: var(--sup2); font-weight: 600; gap: 8px; }
+.btn:hover { background: color-mix(in srgb, var(--sup2) 70%, var(--borda)); }
+.btn.pri { background: var(--pri); color: #fff; box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--pri) 80%, transparent); }
+.btn.pri:hover { filter: none; background: color-mix(in srgb, var(--pri) 88%, white); }
+.btn.sm { height: 34px; border-radius: 10px; padding: 0 12px; }
+.btn.wa { color: #13894b; background: color-mix(in srgb, #25d366 12%, var(--sup2)); }
+.btn.perigo-txt { background: transparent; }
+.btn-ic { width: 38px; height: 38px; border-radius: 11px; }
+
+/* superfícies */
+.card, .kpi { border-radius: var(--r-k); box-shadow: var(--sombra); }
+.kpi { padding: 16px 18px; gap: 4px; }
+.kpi > span { font-size: 13px; font-weight: 600; }
+.kpi > b { font-size: 24px; font-weight: 750; letter-spacing: -.02em; }
+.kpi[data-f]:hover, .kpi[data-ir]:hover { border-color: color-mix(in srgb, var(--pri) 50%, var(--borda)); }
+:root[data-theme="dark"] .card, :root[data-theme="dark"] .kpi { border-color: transparent; }
+.card-h h4, .card h4 { font-size: 15px; font-weight: 700; }
+.badge { font-weight: 650; padding: 3px 9px; }
+.vazio { border-radius: var(--r-c); border-style: solid; border-color: transparent; background: var(--sup2); padding: 54px 24px; }
+.vazio .ic { width: 44px; height: 44px; opacity: .45; } .vazio p { font-size: 15px; color: var(--txt); opacity: .75; }
+.aviso-box { border-radius: var(--r-k); padding: 13px 16px; }
+.toast { background: #2a2230; border-radius: 14px; border-left: 0; padding: 13px 18px; box-shadow: var(--sombra-flut); }
+.toast::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #5fd39a; margin-right: 10px; vertical-align: 1px; }
+.toast.erro::before { background: #ff8a80; } .toast.aviso::before { background: #ffc865; }
+
+/* janelas */
+.modal { border-radius: var(--r-c); box-shadow: var(--sombra-flut); }
+.modal-h { border-bottom: 0; padding: 18px 18px 6px 22px; } .modal-h h3 { font-size: 18px; font-weight: 700; }
+.modal-b { padding: 12px 22px 18px; } .modal-f { border-top: 1px solid var(--borda); padding: 14px 22px; gap: 8px; }
+.modal-bg { background: rgba(20,8,30,.55); backdrop-filter: blur(3px); }
+
+/* tabelas (computador) */
+.tabela-w { border: 1px solid var(--borda); border-radius: var(--r-k); background: var(--sup); overflow: auto; }
+:root[data-theme="dark"] .tabela-w { border-color: transparent; }
+.tabela th { background: transparent; font-size: 12.5px; font-weight: 650; color: var(--txt2); padding: 13px 14px; border-bottom: 1px solid var(--borda); position: sticky; top: 0; }
+.tabela td { padding: 12px 14px; }
+.tabela tbody tr.clicavel:hover td { background: color-mix(in srgb, var(--pri) 5%, transparent); }
+.tabela.mini td { padding: 9px 10px; }
+
+/* computador: barra lateral e topo */
+@media (min-width: 861px) {
+  .side { width: 248px; padding: 18px 14px; background: var(--sup); border-right: 1px solid var(--borda); }
+  :root[data-theme="dark"] .side { border-color: transparent; background: #1c1721; }
+  .marca { padding: 2px 8px 20px; font-size: 15.5px; font-weight: 700; }
+  .marca img, .marca-ini { width: 42px; height: 42px; border-radius: 13px; }
+  .nav-item { padding: 10px 12px; border-radius: 12px; font-weight: 550; font-size: 14.5px; }
+  .nav-item.ativo { background: var(--pri); color: #fff; box-shadow: 0 8px 18px -10px var(--pri); }
+  .nav-item.ativo .ic { color: #fff; }
+  .topo { padding: 18px 32px 14px; border-bottom: 0; background: color-mix(in srgb, var(--bg) 92%, transparent); }
+  .topo h2 { font-size: 24px; font-weight: 750; }
+  #main { padding: 8px 32px 64px; }
+}
+
+/* login */
+.login { background: radial-gradient(900px 480px at 50% -8%, color-mix(in srgb, var(--pri) 28%, transparent), transparent 70%), var(--bg); }
+.login-card { border: 0; border-radius: 24px; padding: 34px 28px; box-shadow: var(--sombra-flut); gap: 16px; }
+:root[data-theme="dark"] .login-card { background: var(--sup); }
+.login-logo { width: 64px; height: 64px; border-radius: 20px; box-shadow: 0 12px 26px -10px var(--pri); }
+.login-card h1 { font-size: 27px; font-weight: 800; }
+.btn.google { height: 48px; background: var(--sup2); }
+.login-card .btn.pri { height: 48px; }
+
+/* fotos de produto: sempre inteiras, sobre fundo branco (como foto de catálogo) */
+.foto-c img, .mfoto img, .vd-foto img, .cat-foto img, .v-foto img { object-fit: contain !important; background: #fff; }
+.cat-foto, .v-foto { background: #fff !important; }
+.cat-foto img, .v-foto img { padding: 8%; }
+img.falhou { visibility: hidden; }
+
+/* =============== loja virtual (vitrine pública) =============== */
+.vitrine-body { background: #f7f4f9; color: #1e1824; }
+.v-topo { background: linear-gradient(160deg, var(--pri), color-mix(in srgb, var(--pri) 70%, #1a0a24)); padding: 28px 18px 48px; }
+.v-marca img { width: 72px; height: 72px; border-radius: 22px; box-shadow: 0 10px 24px -10px rgba(0,0,0,.5); }
+.v-marca h1 { font-size: 25px; font-weight: 800; letter-spacing: -.02em; }
+.v-filtros { margin-top: -26px; }
+.v-filtros .campo-ic input { height: 52px; border-radius: 16px; background: #fff; border: 0; box-shadow: 0 10px 30px -14px rgba(40,10,70,.35); font-size: 15.5px; }
+.v-filtros .chips button { border: 0; background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05); padding: 8px 16px; font-weight: 600; color: #4a3f55; }
+.v-filtros .chips button.ativo { background: var(--pri); color: #fff; }
+.v-grade { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 18px; }
+.v-item { border: 0; border-radius: 18px; background: #fff; box-shadow: 0 1px 2px rgba(40,10,70,.05), 0 8px 24px -16px rgba(40,10,70,.25); }
+.v-foto { border-bottom: 1px solid #f1ecf5; }
+.v-foto em { top: 10px; left: 10px; font-size: 11.5px; padding: 3px 10px; background: #1e1824; }
+.v-info { padding: 12px 14px 14px; gap: 5px; }
+.v-info > small { text-transform: none; letter-spacing: 0; font-weight: 600; color: #8a7f95; font-size: 12.5px; }
+.v-info h3 { font-size: 14.5px; font-weight: 650; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.v-preco b { font-size: 19px; font-weight: 800; color: #1e1824; }
+.v-preco s { font-size: 12.5px; }
+.v-info .btn { height: 40px; }
+.v-carrinho { border-radius: 18px; padding: 16px 26px; box-shadow: var(--sombra-flut); }
+@media (max-width: 520px) {
+  .v-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 12px 30px; }
+  .v-item { border-radius: 16px; }
+  .v-info { padding: 10px 11px 12px; } .v-info h3 { font-size: 13.5px; } .v-preco b { font-size: 17px; }
+}
+@media (max-width: 860px) {
+  .modal, .modal.largo { border-radius: 22px 22px 0 0; }
+  .modal-bg.cheia .modal { border-radius: 0; }
+  input, select, textarea { font-size: 16px; } /* evita o zoom automático do iPhone */
+}
+
+/* produto sem foto: inicial da marca sobre fundo suave, no lugar de um ícone genérico */
+.sem-foto { background: linear-gradient(145deg, color-mix(in srgb, var(--pri) 14%, #fff), color-mix(in srgb, var(--pri) 30%, #fff)) !important; display: grid; place-items: center; }
+.sem-foto::after { content: attr(data-ini); font-weight: 800; font-size: 26px; color: color-mix(in srgb, var(--pri) 75%, #000); opacity: .55; text-transform: uppercase; }
+.v-foto.sem-foto::after { font-size: 46px; }
+.mfoto.mini { width: 44px; height: 44px; border-radius: 10px; } .mfoto.mini::after { font-size: 17px; }
+.v-foto { display: grid; place-items: center; }
+.chip-sel { background: var(--sup2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23968ba1' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 12px center; padding-right: 32px; }

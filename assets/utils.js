@@ -137,3 +137,23 @@ export async function copiar(txt) {
   try { await navigator.clipboard.writeText(txt); return true; }
   catch { const t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); return true; }
 }
+
+// Nome de produto legível: tira sobras do catálogo ("– ", ";") e troca CAIXA ALTA por iniciais maiúsculas
+const MINUSC = new Set(['de', 'da', 'do', 'das', 'dos', 'e', 'com', 'para', 'em', 'a', 'o', 'ao', 'na', 'no', 'por', 'sem', 'ml', 'g', 'kg', 'mg', 'un', 'x']);
+const SIGLAS = new Set(['FPS', 'EDP', 'EDT', 'SPF', 'UV', 'UVA', 'UVB', 'BB', 'CC', 'DD', 'II', 'III', 'IV', 'PP', 'P', 'M', 'G', 'GG', 'XG', 'AHA', 'VIT', 'C', 'K']);
+export function nomeBonito(n) {
+  let s = String(n || '').replace(/\s+/g, ' ').replace(/\u2212/g, '–').replace(/^[\s–—\-;:,.•]+/, '').replace(/[\s–—\-;:,]+$/, '').trim();
+  const letras = s.replace(/[^A-Za-zÀ-ÿ]/g, ''); const maius = letras.replace(/[^A-ZÀ-Þ]/g, '');
+  if (letras.length > 3 && maius.length / letras.length > 0.6) {
+    s = s.toLowerCase().split(' ').map((w, i) => {
+      const lim = w.replace(/[^a-zà-ÿ0-9]/gi, '');
+      if (SIGLAS.has(lim.toUpperCase()) && lim.length <= 4 && !MINUSC.has(lim)) return w.toUpperCase();
+      if (i > 0 && MINUSC.has(lim)) return w;
+      return w.replace(/^([^a-zà-ÿ]*)([a-zà-ÿ])/, (m, a, b) => a + b.toUpperCase());
+    }).join(' ');
+  }
+  return s;
+}
+
+// foto do produto: a cadastrada ou, se tiver código e marca, a do catálogo no repositório
+export const fotoProduto = p => p.foto || (p.sku && p.marca ? `catalogo-img/${slugify(p.marca)}/${String(p.sku).toUpperCase().replace(/[^A-Z0-9]/g, '').replace(/^0+(?=\d)/, '')}.jpg` : '');

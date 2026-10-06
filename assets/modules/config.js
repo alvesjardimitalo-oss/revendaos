@@ -3,7 +3,7 @@ import { $, $$, esc, nfmt, parseNum, uid, hoje, addDias, addMeses, soDigitos, fm
 import { S, cfg, icon, modal, ask, toast, commit } from '../core.js';
 import { opsPublicarLoja } from './loja.js';
 
-const CORES = ['#c2185b', '#e91e63', '#8e24aa', '#5e35b1', '#3949ab', '#1e88e5', '#00897b', '#43a047', '#f4511e', '#6d4c41', '#37474f', '#000000'];
+const CORES = ['#7209b7', '#c2185b', '#e91e63', '#8e24aa', '#5e35b1', '#3949ab', '#1e88e5', '#00897b', '#43a047', '#f4511e', '#6d4c41', '#37474f', '#000000'];
 const COLS = ['produtos', 'clientes', 'vendas', 'recebiveis', 'lancamentos', 'compras', 'promocoes', 'consorcios', 'logs'];
 
 export function render(el) {
@@ -16,7 +16,7 @@ export function render(el) {
       <label>WhatsApp / telefone<input name="telefone" inputmode="tel" value="${esc(fmtFone(c.telefone || ''))}"></label>
       <div class="foto-up span2"><div class="foto-prev" id="prev">${logo ? `<img src="${logo}">` : icon('store')}</div>
         <div><label class="btn">${icon('up')}Enviar logotipo<input type="file" accept="image/*" id="arq" hidden></label> <button type="button" class="btn" id="semlogo">Remover</button><p class="mudo pq">Aparece no menu, nos recibos e na loja virtual.</p></div></div>
-      <div class="span2"><span class="rot">Cor do sistema</span><div class="cores">${CORES.map(x => `<button type="button" data-cor="${x}" style="background:${x}" class="${(c.cor || '#c2185b') === x ? 'sel' : ''}"></button>`).join('')}<input type="color" name="cor" value="${c.cor || '#c2185b'}" title="Outra cor"></div></div>
+      <div class="span2"><span class="rot">Cor do sistema</span><div class="cores">${CORES.map(x => `<button type="button" data-cor="${x}" style="background:${x}" class="${(c.cor || '#7209b7') === x ? 'sel' : ''}"></button>`).join('')}<input type="color" name="cor" value="${c.cor || '#7209b7'}" title="Outra cor"></div></div>
     </div></section>
 
     <section class="card"><h4>${icon('scan')} Base de códigos de barras (Cosmos)</h4>
