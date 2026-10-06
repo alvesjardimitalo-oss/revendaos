@@ -6,12 +6,12 @@
 //  (dados salvos só neste navegador, sem login real).
 // =====================================================================
 export const FIREBASE_CONFIG = {
-  apiKey: "COLE_AQUI",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyAiWyTJytiWfO2mdbYQhHQO1BeFZLp9VAc",
+  authDomain: "revendaos-1e226.firebaseapp.com",
+  projectId: "revendaos-1e226",
+  storageBucket: "revendaos-1e226.firebasestorage.app",
+  messagingSenderId: "772652895174",
+  appId: "1:772652895174:web:8d95aad28f2b76516940c7"
 };
 
 // Nome exibido na tela de login (o nome do seu negócio é configurado dentro do sistema)
