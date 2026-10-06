@@ -528,3 +528,40 @@ section.card { margin-bottom: 14px; }
   .campo-ic.mbusca input { padding: 12px 0 !important; border: 0 !important; background: transparent !important; box-shadow: none !important; }
   .campo-ic.mbusca .btn-ic { position: static; } .campo-ic.mbusca .btn-ic .ic { position: static !important; }
 }
+
+/* ======== celular: tabelas viram cartões, menu em grade ======== */
+@media (max-width: 860px) {
+  .tabela-w { border: 0 !important; background: none !important; overflow: visible !important; box-shadow: none !important; }
+  table.tabela, table.tabela > tbody, table.tabela > tbody > tr, table.tabela > tbody > tr > td, table.tabela > tfoot, table.tabela > tfoot > tr, table.tabela > tfoot > tr > td { display: block; width: 100%; }
+  table.tabela > thead { display: none; }
+  table.tabela > tbody > tr { background: var(--sup2); border-radius: 14px; padding: 10px 14px; margin-bottom: 10px; border: 0; }
+  table.tabela > tbody > tr > td { border: 0 !important; padding: 5px 0 !important; display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: right; min-height: 0; background: none !important; }
+  table.tabela > tbody > tr > td::before { content: attr(data-label); color: var(--txt2); font-size: 13px; text-align: left; flex: none; max-width: 48%; }
+  table.tabela > tbody > tr > td[data-label=""]::before { display: none; }
+  table.tabela > tbody > tr > td:first-child { text-align: left; justify-content: flex-start; font-size: 15.5px; padding-bottom: 6px !important; }
+  table.tabela > tbody > tr > td:first-child::before { display: none; }
+  table.tabela > tbody > tr > td:empty { display: none; }
+  table.tabela > tbody > tr > td.acoes { justify-content: flex-end; gap: 8px; padding-top: 8px !important; }
+  table.tabela > tbody > tr > td.acoes::before { display: none; }
+  table.tabela > tbody > tr > td[colspan] { justify-content: center; text-align: center; }
+  table.tabela > tbody > tr > td[colspan]::before { display: none; }
+  table.tabela > tfoot > tr { display: flex; justify-content: space-between; padding: 6px 14px; }
+  table.tabela > tfoot > tr > td { width: auto; border: 0; padding: 0; }
+  table.tabela td small.bl { display: block; }
+  table.tabela td input, table.tabela td select { max-width: 140px; }
+  .grade-cons .cel { width: 34px; height: 30px; }
+  .modal-f .mudo.pq { display: none; }
+  .barra { gap: 8px; } .barra > .btn { flex: 1 1 auto; justify-content: center; }
+  .abas { overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+  /* menu: tela com atalhos em grade (como no app) */
+  .side { width: 100% !important; height: calc(100dvh - 70px - env(safe-area-inset-bottom)) !important; transform: translateY(103%) !important; transition: transform .22s ease; border: 0; border-radius: 0 0 18px 18px; padding: calc(16px + env(safe-area-inset-top)) 16px 16px !important; }
+  .menu-aberto .side { transform: none !important; }
+  .side nav { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 10px; align-content: start; overflow-y: auto; }
+  .side .nav-item { flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 16px 6px; border-radius: 16px; background: var(--sup2); font-size: 13px; min-height: 92px; position: relative; }
+  .side .nav-item .ic { width: 26px; height: 26px; }
+  .side .nav-item .cont { position: absolute; top: 8px; right: 8px; }
+  .side .marca { margin-bottom: 16px; }
+  .side-pe { flex-direction: row !important; border: 0 !important; gap: 10px !important; padding-top: 12px; }
+  .side-pe .nav-item { flex: 1; flex-direction: row; min-height: 0; padding: 12px; }
+  .menu-aberto .side-bg { background: rgba(0,0,0,.5); }
+}

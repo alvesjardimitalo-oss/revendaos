@@ -1,5 +1,5 @@
 // Service worker simples: deixa o app abrir mesmo com internet instável (os dados vêm do Firebase com cache próprio)
-const CACHE = 'revendaos-v14';
+const CACHE = 'revendaos-v15';
 const ARQS = ['./', 'index.html', 'loja.html', 'manifest.json', 'assets/style.css', 'assets/icon.svg', 'assets/app.js', 'assets/core.js', 'assets/db.js', 'assets/utils.js', 'assets/config.js', 'assets/loja.js',
   ...['dashboard', 'vendas', 'cobrancas', 'clientes', 'produtos', 'compras', 'financeiro', 'relatorios', 'loja', 'loja-sync', 'catalogo', 'promocoes', 'consorcios', 'importar-vendas', 'dados-iniciais', 'notificacoes', 'equipe', 'config'].map(m => `assets/modules/${m}.js`)];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => Promise.allSettled(ARQS.map(a => c.add(a)))).then(() => self.skipWaiting())); });

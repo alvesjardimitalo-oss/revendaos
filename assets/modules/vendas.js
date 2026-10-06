@@ -137,6 +137,7 @@ export function novaVenda(pre = {}) {
     </div>`,
     rodape: `<span class="grow mudo pq">Dica: leia o código de barras e pressione Enter para adicionar.</span><button class="btn" data-fechar>Cancelar</button><button class="btn pri" id="fin">${icon('check')}Finalizar venda</button>`
   });
+  m.el.classList.add('cheia');
   const f = m.$('#fv');
   const comPad = () => { const vm = S.d.membros.find(x => x.id === f.vendedor.value); return vm && vm.comissao ? vm.comissao : (cfg().comissaoPadrao || 0); };
   f.comissao.value = comPad() ? nfmt(comPad(), 1) : '';

@@ -182,7 +182,7 @@ function render(forcar = false) {
 let agendado = false;
 function agendar() { if (agendado) return; agendado = true; requestAnimationFrame(() => { agendado = false; render(); }); }
 export const rerender = () => render(true);
-window.addEventListener('hashchange', () => { lerRota(); document.body.classList.remove('menu-aberto'); render(true); $('#main') && ($('#main').scrollTop = 0); });
+window.addEventListener('hashchange', () => { document.querySelectorAll('.modal-bg').forEach(m => m.remove()); window.scrollTo(0, 0); lerRota(); document.body.classList.remove('menu-aberto'); render(true); $('#main') && ($('#main').scrollTop = 0); });
 
 // ---------------- dados ----------------
 function assinar() {
@@ -234,3 +234,14 @@ iniciar();
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(r => r.update()).catch(() => { });
 // quando sai versão nova do sistema, recarrega sozinho (uma vez)
 if ('serviceWorker' in navigator) { let rec = false; navigator.serviceWorker.addEventListener('controllerchange', () => { if (rec || !navigator.serviceWorker.controller) return; rec = true; if (!document.querySelector('.modal-bg')) location.reload(); }); }
+
+// Celular: as tabelas viram cartões; cada célula recebe o nome da coluna como rótulo
+function rotularTabelas() {
+  document.querySelectorAll('table.tabela').forEach(t => {
+    const hs = [...t.querySelectorAll('thead th')].map(th => th.textContent.trim());
+    if (!hs.length) return;
+    t.querySelectorAll('tbody tr').forEach(tr => [...tr.children].forEach((td, i) => { if (td.dataset.label == null) td.dataset.label = hs[i] || ''; }));
+  });
+}
+let rotT = null;
+new MutationObserver(() => { clearTimeout(rotT); rotT = setTimeout(rotularTabelas, 30); }).observe(document.body, { childList: true, subtree: true });
