@@ -231,4 +231,6 @@ async function iniciar() {
 }
 iniciar();
 
-if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => { });
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(r => r.update()).catch(() => { });
+// quando sai versão nova do sistema, recarrega sozinho (uma vez)
+if ('serviceWorker' in navigator) { let rec = false; navigator.serviceWorker.addEventListener('controllerchange', () => { if (rec || !navigator.serviceWorker.controller) return; rec = true; if (!document.querySelector('.modal-bg')) location.reload(); }); }
