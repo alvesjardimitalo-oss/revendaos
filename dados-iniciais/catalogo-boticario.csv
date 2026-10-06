@@ -1,0 +1,858 @@
+﻿marca;codigo_revista;nome;categoria;preco;preco_promocional_ciclo;descricao;pagina_catalogo;tem_foto;revisar
+O Boticário;86706;CLASH EXTREME DESODORANTE COLÔNIA, 100 ml;Perfumaria;184,90;149,90;;3;não;
+O Boticário;86707;BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;41,90;;3;não;
+O Boticário;95532;SHOWER GEL, 150 g;Corpo e banho;52,90;41,90;;3;não;
+O Boticário;87823;PALETTE MULTIFUNCIONAL ESSA PALETTE CONTÉM SCANDAL BLEND, 55,7 g • 6 sombras em pó mate;Maquiagem;309,90;257,90;;6;não;sim
+O Boticário;90826;vermelha;Outros;39,90;;Dimensões: 21 x 21 x 7,2 cm;8;não;sim
+O Boticário;90613;Calendário de Advento (12 itens);Perfumaria;699,90;;"3 Perfumarias (sendo 2 EDPs); 1 Body splash; 4 Itens de cuidados corporais; 2 Maquiagens; 1 Item para os cabelos";9;não;sim
+O Boticário;94136;Presente Her Code;Kits e presentes;374,80;;;10;não;sim
+O Boticário;94525;Presente Elysée;Kits e presentes;469,80;374,90;"Eau de parfum, 50 ml; Creme acetinado desodorante hidratante corporal, 250 g; Caixa de presente (21 x 21 x 10 cm)";10;sim;sim
+O Boticário;94137;Presente Malbec Eau de Parfum;Kits e presentes;400,70;329,90;"Eau de parfum, 90 ml; Loção desodorante hidratante corporal, 200 ml; Body spray desodorante, 100 ml; Caixa de presente (28 x 21 x 6 cm)";10;sim;sim
+O Boticário;94133;Presente Zaad;Kits e presentes;474,80;379,90;"Eau de parfum, 95 ml; Body splash desodorante colônia, 200 ml; Caixa de presente (21 x 21 x 7,5 cm)";10;sim;sim
+O Boticário;94135;Presente Malbec;Kits e presentes;296,70;239,90;"Desodorante colônia, 100 ml; Loção desodorante hidratante corporal mate, 75 ml; Shower gel, 75 g; Caixa de presente (28 x 21 x 6 cm)";11;não;sim
+O Boticário;94139;Presente Floratta Red I Passion e Nativa SPA Ameixa R Á;Kits e presentes;319,80;249,90;"Floratta Red Passion C eau de parfum, 75 ml I T; Nativa SPA loção desodorante O hidratante corporal Ameixa, 400 ml B; Caixa de presente (28 x 21 x 6 cm) O";11;sim;
+O Boticário;94138;Presente Malbec Gold;Kits e presentes;382,70;289,90;"Desodorante colônia, 100 ml; Body spray desodorante, 100 ml; Porta-perfume preto; Caixa de presente (28 x 21 x 6 cm)";11;sim;sim
+O Boticário;94134;Presente Lily Eau de Parfum;Kits e presentes;359,70;294,90;"Eau de parfum, 30 ml; Óleo perfumado desodorante corporal, 150 ml; Creme desodorante hidratante corporal, 75 g; Caixa de presente (28 x 21 x 6 cm)";11;sim;sim
+O Boticário;94146;Presente Floratta Red;Kits e presentes;284,70;199,90;"Desodorante colônia, 75 ml; Creme desodorante hidratante corporal, 200 ml; Lata presenteável vermelha (21 x 21 x 7,2 cm)";12;não;sim
+O Boticário;94142;Presente Liz;Kits e presentes;269,70;214,90;"Desodorante colônia, 100 ml; Creme desodorante hidratante corporal, 100 ml; Nécessaire branco (14 x 14 x 6 cm); Caixa de presente (30,8 x 21 x 8,5 cm)";12;sim;sim
+O Boticário;94140;Presente Coffee Woman Seduction;Kits e presentes;299,80;229,90;"Desodorante colônia, 100 ml; Loção desodorante hidratante corporal, 200 ml; Caixa de presente (21 x 21 x 6 cm)";12;sim;sim
+O Boticário;94580;Presente Uomini Black;Kits e presentes;302,70;229,90;"Desodorante colônia, 100 ml; Shower gel cabelo, corpo e barba, 200 g; Lata presenteável verde (21 x 21 x 7,2 cm)";12;sim;sim
+O Boticário;94148;Presente Egeo Choc;Kits e presentes;255,80;189,90;"Desodorante colônia, 90 ml; Calda de banho sabonete líquido corporal, 150 ml; Carteira holder chocolate 1 (10 x 7 x 0,91 cm); Caixa de presente (28 x 21 x 6 cm)";13;não;sim
+O Boticário;94149;Presente Arbo I R;Kits e presentes;237,80;184,90;"Desodorante colônia, 100 ml Á; Body spray desodorante, 100 ml C I T; Caixa de presente (21 x 21 x 6 cm) O";13;sim;sim
+O Boticário;94144;Presente Boticollection Portinari;Kits e presentes;262,80;209,90;"Desodorante colônia, 100 ml; Body spray desodorante, 100 ml; Caixa de presente (21 x 21 x 6 cm)";13;sim;sim
+O Boticário;94147;Presente Lily Acetinados;Kits e presentes;264,80;199,90;"Creme acetinado desodorante hidratante corporal, 250 g; Óleo perfumado desodorante corporal, 150 ml; Caixa de presente (28 x 21 x 10 cm)";13;sim;sim
+O Boticário;94576;Presente Clash;Kits e presentes;249,80;179,90;"Desodorante colônia, 100 ml; Creme hidratante facial, 80 g; Caixa de presente (21 x 21 x 6 cm)";14;não;sim
+O Boticário;94154;Presente Nativa SPA Ameixa Negra;Kits e presentes;232,70;169,90;"Body splash desodorante colônia, 200 ml; Loção desodorante hidratante corporal, 400 ml; Creme hidratante para mãos, 30 g; Caixa de presente (10,3 x 10,4 x 21 cm)";14;sim;
+O Boticário;94305;Presente Liz Sublime;Kits e presentes;219,80;174,90;"Desodorante colônia, 100 ml; Creme desodorante hidratante corporal, 100 ml; Caixa de presente (21 x 21 x 7,5 cm)";14;sim;sim
+O Boticário;94145;Presente Egeo Dolce;Kits e presentes;209,80;164,90;"Desodorante colônia, 90 ml; Loção desodorante hidratante corporal, 100 ml; Caixa de presente (21 x 21 x 6 cm)";14;sim;sim
+O Boticário;94159;Presente Cuide-se Bem Deleite;Kits e presentes;184,60;139,90;"Body splash desodorante colônia, 200 ml; Sabonete líquido 1 , 50 ml; Loção desodorante hidratante corporal, 100 ml; Creme hidratante para mãos, 45 g; Caixa de presente (13,6 x 5,8 x 20 cm)";15;não;sim
+O Boticário;94141;Presente L'Eau de Lily Soleil R I;Kits e presentes;169,80;124,90;"Creme hidratante corporal, 200 ml Á C; Body splash desodorante I T colônia, 200 ml O; Caixa de presente (13,6 x 5,8 x 20 cm) B";15;sim;sim
+O Boticário;94155;Presente Nativa SPA Jasmim Sambac;Kits e presentes;199,80;154,90;"Body splash desodorante colônia, 200 ml; Loção anti-stress desodorante hidratante corporal, 400 ml; Caixa de presente (10,3 x 10,4 x 21 cm)";15;sim;
+O Boticário;94150;Presente Egeo Blue;Kits e presentes;219,80;164,90;"Desodorante colônia, 90 ml; Loção desodorante hidratante corporal, 200 ml; Caixa de presente (21 x 21 x 6 cm)";15;sim;sim
+O Boticário;94157;Presente Celebre Agora Feminino;Kits e presentes;169,80;114,90;"Desodorante colônia, 100 ml; Sabonete líquido, 150 ml; Caixa de presente (13,6 x 5,8 x 20 cm)";16;sim;sim
+O Boticário;94574;Presente Nativs SPA Uva Merlot;Kits e presentes;155,80;119,90;"Body splash desodorante colônia, 200 ml; Loção desodorante hidratante corporal, 100 ml; Caixa de presente (21 x 21 x 6 cm)";16;sim;
+O Boticário;94156;Presente Celebre Agora Masculino;Kits e presentes;172,80;114,90;"Desodorante colônia, 100 ml; Body spray desodorante, 100 ml; Caixa de presente (13,6 x 5,8 x 20 cm)";16;sim;sim
+O Boticário;94160;Presente Cuide-se Bem Trio de Splashes;Kits e presentes;164,70;119,90;"Body splash desodorante colônia Pessegura, 60 ml; Body splash desodorante colônia Nuvem, 60 ml; Body splash desodorante colônia Morango e Leite 1 , 60 ml; Caixa de presente (13,6 x 5,8 x 20 cm)";16;não;sim
+O Boticário;94162;Presente Floratta Red;Kits e presentes;97,80;;;17;não;sim
+O Boticário;94161;Presente Malbec Magnetic;Kits e presentes;84,80;59,90;"Body spray desodorante, 100 ml; Shower gel cabelo e corpo, 75 g; Caixa de presente (14 x 5,4 x 18,6 cm)";17;sim;sim
+O Boticário;94158;Presente Lily Cuidados;Kits e presentes;96,80;69,90;"Creme desodorante hidratante corporal, 75 g; Sabonete líquido corporal, 100 ml; Caixa de presente (13,6 x 5,8 x 20 cm)";17;sim;sim
+O Boticário;94349;Presente Cuide-se Bem Pessegura;Kits e presentes;87,80;59,90;"Body splash desodorante colônia, 60 ml; Creme hidratante para mãos, 45 g; Caixa de presente (14 x 5,4 x 18,6 cm)";17;sim;sim
+O Boticário;85574;• Clash desodorante KIT CLASH colônia, 100 ml;Kits e presentes;184,90;;;18;sim;sim
+O Boticário;86870;SABONETE EM BARRA, 2 unidades de 80 g cada;Corpo e banho;29,90;;;18;sim;
+O Boticário;86868;CREME PRÉ E PÓS-BARBA, 150 g;Barba;62,90;;;18;sim;
+O Boticário;86869;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;57,90;;;18;sim;
+O Boticário;50956;BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;18;sim;
+O Boticário;58123;NÉCESSAIRE CLASH;Acessórios;87,90;;;18;sim;
+O Boticário;50677;CLASH DESODORANTE COLÔNIA, 100 ml;Perfumaria;179,90;;;18;não;
+O Boticário;50678;REFIL, 100 ml;Perfumaria;139,90;;;18;sim;
+O Boticário;85645;arabian oasis EAU DE PARFUM BOTICA 214 EAU DE PARFUM;Perfumaria;239,90;;;19;sim;
+O Boticário;47552;BOTICA 214 VERANO EN FIRENZE EAU DE PARFUM, 90 ml;Perfumaria;239,90;195,90;;19;não;
+O Boticário;58729;sevilla dorada 90 ml EAU DE PARFUM BOTICA 214 EAU DE PARFUM;Perfumaria;239,90;;;19;sim;
+O Boticário;47630;dark mint EAU DE PARFUM BOTICA 214 EAU DE PARFUM;Perfumaria;239,90;;;19;sim;
+O Boticário;54658;african sunrise 1 Baseado em produtos EAU DE PARFUM BOTICA 214 EAU DE PARFUM;Perfumaria;239,90;;;19;sim;
+O Boticário;51395;fiji paradise em indicadores de vendas de da linha no ano de 2024. EAU DE PARFUM BOTICA 214 EAU DE PARFUM;Perfumaria;239,90;;;19;sim;sim
+O Boticário;55357;MALBEC EAU DE PARFUM, 90 ml;Perfumaria;279,90;;;20;não;
+O Boticário;49291;colônia, 50 ml KIT MALBEC • Antitranspirante;Kits e presentes;189,90;;;20;sim;sim
+O Boticário;86169;colônia, 100 ml KIT MALBEC JUMBO • Shower gel cabelo;Kits e presentes;309,90;;;20;sim;sim
+O Boticário;88305;MALBEC BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;124,90;;;20;sim;
+O Boticário;76756;MALBEC SABONETE EM BARRA, 2 unidades de 80 g cada;Corpo e banho;31,90;;;21;sim;
+O Boticário;74965;MALBEC LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;67,90;;;21;sim;
+O Boticário;95332;REFIL MALBEC DESODORANTE COLÔNIA, 100 ml;Perfumaria;184,90;;;21;sim;
+O Boticário;48785;MALBEC BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;21;sim;
+O Boticário;48790;REFIL, 100 ml;Perfumaria;37,90;;;21;não;
+O Boticário;54150;MALBEC ICON DESODORANTE COLÔNIA, 100 ml;Perfumaria;219,90;;;21;não;
+O Boticário;90381;PROMOPACK MALBEC BODY SPRAY DESODO- RANTE, 2 unidades de 100 ml cada;Perfumaria;79,35;39,68;;21;sim;
+O Boticário;01317;PROMOPACK MALBEC ANTITRANSPIRANTE DESODORANTE AEROSSOL, 2 unidades de 75 g cada;Desodorantes;59,85;29,93;;22;sim;
+O Boticário;53927;magnetic;Outros;39,90;;;22;sim;sim
+O Boticário;54154;icon g magnetic;Outros;39,90;;;22;sim;sim
+O Boticário;53929;gold ANTITRANSPIRANTE ATÉ E Ç DESODORANTE $ cada magnetic;Desodorantes;39,90;;;22;sim;sim
+O Boticário;86969;pure gold AEROSSOL, 75 magnetic;Outros;39,90;;;22;sim;
+O Boticário;49362;malbec 48h ANTITRANSPIRANTE ATÉ E Ç DESODORANTE $ cada magnetic;Desodorantes;39,90;;;22;sim;sim
+O Boticário;85714;black legend icon g magnetic;Outros;39,90;;;22;sim;sim
+O Boticário;53074;malbec x black legend icon g magnetic;Outros;39,90;;;22;sim;sim
+O Boticário;84390;MALBEC MAGNETIC DESODORANTE COLÔNIA, 100 ml;Perfumaria;259,90;;;23;sim;
+O Boticário;84399;MALBEC FLAME DESODORANTE COLÔNIA, 100 ml;Perfumaria;259,90;;;23;sim;
+O Boticário;48381;MALBEC ANTITRANS- PIRANTE DESODORAN- TE ROLL-ON, 55 ml;Desodorantes;29,90;;;23;sim;
+O Boticário;54101;MALBEC X DESO- DORANTE CO- LÔNIA, 100 ml;Outros;259,90;233,90;;23;não;
+O Boticário;84688;MALBEC PURE GOLD LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;67,90;;;23;sim;
+O Boticário;54121;• Malbec desodorante colônia, 4 ml KIT MALBEC, • Malbec Vert desodorante colônia, 7 unidades de • Malbec Gold desodorante colônia, 4 ml cada • Malbec Magnetic desodorante colônia;Kits e presentes;45,90;;;24;sim;sim
+O Boticário;57639;NÉCESSAIRE PREMIUM MASCULINO;Acessórios;89,90;;;24;sim;
+O Boticário;84388;MALBEC NOIR -10 DESODORANTE COLÔNIA, 100 ml;Perfumaria;259,90;229,90;;24;não;
+O Boticário;85567;colônia, 100 ml KIT MALBEC BLACK • Body spray;Kits e presentes;289,90;;;25;sim;sim
+O Boticário;78000;MALBEC BLACK BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;25;sim;
+O Boticário;53901;NÉCESSAIRE MALBEC;Acessórios;79,90;;;25;sim;
+O Boticário;84392;MALBEC BLACK DESODORANTE COLÔNIA, 100 ml;Perfumaria;259,90;;;25;sim;
+O Boticário;84385;R MALBEC SIGNATURE G EAU DE PARFUM, 90 ml A R;Perfumaria;379,90;;;25;sim;
+O Boticário;57641;NÉCESSAIRE VIAGEM;Acessórios;75,90;59,90;;26;sim;
+O Boticário;84400;MALBEC BLEU DESODORANTE COLÔNIA, 100 ml;Perfumaria;239,90;;;26;sim;
+O Boticário;54231;MALBEC ULTRA BLEU DESODORANTE COLÔNIA, 100 ml;Perfumaria;239,90;;;26;não;
+O Boticário;84055;vert BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;26;sim;
+O Boticário;50125;ultra bleu ml ilustrativa. BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;26;sim;
+O Boticário;59021;SABONETE LÍQUIDO CORPORAL, 250 g;Corpo e banho;62,90;;;27;sim;
+O Boticário;59019;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;67,90;;;27;sim;
+O Boticário;59018;CREME HIDRATANTE FACIAL ANTI- IDADE, 50 ml;Cuidados com o rosto;109,90;87,90;;27;sim;
+O Boticário;87452;SABONETE EM BARRA, 4 unidades de 80 g cada;Corpo e banho;53,90;;;27;não;
+O Boticário;89518;CREME HIDRATANTE 9 EM 1 PREVENÇÃO DE SINAIS, 50 ml;Corpo e banho;109,90;;;27;não;
+O Boticário;56688;MULTIPROTETOR PELE OLEOSA, 40 ml;Outros;99,90;79,90;;27;não;
+O Boticário;56690;GEL DE LIMPE- ZA FACIAL PELE OLEOSA, 150 g;Cuidados com o rosto;64,90;51,90;;27;não;
+O Boticário;56687;SÉRUM FACIAL PELE OLEOSA, 30 ml;Cuidados com o rosto;149,90;119,90;;27;não;
+O Boticário;96713;SABONETE EM BARRA, 2 unidades de 80 g cada;Corpo e banho;31,90;25,90;;27;sim;
+O Boticário;59028;SHAMPOO PARA BARBA, 100 ml;Cabelos;51,90;;;28;sim;
+O Boticário;59030;ÓLEO PARA BARBA, 25 ml;Barba;74,90;;;28;sim;
+O Boticário;89830;para KIT MALBEC barbear, CUIDADOS SENSITIVE 200 ml;Kits e presentes;129,90;;;28;sim;
+O Boticário;59029;SENSITIVE CREME PARA BARBEAR, 100 g;Barba;77,90;62,90;;28;não;
+O Boticário;89782;SENSITIVE ESPUMA PARA BARBEAR, 200 ml;Barba;74,90;59,90;;28;não;
+O Boticário;89781;SENSITIVE BALM PÓS-BARBA, 100 g;Barba;82,90;66,90;;28;não;
+O Boticário;88950;barbear, 100 g KIT COMPLETO • Malbec Sensitive BARBEAR SENSITIVE balm pós-barba KIT MALBEC barbear, CUIDADOS SENSITIVE 200 ml;Kits e presentes;129,90;;;28;sim;sim
+O Boticário;59033;SHAMPOO ESFOLIANTE ANTICASPA, 150 ml;Cabelos;59,90;;;29;não;
+O Boticário;59035;SHAMPOO ANTICASPA, 250 ml;Cabelos;55,90;;;29;não;
+O Boticário;59034;CONDICIONADOR ANTICASPA, 250 ml;Cabelos;57,90;;;29;não;
+O Boticário;59126;KIT MALBEC CUIDADOS ANTIQUEDA;Kits e presentes;179,90;;;29;sim;
+O Boticário;88299;KIT MALBEC CUIDADOS ANTICASPA;Kits e presentes;99,90;;;29;sim;
+O Boticário;89787;CONDICIONADOR ANTIQUEDA, 250 ml;Cabelos;57,90;;;29;sim;
+O Boticário;59036;TÔNICO CAPILAR ANTIQUEDA, 100 ml;Cabelos;99,90;;;29;sim;
+O Boticário;59493;grisalhos 250 ml;Outros;55,90;;;29;sim;sim
+O Boticário;59031;antioleosidade LIMPAR SHAMPOO, R$ cada grisalhos 250 ml;Cabelos;55,90;;;29;sim;
+O Boticário;89780;antiqueda grisalhos 250 ml;Outros;55,90;;;29;sim;sim
+O Boticário;88295;ZAAD INFINITY EAU R A DE PARFUM, 95 ml E I;Perfumaria;349,90;;;30;sim;sim
+O Boticário;48368;ZAAD ESPUMA DE BARBEAR HIDRATANTE, 200 ml;Barba;87,90;;;31;sim;
+O Boticário;49039;ZAAD BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;124,90;;;31;sim;
+O Boticário;86431;KIT ZAAD;Kits e presentes;264,90;;;31;sim;
+O Boticário;48784;ZAAD ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;31;sim;
+O Boticário;58644;ZAAD INTENSE EAU DE PARFUM, 95 ml;Perfumaria;354,90;;;31;não;
+O Boticário;58348;ZAAD MONDO EAU DE PARFUM, 95 ml;Perfumaria;349,90;307,90;;31;sim;
+O Boticário;50651;ARBO INTENSO DESODORANTE COLÔNIA, 100 ml;Perfumaria;189,90;141,90;;32;não;
+O Boticário;81054;refil FRAGRÂNCIA FOUGÈRE AROMÁRICA INTENSIDADE 86% REFIL, 100 ml;Perfumaria;134,90;;;32;não;
+O Boticário;47881;REFIL ARBO FOREST DESODORANTE COLÔNIA, 100 ml;Perfumaria;134,90;;;33;sim;
+O Boticário;47411;NÉCESSAIRE ARBO;Acessórios;62,90;49,90;;33;sim;
+O Boticário;49288;colônia, 10 ml KIT ARBO • Loção desodorante;Kits e presentes;127,90;;;33;sim;sim
+O Boticário;83961;arbo BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;33;sim;
+O Boticário;79417;arbo botanic ml BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;33;sim;
+O Boticário;51243;QUASAR CLASSIC DESODORANTE COLÔNIA, 100 ml;Perfumaria;189,90;;;34;não;
+O Boticário;58526;QUASAR DEEP BLUE DESODORANTE COLÔNIA, 100 ml;Perfumaria;189,90;;;34;não;
+O Boticário;86464;KIT QUASAR CLASSIC;Kits e presentes;194,90;;;34;sim;
+O Boticário;51108;QUASAR BLUE SHOWER GEL CORPO E CABELO, 200 g;Cabelos;51,90;;;34;sim;
+O Boticário;51217;QUASAR BLUE GEL APÓS BARBA, 110 g;Barba;67,90;;;34;sim;
+O Boticário;53680;QUASAR BLUE ANTITRANSPIRANTE DESODORANTE ROLL-ON, 55 ml;Desodorantes;29,90;;;35;sim;
+O Boticário;51324;QUASAR RUSH BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;35;sim;
+O Boticário;51261;QUASAR BLUE DESODORANTE BODY SPRAY, 100 ml;Perfumaria;52,90;41,90;;35;sim;
+O Boticário;54325;BOLSA RETÂNGULAR MARROM;Acessórios;59,90;;;36;sim;
+O Boticário;87842;O THE BLEND AMBER SAFFRON EAU DE PARFUM, 100 ml;Perfumaria;379,90;;;36;não;
+O Boticário;77489;THE BLEND BOURBON EAU DE PARFUM, 100 ml;Perfumaria;379,90;338,90;;36;sim;
+O Boticário;83529;THE BLEND CARDAMOM EAU DE PARFUM, 100 ml;Perfumaria;379,90;;;36;sim;
+O Boticário;47949;THE BLEND EAU DE PARFUM, 100 ml;Perfumaria;379,90;;;36;sim;
+O Boticário;49305;CAIXA ORGANIZADORA;Kits e presentes;49,90;;;36;sim;
+O Boticário;86214;CARTEIRA MASCULINA;Outros;59,90;;;37;sim;
+O Boticário;49245;duo COFFEE MAN DESODORANTE COLONIA, 100 ml;Perfumaria;229,90;;;37;não;
+O Boticário;81330;COFFEE MAN ADDICTIVE DESODORANTE COLÔNIA, 100 ml;Perfumaria;229,90;;;37;sim;
+O Boticário;86077;COFFEE MAN AN- TITRANSPIRANTE DESODORANTE AEROSSOL, 125 ml;Desodorantes;39,90;;;37;sim;
+O Boticário;50732;UOMINI SPIRIT DESODORANTE COLÔNIA, 100 ml;Perfumaria;209,90;;;38;não;
+O Boticário;77486;UOMINI ANTI- TRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;38;sim;
+O Boticário;50418;infinite DESODORANTE 100 ml;Outros;209,90;;;38;não;
+O Boticário;80888;infinite BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;38;sim;
+O Boticário;49765;uomini FRAGRÂNCIA ORIENTAL ESPECIADA INTENSIDADE UOMINI SPIRIT DESODORANTE COLÔNIA, 100 ml;Perfumaria;209,90;;;38;não;sim
+O Boticário;80887;uomini UOMINI COLÔNIA, 100 ml R$ cada BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;38;sim;
+O Boticário;48779;PORTINARI BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;39;sim;
+O Boticário;52029;força PORTINARI traz ABSOLUTO de grapefruit DESODORANTE força COLÔNIA, 100 ml;Perfumaria;219,90;;;39;não;
+O Boticário;76678;stylleto BOTICOLLECTION DESODORANTE COLÔNIA, 100 ml;Perfumaria;174,90;;;39;sim;
+O Boticário;53934;PORTINARI ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;31,90;;39;sim;
+O Boticário;90810;• Body spray KIT PRESENTE desodorante, PORTINARI 100 ml;Kits e presentes;89,90;71,90;;39;sim;sim
+O Boticário;48664;PORTINARI DESODORANTE E COLÔNIA, 100 ml U;Perfumaria;209,90;;;39;não;
+O Boticário;89495;SPORT CREME HIDRATANTE ANTIATRITO, 100 g;Corpo e banho;49,90;;;40;sim;
+O Boticário;47149;ANTITRANSPIRANTE DESODORANTE AEROSSOL CLINICAL ULTRA PROTECT, 90 g;Desodorantes;39,90;;;40;sim;
+O Boticário;94750;SABONETES PERFUMADOS, 2 unidades de 90 g cada;Outros;27,90;;;40;não;
+O Boticário;89494;SHOWER GEL CORPORAL, 205 g;Corpo e banho;37,90;;;40;não;
+O Boticário;89493;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;42,90;;;40;não;
+O Boticário;47152;invisible protect ANTITRANSPIRANTE DESODORANTE AEROSSOL;Desodorantes;37,90;29,90;;40;sim;
+O Boticário;56004;MEN SPORT DESODORANTE PARA OS PÉS, 125 ml;Outros;39,90;;;40;sim;
+O Boticário;47150;cool protect 90 g ANTITRANSPIRANTE DESODORANTE AEROSSOL;Desodorantes;37,90;29,90;;40;sim;
+O Boticário;89262;PASTA CAPILAR ALTA FIXAÇÃO, 100 g;Cabelos;57,90;;;41;sim;
+O Boticário;55975;SHAMPOO 2 EM 1, 250 ml;Cabelos;42,90;;;41;sim;
+O Boticário;55968;SHAMPOO 2 EM 1 ANTICASPA, 250 ml;Cabelos;44,90;;;41;sim;
+O Boticário;90611;GEL SECATIVO ANTIACNE, 15 g;Cuidados com o rosto;37,90;;;41;não;
+O Boticário;90610;SABONETE LÍQUIDO ANTIACNE, 150 ml;Cuidados com o rosto;51,90;;;41;não;
+O Boticário;94867;CREME PÓS-BARBA AZULEN, 40 g;Barba;57,90;;;41;não;
+O Boticário;56005;CREME PRÉ E PÓS-BARBA, 150 g;Barba;59,90;;;41;não;
+O Boticário;56000;2 em 1 KIT CABELOS anticaspa SHAMPOO 2 EM 1 ANTICASPA, 250 ml;Kits e presentes;44,90;;;41;sim;
+O Boticário;52482;• Zaad eau de parfum, 4 ml KIT EXPERIMENTAÇÃO • Zaad Mondo eau de ZAAD E THE BLEND, parfum, 4 ml 4 unidades com 4 ml cada • The Blend eau de;Kits e presentes;59,90;;;42;sim;sim
+O Boticário;85606;INSENSATEZ DESODORANTE COLÔNIA, 100 ml;Perfumaria;174,90;;;42;sim;
+O Boticário;57640;NÉCESSAIRE ARBO;Acessórios;62,90;;;42;sim;
+O Boticário;76665;men only MEN DESODORANTE COLÔNIA;Perfumaria;174,90;;;42;sim;
+O Boticário;46645;NÉCESSAIRE ZAAD;Acessórios;92,90;;;42;sim;
+O Boticário;76666;men galbe 100 ml SACOLA ESPECIAL MEN DESODORANTE COLÔNIA;Perfumaria;174,90;;;42;sim;
+O Boticário;83211;REFIL CELEBRE SUA FORÇA DESODORANTE COLÔNIA, 100 ml;Perfumaria;82,90;;;43;sim;
+O Boticário;83061;CELEBRE SUA FORÇA LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;42,90;;;43;sim;
+O Boticário;83060;sua força CELEBRE SUA FORÇA DESODORANTE COLÔNIA, 100 ml;Perfumaria;119,90;;;43;sim;
+O Boticário;86028;EGEO BIG BAG;Acessórios;99,90;79,90;;44;sim;
+O Boticário;87556;EGEO DOLCE ILLUSION CREME DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;79,90;;;44;sim;
+O Boticário;48657;EGEO DOLCE ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;44;sim;
+O Boticário;49812;EGEO ORIGINAL DESODORANTE COLÔNIA, 90 ml;Perfumaria;164,90;127,90;;45;não;
+O Boticário;86220;NÉCESSAIRE EGEO;Acessórios;59,90;;;45;sim;
+O Boticário;84047;desodorante KIT EGEO BLUE colônia, 50 ml;Kits e presentes;169,90;;Shower gel cabelo;45;sim;
+O Boticário;86432;colônia, 50 ml KIT PRESENTE • Merengue mousse EGEO DOLCE desodorante hidratante;Kits e presentes;159,90;;;45;sim;sim
+O Boticário;94983;QUEM DISSE, EGEO VANILLA BERENICE? X EGEO UBESESSION LOÇÃO UBESESSION LIP DESODORANTE & CHEEK, 2,5 g;Maquiagem;64,90;54,90;;46;sim;sim
+O Boticário;95352;berry ubesession QUEM DISSE, EGEO VANILLA BERENICE? X EGEO UBESESSION LOÇÃO UBESESSION LIP DESODORANTE & CHEEK, 2,5 g;Maquiagem;64,90;54,90;;46;sim;sim
+O Boticário;85577;KIT PRESENTE desodorante EGEO BOMB BLACK colônia, 90 ml;Kits e presentes;159,90;;Shower gel;47;sim;
+O Boticário;72052;dolce DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;79,90;;;47;sim;
+O Boticário;73367;blue BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;47;sim;
+O Boticário;90805;desodorante KIT PRESENTE colônia, 50 ml EGEO BOMB BLACK • Shower gel cabelo;Kits e presentes;159,90;;;47;sim;sim
+O Boticário;82685;black : s e , 8 , 7 i a , 3 C 1 DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;79,90;;Egeo Bomb Black desodorante;47;não;sim
+O Boticário;74893;dolce ml BODY SPRAY DESODORANTE, 100;Perfumaria;52,90;;;47;sim;
+O Boticário;84974;FRAGRÂNCIA FLORAL ALDEÍDICA FRAGRÂNCIA 75 ml FLORAL;Outros;174,90;25,00;;48;sim;
+O Boticário;52493;FLORATTA MY BLUE DESODORANTE COLÔNIA, 75 ml;Perfumaria;174,90;149,90;;49;não;
+O Boticário;48310;FLORATTA BLUE DESODORANTE COLÔNIA, 75 ml;Perfumaria;174,90;149,90;;49;sim;
+O Boticário;72017;FLORATTA BLUE CREME DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;55,90;;49;sim;
+O Boticário;94966;FLORATTA RED PASSION CREME DESODORANTE HIDRATANTE CORPORAL, 200 g;Corpo e banho;119,90;;;50;sim;
+O Boticário;85483;FLORATTA RED BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;50;sim;
+O Boticário;54335;NÉCESSAIRE ROSA COM ALÇA FRANZIDA;Acessórios;69,90;;;50;sim;
+O Boticário;87896;FLORATTA RED PASSION EAU DE PARFUM, 75 ml;Perfumaria;229,90;;;50;não;
+O Boticário;90800;colônia, 30 ml KIT FLORATTA • Floratta Blue desodorante FLOWERS colônia, 30 ml;Kits e presentes;209,90;178,90;;51;sim;sim
+O Boticário;48646;FLORATTA ROSE CREME DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;52;sim;
+O Boticário;49025;FLORATTA ROSE BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;52;sim;
+O Boticário;88467;FLORATTA DEEP ROSE CREME DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;119,90;;;52;sim;
+O Boticário;52639;desodorante colônia, 10 ml KIT FLORATTA • Creme desodorante ROSE hidratante corporal, 75 ml;Kits e presentes;122,90;;;53;sim;sim
+O Boticário;33424;desodorante colônia, 30 ml KIT FLORATTA • Floratta Blue desodoran- FLOWERS te colônia, 30 ml;Kits e presentes;219,90;;;53;sim;sim
+O Boticário;53935;FLORATTA BLUE ANTITRANSPIRAN- TE DESODORANTE ROLL-ON, 55 ml;Desodorantes;29,90;;;54;sim;
+O Boticário;58528;desodorante KIT FLORATTA colônia, 10 ml BLUE • Creme desodo-;Kits e presentes;139,90;;;54;sim;sim
+O Boticário;84113;desodorante colônia, KIT FLORATTA 75 ml BLUE • Creme desodorante;Kits e presentes;254,90;;;54;sim;sim
+O Boticário;71807;FLORATTA GOLD CREME DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;55;sim;
+O Boticário;85482;FLORATTA FLORES SECRETAS BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;55;sim;
+O Boticário;96294;FLORATTA BLUE CRYSTAL CREME DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;55;sim;
+O Boticário;87972;FLORATTA BLUE CRYSTAL BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;55;sim;
+O Boticário;48307;G O M flores secretas F R E R E F B O M R A F FLORATTA DESODORANTE COLÔNIA, 75 ml;Perfumaria;174,90;;;55;sim;sim
+O Boticário;48315;gold A M LANÇAMENTOS FLORATTA DESODORANTE COLÔNIA, 75 ml;Perfumaria;174,90;;;55;sim;sim
+O Boticário;86167;KIT LILY JUMBO;Kits e presentes;309,90;;;56;sim;
+O Boticário;48508;LILY ÓLEO ACETINADO CORPO E CABELO, 50 ml;Cabelos;144,90;;;56;sim;
+O Boticário;88911;LILY SABONETE EM BARRA DECORADO, 2 unidades de 90 g cada;Corpo e banho;57,90;;;56;não;
+O Boticário;54896;LILY CREME DE BANHO ACETINADO, 250 ml;Corpo e banho;104,90;;;56;não;
+O Boticário;48181;LILY ÓLEO PERFUMADO DESODORANTE CORPORAL, 150 ml;Corpo e banho;114,90;;;56;não;
+O Boticário;85239;LILY CASHMERE CREME ACETINADO DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;149,90;;;57;sim;
+O Boticário;89446;L'EAU DE LILY SOLEIL CREME ACETINADO DESODORANTE HIDRATANTE CORPORAL, 250 g;Perfumaria;129,90;;;57;sim;
+O Boticário;55363;LILY GARDÉNIA EAU DE PARFUM, 75 ml;Perfumaria;319,90;;;58;não;
+O Boticário;74722;LILY EAU DE PARFUM, 30 ml;Perfumaria;189,90;;;58;sim;
+O Boticário;89331;LILY EAU DE PARFUM, 75 ml;Perfumaria;319,90;;;58;sim;
+O Boticário;48734;LILY LE PARFUM, 30 ml;Perfumaria;339,90;;;59;não;
+O Boticário;84182;LILY BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;124,90;;;59;sim;
+O Boticário;58139;NÉCESSAIRE MINI;Acessórios;42,90;;;59;sim;
+O Boticário;52640;KIT LILY • Creme acetinado desodorante hidratante;Kits e presentes;174,90;;;59;sim;sim
+O Boticário;48696;E LILY ANTITRANSPI- P RANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;59;sim;
+O Boticário;01302;PROMOPACK LILY ANTITRANSPIRANTE DESODORANTE AEROSSOL, 2 unidades de 75 g cada;Desodorantes;59,85;29,93;;59;sim;
+O Boticário;83971;L'EAU DE LILY DESODORANTE COLÔNIA, 75 ml;Perfumaria;229,90;;;60;sim;
+O Boticário;57882;L'EAU DE LILY BLANCHE BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;60;sim;
+O Boticário;49680;L'EAU DE LILY SOLEIL DESODORANTE COLÔNIA, 75 ml;Perfumaria;229,90;194,90;;60;sim;
+O Boticário;86895;L'EAU DE LILY BLANCHE DESODORANTE COLÔNIA, 75 ml;Perfumaria;229,90;;;60;sim;
+O Boticário;95405;PROMOPACK LILY BLANC BODY SPRAY DESODORANTE, 2 unidades de 100 ml cada;Perfumaria;79,35;39,68;;60;sim;
+O Boticário;49490;NÉCESSAIRE GLAMOUR;Acessórios;62,90;;;61;sim;
+O Boticário;84228;glamour BODY SPRAY DESODORANTE;Perfumaria;52,90;;;61;sim;
+O Boticário;96293;GLAMOUR INTENSE LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;61;sim;
+O Boticário;74096;GLAMOUR O BOTICÁRIO DESODORANTE COLÔNIA, 75 ml;Perfumaria;199,90;;;61;não;
+O Boticário;84255;REFIL, 75 ml;Perfumaria;149,90;;;61;não;
+O Boticário;79998;secrets black 100 ml BODY SPRAY DESODORANTE;Perfumaria;52,90;;;61;sim;
+O Boticário;90953;75 ml A M Glamour Glamour Glamour Glamour Glamour Glamour Secrets Black Myriad Intense Secrets Diva Midnight Black Intense LIMITADA Dimensões: 22,5 REFIL, 75 ml;Perfumaria;149,90;;;61;não;sim
+O Boticário;74103;GLAMOUR SECRETS BLACK O BOTICÁRIO DESODORANTE COLÔNIA, 75 ml;Perfumaria;199,90;;;62;não;
+O Boticário;52752;GLAMOUR SECRETS BLACK INTENSE O BOTICÁRIO DESODORANTE COLÔNIA, 75 ml;Perfumaria;199,90;;;62;não;
+O Boticário;84260;REFIL, 75 ml;Perfumaria;149,90;;;62;não;
+O Boticário;74740;glamour LOÇÃO DESODORANTE HIDRATANTE CORPORAL;Corpo e banho;69,90;;;62;sim;
+O Boticário;84225;GLAMOUR SECRETS BLACK ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;29,90;;62;sim;
+O Boticário;46442;FRASQUEIRA OFF WHITE;Outros;129,90;;;62;sim;
+O Boticário;79997;GLAMOUR ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;62;sim;
+O Boticário;84230;secrets black 200 ml da linha no ano de LOÇÃO DESODORANTE HIDRATANTE CORPORAL;Corpo e banho;69,90;;;62;sim;
+O Boticário;84224;N GLAMOUR O Â R BOTICÁRIO G DESODORANTE A COLÔNIA, 75 ml R F;Perfumaria;199,90;164,90;;63;sim;sim
+O Boticário;56579;NÉCESSAIRE FEMININO 2 EM 1;Acessórios;79,90;;;63;sim;
+O Boticário;36226;KIT GLAMOUR • Creme desodorante SECRETS BLACK hidratante corporal seda, 85 g;Kits e presentes;144,90;;Creme hidratante;63;sim;sim
+O Boticário;36485;TAMANHO VIAGEM KIT COFFEE colônia, 10 ml WOMAN • Loção desodorante SEDUCTION hidratante corporal, 75 ml;Kits e presentes;159,90;;;64;sim;sim
+O Boticário;87951;HADIYA EAU DE PARFUM, 75 ml;Perfumaria;419,00;;;65;não;
+O Boticário;88130;HER CODE BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;124,90;;;66;sim;
+O Boticário;85936;HER CODE TOUCH ÓLEO DE MASSAGEM CORPORAL, 150 ml;Corpo e banho;99,90;;;66;sim;
+O Boticário;94524;HER CODE TOUCH EAU DE PARFUM SÓLIDO, 5 g;Perfumaria;119,90;;;66;sim;
+O Boticário;85935;HER CODE CREME AVELUDADO DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;124,90;;;67;sim;
+O Boticário;85947;HER CODE CLÍMAX LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;67,90;;;67;sim;
+O Boticário;86206;de parfum, 50 ml KIT HER CODE • Loção;Kits e presentes;309,90;;;67;não;sim
+O Boticário;96398;HER CODE CLÍMAX CREME AVELUDADO DESODORANTE HIDRATANTE CORPORAL, 200 g;Corpo e banho;124,90;;;67;sim;
+O Boticário;96399;HER CODE TOUCH CREME AVELUDADO DESODORANTE HIDRATANTE CORPORAL, 200 g;Corpo e banho;124,90;;;67;sim;
+O Boticário;94859;HER CODE LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;67,90;;;67;sim;
+O Boticário;50022;A S HER CODE EAU DE T U PARFUM, 50 ml R F;Perfumaria;254,90;;;67;sim;sim
+O Boticário;59555;HER CODE TOUCH EAU DE PARFUM, 50 ml;Perfumaria;254,90;214,90;;67;não;
+O Boticário;86983;Í U I HER CODE CLÍMAX EAU DE PARFUM, 50 ml O A;Perfumaria;254,90;;;67;sim;sim
+O Boticário;48146;ELYSÉE NUIT O BOTICÁRIO EAU DE PARFUM, 50 ml;Perfumaria;319,90;;;68;não;
+O Boticário;48143;ELYSÉE BLANC O BOTICÁRIO EAU DE PARFUM, 50 ml;Perfumaria;319,90;;;68;não;
+O Boticário;53518;ELYSÈE O BOTICÁRIO EAU DE PARFUM, 50 ml;Perfumaria;319,90;284,90;;68;não;
+O Boticário;81331;ELYSÉE SUCCÈS O BOTICÁRIO EAU DE PARFUM, 50 ml;Perfumaria;319,90;;;68;não;
+O Boticário;48653;ELYSÉE ANTITRANSPI- RANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;69;sim;
+O Boticário;88306;ELYSÉE BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;124,90;;;69;sim;
+O Boticário;53988;KIT ELYSÉE • Creme acetinado desodorante;Kits e presentes;162,90;;;69;sim;sim
+O Boticário;48645;nuit E U QO T M U M O C S A I C 200 g N Â;Outros;99,90;;;69;não;sim
+O Boticário;94900;refil CREME ACETINADO REFIL, DESODORANTE R$ HIDRATANTE CORPORAL, 250 g cada;Perfumaria;149,90;;;69;não;
+O Boticário;85796;elysée QO T M U M O C S A I C 200 g N Â;Outros;99,90;;;69;sim;sim
+O Boticário;92222;ARABIAN OASIS LOÇÃO DESODO- RANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;64,90;;;70;sim;
+O Boticário;49353;peônia & apricot EAU DE PARFUM BOTICA 214 EAU DE;Perfumaria;239,90;;;70;sim;
+O Boticário;47553;BOTICA 214 VERANO EN FIRENZE EAU DE PARFUM, 75 ml;Perfumaria;239,90;195,90;;70;sim;
+O Boticário;85644;ARABIAN OASIS EAU DE PARFUM, 75 ml;Perfumaria;239,90;;;70;não;
+O Boticário;51387;fiji paradise PARFUM, 75 ml EAU DE PARFUM BOTICA 214 EAU DE;Perfumaria;239,90;;;70;sim;
+O Boticário;58733;sevilla dorada PARFUM, 75 ml EAU DE PARFUM BOTICA 214 EAU DE;Perfumaria;239,90;;;70;sim;
+O Boticário;47629;golden gardênia PARFUM, 75 ml EAU DE PARFUM BOTICA 214 EAU DE;Perfumaria;239,90;;;70;sim;
+O Boticário;54657;african sunrise PARFUM, 75 ml EAU DE PARFUM BOTICA 214 EAU DE;Perfumaria;239,90;;;70;sim;
+O Boticário;46931;KIT colônia, 30 ml BOTICOLLECTION • Thaty desodorante colônia, 30 ml;Kits e presentes;209,90;;;71;sim;sim
+O Boticário;87921;fragrâncias BOTICOLLECTION que vão te R$ SABONETES conquistar: cada PERFUMADOS, Cecita Blossom, 5 unidades de Thaty, Acqua BOTICOLLECTION 80 g cada Fresca, Anni VERSÃO DESODORANTE;Outros;54,90;;;71;sim;sim
+O Boticário;19734;THATY DESODORANTE COLÔNIA, 100 ml;Perfumaria;174,90;121,90;;71;sim;
+O Boticário;71877;crazy feelings, 100 ml 200 ml;Outros;219,90;174,90;;71;sim;sim
+O Boticário;84487;LINDA IRRESISTÍVEL CREME DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;72;sim;
+O Boticário;81756;LINDA IRRESISTÍVEL DESODORANTE COLÔNIA, 100 ml;Perfumaria;219,90;;;72;não;
+O Boticário;50158;VAPORIZADOR PORTA-PERFUME;Perfumaria;57,90;;;72;sim;
+O Boticário;81849;felicidade LINDA DESODORANTE COLÔNIA, 100 ml;Perfumaria;219,90;;;72;não;
+O Boticário;74043;linda FRAGRÂNCIA FLORIENTAL AMADEIRADA LINDA IRRESISTÍVEL DESODORANTE COLÔNIA, 100 ml;Perfumaria;219,90;;;72;não;
+O Boticário;47339;liz sublime LIZ DESODORANTE COLÔNIA;Perfumaria;174,90;;;73;sim;
+O Boticário;77183;liz CREME DESODORANTE HIDRATANTE CORPORAL, 250 g;Corpo e banho;74,90;;;73;sim;
+O Boticário;76700;LIZ DESODORANTE COLÔNIA, 100 ml;Perfumaria;174,90;144,90;;73;sim;
+O Boticário;53415;liz intenso ano de 2024. 69 LIZ DESODORANTE COLÔNIA;Perfumaria;174,90;;;73;sim;
+O Boticário;86990;liz aura de produtos da linha no LIZ DESODORANTE COLÔNIA;Perfumaria;174,90;;;73;sim;
+O Boticário;59466;liz flora em indicadores de venda LIZ DESODORANTE COLÔNIA;Perfumaria;174,90;;;73;sim;
+O Boticário;88895;liz d'essence 100 ml *Baseado LIZ DESODORANTE COLÔNIA;Perfumaria;174,90;;;73;sim;
+O Boticário;86218;NÉCESSAIRE FEMININO;Acessórios;64,90;;;75;sim;
+O Boticário;87982;ACCORDES BODY SPRAY DESODORANTE, 100 ml;Perfumaria;52,90;;;75;sim;
+O Boticário;54327;NÉCESSAIRE MATELASSÊ;Acessórios;49,90;;;75;sim;
+O Boticário;48685;COFFEE WOMAN SEDUCTION LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;75;sim;
+O Boticário;83065;LIZ ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;75;sim;
+O Boticário;48141;accordes ACCORDES DESODORANTE COLÔNIA, 80 ml;Perfumaria;249,90;;;75;sim;
+O Boticário;49242;COFFEE WOMAN SEDUCTION ANTITRANSPIRANTE DESODORANTE AEROSSOL, 75 g;Desodorantes;39,90;;;75;sim;
+O Boticário;90803;colônia, 50 ml KIT PRESENTE LIZ • Creme desodorante;Kits e presentes;154,90;131,90;;75;sim;sim
+O Boticário;51213;accordes harmonia ACCORDES DESODORANTE COLÔNIA, 80 ml;Perfumaria;249,90;;;75;sim;
+O Boticário;79354;CAIXA M CASA 214;Kits e presentes;36,80;;;76;sim;
+O Boticário;58609;vanilla sublime 3.;Outros;149,90;;;76;não;sim
+O Boticário;49401;vanilla sublime 2.;Outros;119,90;;;76;não;sim
+O Boticário;56181;vanilla sublime 4.;Outros;149,90;;;76;não;sim
+O Boticário;56209;vanilla sublime;Outros;179,90;;;76;não;sim
+O Boticário;52095;gardênia imperial 11.;Outros;149,90;;;77;não;sim
+O Boticário;52051;gardênia imperial;Outros;179,90;;;77;sim;sim
+O Boticário;86505;vanilla sublime;Outros;114,90;;;77;sim;sim
+O Boticário;88340;vanilla sublime;Outros;94,90;;;77;sim;sim
+O Boticário;90140;figo magnífico;Outros;79,90;;;77;sim;sim
+O Boticário;54483;PRATO VELA DOLOMITE;Outros;42,90;;;77;sim;
+O Boticário;56156;BANDEJA DOLOMITE;Outros;119,90;;;77;sim;
+O Boticário;58679;• Sabonete líquido, KIT CASA 214 400 ml VANILLA SUBLIME • Difusor de;Kits e presentes;399,90;;;77;sim;sim
+O Boticário;88820;9. magnífico gardênia;Outros;143,90;;;77;sim;sim
+O Boticário;52086;imperial;Outros;119,90;;;77;sim;sim
+O Boticário;88822;figo magnífico figo;Outros;149,90;;;77;sim;sim
+O Boticário;88823;figo magnífico 8. gardênia imperial 11.;Outros;149,90;;;77;não;sim
+O Boticário;88821;figo magnífico gardênia imperial 11.;Outros;149,90;;;77;sim;sim
+O Boticário;86504;gardênia imperial vanilla sublime;Outros;94,90;;;77;sim;sim
+O Boticário;95036;CREME CAPILAR ESTILIZANTE, 120 ml;Cabelos;49,90;39,92;;78;sim;
+O Boticário;96166;O T ANTITRANSPIRANTE ATÉ E Ç DESODORANTE 72h O Ã AEROSSOL, 150 ml;Desodorantes;39,90;31,92;;78;não;sim
+O Boticário;94851;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;63,12;;78;não;
+O Boticário;90220;BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;94,90;75,92;;78;não;
+O Boticário;94856;BRUMA HIDRATANTE REFRESCANTE, 110 ml;Corpo e banho;49,90;39,92;;79;não;
+O Boticário;94852;LOÇÃO HIDRATANTE RELAXANTE CORPORAL, 200 ml;Corpo e banho;56,90;45,52;;79;não;
+O Boticário;94854;SABONETE EM BARRA, 2 unidades de 80 g cada;Corpo e banho;24,90;19,92;;79;sim;
+O Boticário;59405;GEL ESFOLIANTE CORPORAL MELANCIA, 150 g;Corpo e banho;47,90;;;80;sim;
+O Boticário;58231;SABONETE EM BARRA DELEITE ESPECIAL, 120 g;Corpo e banho;18,90;;;80;sim;
+O Boticário;59403;melancia chocolatudo DESODORANTE CORPORAL, 400 ml;Outros;78,90;;;80;sim;
+O Boticário;58227;deleite DESODORANTE CORPORAL, 400 ml;Outros;78,90;;;80;não;
+O Boticário;85543;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;81;sim;
+O Boticário;89663;SABONETE EM BARRA ESPECIAL, 2 unidades de 90 g cada;Corpo e banho;29,90;;;81;sim;
+O Boticário;85121;CREME HIDRATANTE PARA MÃOS, 45 g;Corpo e banho;38,90;;;81;sim;
+O Boticário;85124;LOÇÃO DESODORANTE FRAGRÂNCIA HIDRATANTE FLORAL + V E CORPORAL, 400 ml GOURMAND O;Corpo e banho;78,90;;;81;não;sim
+O Boticário;85542;REFIL, 350 ml;Perfumaria;59,90;;;81;não;
+O Boticário;86465;desodorante KIT CUIDE-SE colônia, 60 ml BEM DELEITE • Creme hidratante;Kits e presentes;72,90;;;81;sim;sim
+O Boticário;90841;CHARM DELEITE;Outros;29,90;;;81;sim;
+O Boticário;56836;NÉCESSAIRE CUIDE-SE BEM;Acessórios;72,90;;;81;sim;
+O Boticário;89658;MANTEIGA DESODORANTE HIDRATANTE CORPORAL, 200 g;Corpo e banho;72,90;;;81;sim;
+O Boticário;88689;LOÇÃO DESODO- RANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;82;sim;
+O Boticário;88199;CREME HIDRATANTE PARA MÃOS, 45 g;Corpo e banho;38,90;;;82;sim;
+O Boticário;52757;SABONETE LÍQUIDO ÍNTIMO, 200 ml;Corpo e banho;49,90;;;82;sim;
+O Boticário;88688;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;82;não;
+O Boticário;88690;REFIL, 350 ml;Perfumaria;59,90;;;82;não;
+O Boticário;84049;para mãos Nuvem, 30 g KIT CUIDE-SE • Creme hidratante BEM OBRIGADx para mãos Rosa e;Kits e presentes;52,90;;;82;sim;sim
+O Boticário;90812;hidratante corporal, KIT PRESENTE 75 ml CUIDE-SE BEM • Creme hidratante NUVEM para mãos, 45 g;Kits e presentes;69,90;;;82;sim;sim
+O Boticário;51146;ANTITRANSPIRANTE DESODORANTE ROLL-ON, 55 ml;Desodorantes;29,90;;;82;sim;
+O Boticário;51164;ANTITRANSPIRANTE DESODORANTE EM CREME, 80 g;Desodorantes;34,90;;;83;sim;
+O Boticário;51161;ANTITRANSPIRAN- TE DESODORANTE AEROSSOL, 125 ml;Desodorantes;39,90;;;83;sim;
+O Boticário;88695;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;83;sim;
+O Boticário;55426;CREME HIDRATANTE PARA MÃOS, 45 g;Corpo e banho;38,90;;;83;sim;
+O Boticário;88694;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;83;não;
+O Boticário;88696;REFIL, 350 ml;Perfumaria;59,90;;;83;não;
+O Boticário;51229;ANTITRANSPIRANTE DESODORANTE ROLL-ON, 55 ml;Desodorantes;29,90;;;83;sim;
+O Boticário;88700;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;84;não;
+O Boticário;88702;REFIL, 350 ml;Perfumaria;59,90;;;84;não;
+O Boticário;88701;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;84;sim;
+O Boticário;88056;NÉCESSAIRE PESSEGURA;Acessórios;49,90;;;84;sim;
+O Boticário;58565;CREME ESFOLIANTE PARA BUMBUM DE PÊSSEGO, 230 g;Corpo e banho;77,90;;;84;sim;
+O Boticário;88291;MÁSCARA DE HIDRATAÇÃO PARA BUMBUM DE PÊSSEGO, 230 g;Maquiagem;79,90;;;84;sim;
+O Boticário;89660;MANTEIGA DESODORANTE HIDRATANTE CORPORAL, 200 g;Corpo e banho;72,90;;;85;sim;
+O Boticário;90998;SABONETE LÍQUIDO CORPORAL, 150 ml;Corpo e banho;52,90;;;85;sim;
+O Boticário;89662;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;85;não;
+O Boticário;57043;CREME HIDRATANTE DESLIZANTE PARA LÂMINA, 200 ml;Corpo e banho;56,90;;;85;sim;
+O Boticário;85324;CREME HIDRATANTE DEPILATÓRIO CORPORAL, 150 ml;Corpo e banho;52,90;;;85;sim;
+O Boticário;57042;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;85;não;
+O Boticário;88698;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;86;sim;
+O Boticário;56217;SPRAY ÍNTIMO REFRESCANTE, 75 ml;Outros;47,90;;;86;sim;
+O Boticário;51168;SABONETE LÍQUIDO ÍNTIMO, 200 ml;Corpo e banho;49,90;;;86;sim;
+O Boticário;94763;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;86;não;
+O Boticário;88697;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;86;não;
+O Boticário;88699;REFIL, 350 ml;Perfumaria;59,90;;;86;não;
+O Boticário;44803;CESTINHO EM METAL;Outros;62,90;;;86;sim;
+O Boticário;85672;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;87;sim;
+O Boticário;89697;ADESIVOS SECATIVOS PARA ESPINHA FACIAL, 24 unidades;Cuidados com o rosto;43,90;35,90;;87;sim;
+O Boticário;88913;SPRAY ÍNTIMO, 75 ml;Outros;44,90;35,90;;87;sim;
+O Boticário;87963;ÓLEO CORPORAL TÉRMICO, 110 ml;Corpo e banho;57,90;;;87;sim;
+O Boticário;85671;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;87;não;
+O Boticário;85675;CREME RELAXANTE, 200 g;Corpo e banho;69,90;;;87;sim;
+O Boticário;90995;SABONETE LÍQUIDO CORPORAL E FACIAL, 200 ml;Cuidados com o rosto;52,90;;;87;sim;
+O Boticário;88692;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;88;sim;
+O Boticário;51122;SABONETE LÍQUIDO ESFOLIANTE CORPORAL, 200 ml;Corpo e banho;54,90;;;88;sim;
+O Boticário;87315;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;56,90;;;88;sim;
+O Boticário;87321;SABONETE ESFOLIANTE CORPORAL, 200 ml;Corpo e banho;54,90;;;88;sim;
+O Boticário;88691;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;88;não;
+O Boticário;88693;REFIL, 350 ml;Perfumaria;59,90;;;88;não;
+O Boticário;87326;BASTÃO ANTIATRITO EFEITO SHORTINHO, 35 g;Outros;72,90;;;88;não;
+O Boticário;87443;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;78,90;;;88;não;
+O Boticário;58357;4 unidades S E D A D SABONETE unidades de;Corpo e banho;24,90;;;90;sim;sim
+O Boticário;85547;4 unidades SABONETE EM BARRA, 4 unidades de 80;Corpo e banho;38,90;;;90;sim;
+O Boticário;85120;SABONETE EM BARRA, 2 unidades de 80 g cada;Corpo e banho;24,90;;;90;não;
+O Boticário;85564;SABONETE EM BARRA, 4 unidades de 80 g cada;Corpo e banho;38,90;;;90;não;
+O Boticário;53792;4 unidades SABONETE EM BARRA, 4 unidades de 80;Corpo e banho;38,90;;;90;sim;
+O Boticário;85679;4 unidades SABONETE unidades de;Corpo e banho;24,90;;;90;sim;
+O Boticário;50879;4 unidades S E D EM BARRA, A D 80 g cada I N U 4 SABONETE unidades de;Corpo e banho;24,90;;;90;sim;sim
+O Boticário;88311;4 unidades SABONETE EM BARRA, 4 unidades de 80;Corpo e banho;38,90;;;90;sim;
+O Boticário;53515;2 unidades ou SABONETE EM BARRA, 2 unidades de 80 g cada;Corpo e banho;24,90;;;90;sim;
+O Boticário;94764;2 unidades g cada SABONETE EM BARRA, 4 unidades de 80;Corpo e banho;38,90;;;90;sim;
+O Boticário;51167;ANTITRANSPIRANTE DESODORANTE EM CREME SEM PERFUME, 80 g;Perfumaria;34,90;;;91;sim;
+O Boticário;47148;ANTITRANSPIRANTE DESODORANTE AEROSSOL CLINICAL ULTRA PROTECT, 90 g;Desodorantes;39,90;;;91;sim;
+O Boticário;86024;HIDRATANTE FACIAL ALGODÃO-DOCE, 50 g;Cuidados com o rosto;37,90;31,90;;91;sim;
+O Boticário;47165;ANTITRANSPIRAN- TE DESODORANTE EM CREME CLINICAL ULTRA PROTECT, 50 g;Corpo e banho;34,90;;;91;sim;
+O Boticário;94675;HIDRATANTE FACIAL S MAÇÃ-VERDE, 80 g O;Cuidados com o rosto;49,90;41,90;;91;não;
+O Boticário;47144;protect & beauty ANTITRANSPIRANTE DESODORANTE AEROSSOL, 90 g;Desodorantes;37,90;;;91;sim;
+O Boticário;47154;ANTITRANSPIRANTE DESODORANTE ROLL-ON SEM ALUMÍNIO, 55 ml;Desodorantes;27,90;21,90;;91;não;
+O Boticário;47147;invisible protect ANTITRANSPIRANTE DESODORANTE ROLL-ON;Desodorantes;27,90;;;91;sim;
+O Boticário;51144;ANTITRANSPIRANTE DESODORANTE ROLL- ON LEITE E MEL, 55 ml;Desodorantes;29,90;;;91;sim;
+O Boticário;53510;LOÇÃO DESODORANTE HIDRATANTE CORPORAL SHOW DE BANHO, 200 ml;Corpo e banho;56,90;;;91;sim;
+O Boticário;53509;REFIL LOÇÃO DESODORANTE HIDRATANTE CORPORAL SHOW DE BANHO, 350 ml;Perfumaria;59,90;;;91;sim;
+O Boticário;94673;GEL DE LIMPEZA FACIAL TANGERINA, 150 g;Cuidados com o rosto;47,90;39,90;;91;não;
+O Boticário;94676;ESFOLIANTE FACIAL CALDA DE MORANGO, 100 g;Cuidados com o rosto;47,90;39,90;;91;não;
+O Boticário;54805;MÁSCARA FACIAL MELANCIA, 50 g;Maquiagem;67,90;56,90;;91;não;
+O Boticário;47146;invisible protect ANTITRANSPIRANTE DESODORANTE AEROSSOL, 90 g;Desodorantes;37,90;;;91;sim;
+O Boticário;47145;protect & beauty 55 ml ANTITRANSPIRANTE DESODORANTE ROLL-ON;Desodorantes;27,90;;;91;sim;
+O Boticário;85584;ÓLEO GLORIOSO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;99,90;;;92;não;
+O Boticário;59824;REFIL, 350 ml;Perfumaria;69,90;59,90;;92;sim;
+O Boticário;59823;NATIVA SPA CREME PERFUMADO DESODORANTE HIDRATANTE CORPORAL ORQUÍDEA LUMIÈRE, 400 ml;Corpo e banho;89,90;76,90;;92;sim;
+O Boticário;59829;CREME PERFUMADO DESODORANTE HIDRATANTE CORPORAL;Corpo e banho;64,90;55,90;;92;não;
+O Boticário;85098;ÓLEO GLORIOSO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;99,90;;;93;não;
+O Boticário;94476;SABONETE LÍQUIDO ESFOLIANTE CORPORAL, 175 ml;Corpo e banho;59,90;50,90;;93;não;
+O Boticário;49959;LOÇÃO NOTURNA DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;59,90;;93;não;
+O Boticário;49958;LOÇÃO NOTURNA DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;76,90;;93;não;
+O Boticário;49957;REFIL, 350;Perfumaria;69,90;59,90;;93;sim;
+O Boticário;88209;hidratante corporal, 200 ml KIT NATIVA SPA • Body splash desodorante AMEIXA colônia, 60 ml;Kits e presentes;132,90;;;94;sim;sim
+O Boticário;50931;hidratante corporal KIT NATIVA SPA Flor de Ameixa, 75 ml 3 AMEIXAS • Loção desodorante;Kits e presentes;102,90;;;94;sim;sim
+O Boticário;48286;SABONETE LÍQUIDO PARA MÃOS, 400 ml;Corpo e banho;67,90;;;94;sim;
+O Boticário;87051;ÓLEO GLORIOSO CORPO E CABELO, 85 ml;Cabelos;144,90;;;94;sim;
+O Boticário;57675;ÓLEO AÇÚCAR ESFOLIANTE CORPORAL, 200 g;Corpo e banho;82,90;;;94;sim;
+O Boticário;85051;REFIL, 150 ml;Perfumaria;79,90;;;95;sim;
+O Boticário;88073;CREME HIDRATANTE PARA MÃOS, 75 g;Corpo e banho;59,90;;;95;sim;
+O Boticário;88079;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;95;sim;
+O Boticário;88077;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;;;95;não;
+O Boticário;59517;REFIL, 350 ml;Perfumaria;69,90;;;95;não;
+O Boticário;86798;CRÈME PARFUMÉE HIDRATANTE CORPORAL, 200 g;Corpo e banho;149,90;;;95;não;
+O Boticário;85096;200 ml REFIL, 150 ml;Perfumaria;79,90;;;95;não;
+O Boticário;95797;REFIL, 350 ml;Perfumaria;69,90;;;96;não;
+O Boticário;95801;ÓLEO GLORIOSO CORPORAL PERFUMADO, 200 ml;Corpo e banho;99,90;;;96;sim;
+O Boticário;95798;CREME PERFUMADO DESODORANTE HIDRATANTE CORPORAL, 180 ml;Corpo e banho;64,90;;;96;sim;
+O Boticário;95803;SABONETE EM BARRA, 90 g;Corpo e banho;16,90;;;96;sim;
+O Boticário;95795;CREME PERFUMADO DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;;;96;não;
+O Boticário;90981;BODY SPLASH DESODORANTE COLÔNIA, 200 ml;Perfumaria;109,90;;;96;não;
+O Boticário;95802;ESFOLIANTE CORPORAL, 180 g;Corpo e banho;82,90;;;96;sim;
+O Boticário;48281;78% LOÇÃO NUTRITIVA DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;;;97;sim;
+O Boticário;59516;4. NATIVA SPA CLASH DESODORANTE DESODORANTE COLÔNIA, AMEIXA R$ 350 ml;Perfumaria;69,90;;;97;não;
+O Boticário;85052;REFIL, 150 ml;Perfumaria;79,90;;;97;sim;
+O Boticário;87050;ÓLEO GLORIOSO CORPO E CABELO, 85 ml;Cabelos;144,90;;;97;sim;
+O Boticário;87917;CREME HIDRATANTE PARA MÃOS, 75 g;Corpo e banho;59,90;;;97;sim;
+O Boticário;48672;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;69,90;;;97;sim;
+O Boticário;86799;CRÈME PARFUMÉE HIDRATANTE CORPORAL, 200 g;Corpo e banho;149,90;;;97;não;
+O Boticário;85097;200 ml REFIL, 150 ml;Perfumaria;79,90;;;97;não;
+O Boticário;85420;CREME PERFUMADO DESODORANTE HIDRATANTE CORPORAL, 180 ml;Corpo e banho;64,90;;;98;sim;
+O Boticário;85419;CREME PERFUMADO A DESODORANTE L H HIDRATANTE N I CORPORAL, 400 ml U B A;Corpo e banho;89,90;;;98;sim;sim
+O Boticário;85423;ÓLEO EM CREME CORPORAL, 175 g;Corpo e banho;89,90;;;98;sim;
+O Boticário;56841;BANHEIRINHA TRANSPARENTE;Outros;39,90;;;98;sim;
+O Boticário;87364;NÉCESSAIRE PREMIUM;Acessórios;84,90;;;98;sim;
+O Boticário;85424;ÓLEO GLORIOSO CORPO E CABELO, 85 ml;Cabelos;144,90;;;98;sim;
+O Boticário;88730;ÓLEO GLORIOSO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;99,90;;;99;sim;
+O Boticário;95920;ÓLEO GLORIOSO DESODORANTE HIDRATANTE CORPORAL, 200 ml;Corpo e banho;99,90;;;99;sim;
+O Boticário;57832;LOÇÃO AVELUDADA DESODORANTE HIDRATANTE CORPORAL, 180 ml;Corpo e banho;64,90;;;99;sim;
+O Boticário;95919;CREME PERFUMADO DESODORANTE HIDRATANTE CORPORAL, 380 ml;Corpo e banho;89,90;;;99;não;
+O Boticário;56592;NÉCESSAIRE BOTI PREMIUM;Acessórios;89,90;;;99;sim;
+O Boticário;57829;LOÇÃO AVELUDADA DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;;;99;sim;
+O Boticário;57830;REFIL, 350 ml;Perfumaria;69,90;;;99;sim;
+O Boticário;86765;LOÇÃO FIRMADORA DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;;;100;não;
+O Boticário;59518;REFIL, 350 ml;Perfumaria;69,90;;;100;não;
+O Boticário;85058;REFIL, 150 ml;Perfumaria;79,90;;;100;sim;
+O Boticário;01697;ÓLEO GLORIOSO CORPO E CABELO, 85 ml;Cabelos;144,90;;;100;sim;
+O Boticário;52654;KIT NATIVA SPA QUINOA;Kits e presentes;84,90;;;100;sim;
+O Boticário;48771;LOÇÃO ANTIOXIDANTE DESODORANTE HIDRATANTE CORPORAL FPS 15, 200 ml;Protetor solar;69,90;;;100;sim;
+O Boticário;87916;CREME ANTISSINAIS PARA MÃOS FPS 15, 75 g;Cuidados com o rosto;59,90;;;100;sim;
+O Boticário;85099;200 ml cosméticos. REFIL, 150 ml;Perfumaria;79,90;;;100;não;
+O Boticário;58978;LOÇÃO NUTRITIVA DESODORANTE HIDRATANTE CORPORAL, 400 ml 78%;Corpo e banho;89,90;;;101;não;
+O Boticário;58980;REFIL, 350 ml;Perfumaria;69,90;;;101;não;
+O Boticário;58987;ÓLEO BIFÁSICO DESODORANTE HIDRATANTE, 200 ml;Corpo e banho;99,90;;;101;sim;
+O Boticário;58984;LOÇÃO DESODORANTE HIDRATANTE CORPORAL, 180 ml;Corpo e banho;64,90;;;101;sim;
+O Boticário;55707;LOÇÃO RENOVADORA DESODORANTE HIDRATANTE CORPORAL, 180 ml;Corpo e banho;64,90;;;101;sim;
+O Boticário;87914;CREME HIDRATANTE PARA MÃOS E PÉS, 50 g;Corpo e banho;44,90;;;101;sim;
+O Boticário;53346;LOÇÃO RENOVADORA DESODORANTE HIDRATANTE CORPORAL, 400 ml;Corpo e banho;89,90;;;101;não;
+O Boticário;53347;REFIL, 350 ml;Perfumaria;69,90;;;101;não;
+O Boticário;84625;ESPONJA DE BANHO ROSÉ;Acessórios;32,90;;;101;sim;
+O Boticário;58135;NATIVA SPA BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;
+O Boticário;53353;lilac FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;88027;morango ruby* FRAGRÂNCIA CHIPRE FRUTAL FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;87272;uva merlot* FRAGRÂNCIA AMADEIRADA FRUTAL FRAGRÂNCIA CHIPRE FRUTAL FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;89366;rosas secretas FRAGRÂNCIA FLORAL FRUTAL FRAGRÂNCIA AMADEIRADA FRUTAL FRAGRÂNCIA CHIPRE FRUTAL FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;88563;ameixa* FRAGRÂNCIA ORIENTAL FRUTAL FRAGRÂNCIA FLORAL FRUTAL FRAGRÂNCIA AMADEIRADA FRUTAL FRAGRÂNCIA CHIPRE FRUTAL FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;48280;ameixa negra* FRAGRÂNCIA FLORIENTAL AMADEIRADA FRAGRÂNCIA ORIENTAL FRUTAL FRAGRÂNCIA FLORAL FRUTAL FRAGRÂNCIA AMADEIRADA FRUTAL FRAGRÂNCIA CHIPRE FRUTAL FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;82052;jasmim sambac FRAGRÂNCIA FLORAL FLORAL Não comestíveis. FRAGRÂNCIA FLORAL BOUQUET MUSK *Produtos cosméticos. BODY SPLASH DESODORANTE COLÔNIA CEREJA ROUGE, 200 ml;Perfumaria;109,90;87,90;;102;sim;sim
+O Boticário;88468;SABONETE EM BARRA AMEIXA*, 90 g;Corpo e banho;16,90;;;103;sim;
+O Boticário;88365;NATIVA SPA SABONETE EM BARRA AMEIXA*, 3 unidades de 90 g cada;Corpo e banho;42,90;;;103;sim;
+O Boticário;94538;ameixa negra* SABONETE EM BARRA, 2 unidades de 90 g cada;Corpo e banho;29,90;;;103;sim;
+O Boticário;86756;quinoa* LÍQUIDO 250;Outros;59,90;;;103;sim;
+O Boticário;59830;SABONETE LÍQUIDO CORPORAL ORQUÍDEA LUMIÈRE, 250 ml;Corpo e banho;59,90;50,90;;103;sim;
+O Boticário;57833;cereja rouge* 200 ml;Outros;47,90;;;103;sim;sim
+O Boticário;89484;SABONETE EM BARRA BEST SELLERS COLLECTION, 3 unidades de 100 g cada;Corpo e banho;64,90;;;103;sim;
+O Boticário;86755;SELECIONADOS SABONETE LÍQUIDO DE NATIVA CORPORAL ORQUÍDEA NOIRE, 250 ml;Corpo e banho;59,90;50,90;;103;não;
+O Boticário;86754;REFIL, 200 ml;Perfumaria;47,90;40,90;;103;sim;
+O Boticário;58985;uva merlot* SABONETE CORPORAL, R$ cada LÍQUIDO 250;Corpo e banho;59,90;;;103;sim;
+O Boticário;85421;rosas secretas REFIL, 250 ml R$ cada LÍQUIDO 250;Perfumaria;59,90;;;103;sim;
+O Boticário;86761;ameixa* cereja rouge* 200 ml;Outros;47,90;;;103;sim;sim
+O Boticário;86757;ameixa negra* ameixa* cereja rouge* 200 ml;Outros;47,90;;;103;sim;sim
+O Boticário;86758;refil SABONETE EM BARRA BEST SELLERS COLLECTION, 3 unidades de 100 g cada;Perfumaria;64,90;;;103;sim;
+O Boticário;86759;refil SABONETE EM BARRA BEST SELLERS COLLECTION, 3 unidades de 100 g cada;Perfumaria;64,90;;;103;não;
+O Boticário;59480;PROTETOR SOLAR PARA MÃOS FPS 30, 45 g;Protetor solar;54,90;;;104;não;
+O Boticário;50395;FPS 30;Protetor solar;71,90;;;104;não;sim
+O Boticário;47963;BOTI.SUN PROTETOR SOLAR CORPORAL GEL CREME FPS 50, 200 g;Protetor solar;109,90;87,90;;104;sim;
+O Boticário;52342;FPS 70;Protetor solar;119,90;95,90;;104;não;sim
+O Boticário;86866;FPS 50;Protetor solar;79,90;63,90;;104;não;sim
+O Boticário;86865;FPS 70;Protetor solar;92,90;73,90;;104;não;sim
+O Boticário;47596;PÓS-SOL ACQUA GEL, 120 g;Corpo e banho;49,90;39,90;;105;não;
+O Boticário;57731;PROTETOR SOLAR CORPORAL SPRAY ACQUA FLUIDO FPS 50, 180 ml;Protetor solar;109,90;87,90;;105;não;
+O Boticário;47599;BOTI.SUN PROTETOR SOLAR FACIAL ANTIOLEOSIDADE ACQUA FLUIDO FPS 70, 40 ml;Cuidados com o rosto;79,90;63,90;;105;não;
+O Boticário;47600;PROTETOR SOLAR FACIAL ANTISSINAIS ACQUA FLUIDO FPS 30, 40 ml;Cuidados com o rosto;76,90;;;106;sim;
+O Boticário;47602;PROTETOR SOLAR FACIAL ANTISSINAIS ACQUA FLUIDO FPS 70, 40 ml;Cuidados com o rosto;79,90;63,90;;106;sim;
+O Boticário;50396;PROTETOR SOLAR FACIAL ANTIOXIDANTE ULTRA FLUIDO FPS 30, 40 ml;Cuidados com o rosto;76,90;;;106;sim;
+O Boticário;47962;PROTETOR SOLAR FACIAL ANTIOXIDANTE ULTRA FLUIDO FPS 70, 40 ml;Cuidados com o rosto;79,90;63,90;;106;sim;
+O Boticário;47598;PROTETOR SOLAR FACIAL ANTIOLEOSIDADE ACQUA FLUIDO FPS 30, 40 ml;Cuidados com o rosto;76,90;;;106;não;
+O Boticário;55930;• Muito resistente à PROTETOR SOLAR água e ao suor INFANTIL ACQUA • Até 30 horas de FLUIDO FPS 70, 120 g hidratação 2;Protetor solar;89,90;;;107;sim;sim
+O Boticário;89459;PEPTÍDEOS PRÓ- ELASTINA CREME FIRMADOR PARA OLHOS, 15 g;Cuidados com o rosto;147,90;117,90;;108;não;
+O Boticário;89485;BOTIK PEPTÍDEOS PRÓ-ELASTINA SÉRUM LIFTING FIRMADOR, 30 ml;Cuidados com o rosto;219,90;175,90;;108;sim;
+O Boticário;86154;KIT BOTIK ÁCIDO TAMANHO HIALURÔNICO VIAGEM;Kits e presentes;139,90;50,15;;108;sim;
+O Boticário;53838;FPS 50;Protetor solar;97,90;;;108;não;sim
+O Boticário;53386;FPS 80;Protetor solar;109,90;;;108;não;sim
+O Boticário;95761;VITAMINA C GEL DE 50 LIMPEZA FACIAL ANTIOXIDANTE, 200 g;Cuidados com o rosto;87,90;;;108;sim;
+O Boticário;95770;CICA PANTENOL + CERAMIDAS GEL DE LIMPEZA FACIAL SUAVE, 200 g;Cuidados com o rosto;87,90;;;109;sim;
+O Boticário;77138;BOTIK HIALU + CAFEÍNA CREME CONCENTRADO PARA OLHOS, 15 g;Cuidados com o rosto;149,90;;;109;sim;
+O Boticário;96724;ÁCIDO HIALURÔNICO SÉRUM PREENCHEDOR DE RUGAS, 30 ml;Cuidados com o rosto;204,90;;;109;sim;
+O Boticário;87030;REFIL ÁCIDO 50 HIALURÔNICO SÉRUM PREENCHEDOR DE RUGAS, 30 ml;Perfumaria;149,90;;;109;sim;
+O Boticário;87482;ÁCIDO HIALURÔNICO CREME, 40 g;Corpo e banho;174,90;;;109;não;
+O Boticário;87483;REFIL, 40 g;Perfumaria;129,90;;;109;não;
+O Boticário;04520;D ÁCIDO HIALURÔNICO A GEL CREME, 40 g D;Corpo e banho;174,90;;;109;não;
+O Boticário;94197;REFIL, 40 g;Perfumaria;129,90;;;109;não;
+O Boticário;96606;BALM HIDRATANTE 50 LABIAL ÁCIDO HIALURÔNICO FPS 15, 3,2 g;Protetor solar;47,90;;;109;sim;
+O Boticário;87203;• 1 Ácido Hialurônico KIT BOTIK COMPLETO creme, 15 g;Kits e presentes;239,90;;;110;sim;sim
+O Boticário;59564;• Vitamina C 10% ESTOJO BOTIK sérum de alta VITAMINA C potência, 15 ml 50;Kits e presentes;187,90;50,15;;110;sim;sim
+O Boticário;51468;VITAMINA C CREME HIDRATANTE ANTIOXIDANTE, 50 g;Corpo e banho;92,90;;;110;não;
+O Boticário;96743;VITAMINA C 10% SÉRUM ANTIOXIDANTE ILUMINADOR, 30 ml;Maquiagem;204,90;;;110;não;
+O Boticário;87031;REFIL, 30 ml;Perfumaria;149,90;;;110;sim;
+O Boticário;87491;ÁCIDO MANDÉLICO + SALICÍLICO GEL DE LIMPEZA FACIAL MICELAR, 150 g;Cuidados com o rosto;74,90;;;111;não;
+O Boticário;89457;ÁCIDO MANDÉLICO 10% + SALICÍLICO SÉRUM DE ALTA POTÊNCIA, 30 ml;Cuidados com o rosto;204,90;;;111;não;
+O Boticário;87780;ÁCIDO POLIGLUTÂMICO LOÇÃO HIDRATANTE ANTIOLEOSIDADE, 110 ml;Corpo e banho;89,90;;;111;sim;
+O Boticário;87600;ÁCIDO GLICÓLICO 8% SÉRUM DE ALTA POTÊNCIA, 30 ml;Cuidados com o rosto;204,90;;;111;não;
+O Boticário;47321;F ÁCIDO MANDÉLICO S + TRANEXÂMICO O 5% SÉRUM DE ALTA D POTÊNCIA, 30 ml A;Cuidados com o rosto;204,90;;;111;não;
+O Boticário;94536;ÁCIDO GLICÓLICO GELEIA CONCENTRADA DE LIMPEZA FACIAL, 150 g;Cuidados com o rosto;74,90;;;111;sim;
+O Boticário;87597;ÁCIDO GLICÓLICO MÁSCARA FACIAL RESET NOTURNO, 40 g 50;Maquiagem;174,90;;;111;sim;
+O Boticário;87599;REFIL, 40 g 80;Perfumaria;129,90;;;111;não;
+O Boticário;55403;RESVERATROL + SILÍCIO SÉRUM DE ALTA POTÊNCIA, 30 ml;Cuidados com o rosto;204,90;;;112;não;
+O Boticário;83550;RETINOL PURO 0,3% SÉRUM DE ALTA POTÊNCIA, 30 ml;Cuidados com o rosto;219,90;;;112;não;
+O Boticário;88471;RETINOL PURO 0,1% GEL CREME REDUTOR DE RUGAS, 30 g;Corpo e banho;209,90;;;112;não;
+O Boticário;55407;RESVERATROL + SILÍCIO CREME NUTRITIVO FIRMADOR, 40 g;Corpo e banho;179,90;;;112;não;
+O Boticário;49403;RETINOL PURO 0,3% SÉRUM DE ALTA POTÊNCIA, 15 ml;Cuidados com o rosto;179,90;;;112;sim;
+O Boticário;87484;ÁCIDO POLIGLUTÂMICO ACQUA GEL HIDRATANTE ANTISSINAIS, 50 g;Cuidados com o rosto;92,90;;;112;sim;
+O Boticário;04481;ÁCIDO POLIGLUTÂMICO CREME HIDRATANTE FIRMADOR, 50 g;Corpo e banho;92,90;;;112;sim;
+O Boticário;59876;CICA PANTENOL + CERAMIDAS CREME MULTIRREPARADOR FACIAL CALMANTE, 30 g;Cuidados com o rosto;62,90;;;112;sim;
+O Boticário;59875;CICA PANTENOL + CERAMIDAS ÁGUA MICELAR FACIAL REPARADORA, 200 ml;Cuidados com o rosto;87,90;;;113;não;
+O Boticário;84808;CICA PANTENOL A + CERAMIDAS F REPARADOR S LABIAL, 7,5 ml O;Outros;42,90;;;113;não;
+O Boticário;47729;MASSAGEADOR FACIAL DE QUARTZO ROSA;Cuidados com o rosto;119,90;;;113;sim;
+O Boticário;87824;LIP & CHEEK TINT SCANDAL, 7 ml;Maquiagem;59,90;49,90;;115;não;
+O Boticário;97372;• Cílios 3x mais MÁSCARA PARA CÍLIOS alongados SCANDAL LASHES, 10 g • Volume na 1ª;Maquiagem;114,90;87,90;;115;sim;sim
+O Boticário;87793;185F BATOM PREENCHEDOR HYALURONIC, 3,4 g;Maquiagem;64,90;;;116;sim;
+O Boticário;89075;HYALURONIC, 30 ml 70;Outros;132,90;;;116;sim;
+O Boticário;89076;HYALURONIC, 6,8 ml;Outros;72,90;;;116;sim;
+O Boticário;89033;290N HYALURONIC, 30 ml 70;Outros;132,90;;;116;sim;
+O Boticário;89153;340Q HYALURONIC, 6,8 ml;Outros;72,90;;;116;não;
+O Boticário;50705;coral ROSTO ILUMINADOR COMPACTO FACIAL;Maquiagem;104,90;;;117;sim;
+O Boticário;50704;M berry 5,4 g;Outros;104,90;;;117;sim;sim
+O Boticário;87805;PRIMER ROLL-ON • Superpigmentado HYALURONIC, 45 ml • Com micropartículas;Maquiagem;139,90;119,90;;117;sim;sim
+O Boticário;50706;rose ROSTO ILUMINADOR COMPACTO FACIAL;Maquiagem;104,90;;;117;sim;
+O Boticário;51179;brown ROSTO ILUMINADOR COMPACTO FACIAL;Maquiagem;104,90;;;117;sim;
+O Boticário;58983;LÍQUIDO 170Q RETINOL cada H+, 5,5 ml;Outros;109,90;;;118;sim;
+O Boticário;59039;100F *Combinação do Retinol obtidos por testes instrumentais de testes in vitro em modelo percentuais variáveis de BATOM LÍQUIDO BOCA BATOM LÍQUIDO RETINOL H+, 6 ml;Maquiagem;82,90;;;118;sim;sim
+O Boticário;59052;pink hibiscus LÍQUIDO 170Q RETINOL cada H+, 5,5 ml;Outros;109,90;;;118;sim;
+O Boticário;58990;215Q BATOM LÍQUIDO BOCA BATOM LÍQUIDO RETINOL H+, 6 ml;Maquiagem;82,90;;;118;sim;
+O Boticário;84895;DROPS OF BEAUTY, 30 ml;Outros;129,90;;;119;não;
+O Boticário;90662;295Q R$ 99,90;Outros;74,90;;;120;sim;sim
+O Boticário;56837;NÉCESSAIRE MAKE B.;Acessórios;79,90;;;120;sim;
+O Boticário;89568;MINIMALETA ALL SET;Outros;124,90;;;120;sim;
+O Boticário;90718;185F MINIMALETA ALL SET;Outros;124,90;;;120;sim;
+O Boticário;90719;180Q NÉCESSAIRE MAKE B.;Acessórios;79,90;;;120;sim;
+O Boticário;05546;PRIMER FACIAL ANTIOLEOSIDADE SALICYLIC, 30 g;Maquiagem;89,90;53,90;;121;não;
+O Boticário;51595;PEDRA ABSORVENTE DE OLEOSIDADE;Outros;89,90;;;122;sim;
+O Boticário;82815;DEMAQUILANTE BIFÁSICO MICELAR, 110 ml;Cuidados com o rosto;79,90;;;122;sim;
+O Boticário;87352;PINCEL DUPLO MULTIFUNCIONAL SILVER PRO;Acessórios;84,90;;;122;sim;
+O Boticário;56585;MALETA DE MAQUIAGEM;Outros;229,00;;;123;sim;
+O Boticário;87268;PALETTE sombras em delineador MULTIFUNCIONAL • Multifuncionais cremosos, READY, 45,2 g para rosto e lábios;Maquiagem;309,90;;;125;não;sim
+O Boticário;50888;MÁSCARA GEL PARA SOBRANCELHAS BROW LAMINATION, 5 ml;Maquiagem;62,90;;;125;sim;
+O Boticário;75757;média OLHOS UP BROW CANETA MICROBLADING;Cuidados com o rosto;79,90;62,90;;125;sim;
+O Boticário;75756;clara 1 ml 121 OLHOS UP BROW CANETA MICROBLADING;Cuidados com o rosto;79,90;62,90;;125;não;
+O Boticário;50756;MÁSCARA CÍLIOS POSTIÇOS COM VITAMINA B5, 10 g • Com Vitamina;Maquiagem;99,90;;;126;sim;sim
+O Boticário;55502;MÁSCARA PARA CÍLIOS EXPLOSION GROW, 10 g • Com elixir;Maquiagem;99,90;;;126;sim;sim
+O Boticário;52638;MÁSCARA PARA CÍLIOS • Com 4K PANORAMIC COM bioqueratina: BIOQUERATINA, 10 g contribui para;Maquiagem;99,90;;;126;sim;sim
+O Boticário;96419;MASCÁRA PARA LANÇA CÍLIOS SCANDAL MENTO • Mega volume FULL, 10 g imediato com;Outros;99,90;;;126;não;sim
+O Boticário;52618;2. B. MÁSCARA CUIDE-SE CÍLIOS SPLASH EXTREMO COLÔNIA 10 g NOITE;Maquiagem;84,90;;;127;não;
+O Boticário;52619;R E MÁSCARA PARA CÍLIOS P SCANDAL LASHES COM O Ã ÓLEO DE COCO, 10;Maquiagem;99,90;;;127;sim;sim
+O Boticário;52620;• Com nano- MÁSCARA PARA CÍLIOS ácido hialurônico: EXPLOSION EFFECT COM NANOÁCIDO fortalece, define HIALURÔNICO, 10 g e torna os fios;Maquiagem;99,90;;;127;sim;sim
+O Boticário;53427;DELINEADOR LÍQUIDO PRETO PARA OLHOS, 5 ml;Maquiagem;74,90;;;127;não;
+O Boticário;76689;CANETA PARA DELINEAR OLHOS, 1,2 ml;Cuidados com o rosto;79,90;;;127;sim;
+O Boticário;57500;SIX MINI LIPS, 6 uni- • Alta pigmentação dades de 0,4 g cada;Outros;79,90;;;128;não;sim
+O Boticário;55505;LÁPIS PARA OLHOS ULTRABLACK, 1,2 g;Maquiagem;69,90;;;128;sim;
+O Boticário;57493;SÉRUM PARA CÍLIOS E SOBRANCELHAS EXPLOSION GROW, 5 g;Cuidados com o rosto;69,90;;;128;sim;
+O Boticário;87101;BALM MICRO BALM LABIAL TINT, 3,6 g;Maquiagem;69,90;44,90;;129;não;
+O Boticário;86166;BALM LABIAL NIGHT MASK, 9 g;Outros;74,90;59,90;;129;não;
+O Boticário;58813;BALM LABIAL NIGHT PLUMP, 3,6 g;Outros;69,90;55,90;;129;não;
+O Boticário;87103;BALM LABIAL COLOR REPAIR, 3,6 g;Outros;69,90;;;129;não;
+O Boticário;87102;BALM LABIAL COLOR REPAIR, 3,6 g;Outros;69,90;54,90;;129;não;
+O Boticário;56586;KIT DE PINCÉIS SILVER ESSENTIALS;Kits e presentes;159,90;;;130;sim;
+O Boticário;51502;refil de hidratação duração 127 REFIL, 3,6 g;Perfumaria;49,90;;;131;sim;
+O Boticário;88521;rose REFIL, 3,6 g;Perfumaria;49,90;;;131;não;
+O Boticário;88527;wine REFIL, 3,6 g;Perfumaria;49,90;;"Até 48h; Longa";131;sim;
+O Boticário;52867;ECONOMIZE glow;Outros;28,00;;;132;sim;
+O Boticário;51173;rosa platinum BOCA BATOM LÍQUIDO DIAMOND COM ÁCIDO POLIGLUTÂMICO, 5 ml;Maquiagem;69,90;41,90;;132;sim;
+O Boticário;53906;PINCEL ESPIRAL;Acessórios;57,90;;;133;sim;
+O Boticário;53936;PINCEL BASE DUO FIBER;Maquiagem;84,90;;;133;sim;
+O Boticário;53904;PINCEL PARA PÓ;Acessórios;84,90;;;133;sim;
+O Boticário;53907;PINCEL PARA BLUSH;Maquiagem;84,90;;;133;sim;
+O Boticário;53910;PINCEL PARA BASE;Maquiagem;84,90;;;133;sim;
+O Boticário;53847;PINCEL DUO PARA OLHOS;Cuidados com o rosto;37,90;;;133;não;
+O Boticário;89870;QUEM DISSE, BERE- NICE? X FRIENDS NÉCESSAIRE VHS;Acessórios;105,90;;;135;sim;
+O Boticário;90593;• Hidratação QUEM DISSE, BERE- por até 48h NICE? X FRIENDS • Textura gel GEL REFRESCAN- • Pele macia TE FACIAL, 80 g;Cuidados com o rosto;84,90;;;135;sim;sim
+O Boticário;90507;trouxe diversas histórias, QUEM DISSE, BERE- risadas e amizades NICE? X FRIENDS inesquecíveis. PALETA DE SOMBRAS Com 12 tons de CENTRAL PERK, 10 g maquiagem, a paleta é;Maquiagem;234,90;;;135;sim;sim
+O Boticário;59486;NAH HELLO MÁS- CARA PARA CÍLIOS SPACE BLACK, 10 g;Outros;69,90;;;137;não;
+O Boticário;90649;gold supernova NAH CARDOSO LÁPIS NAH CARDOSO PARA CONTORNO GLOSS LABIAL LABIAL SOFT PEPTIDE LIPS;Maquiagem;79,90;57,90;;137;sim;sim
+O Boticário;94188;NAH CARDOSO BLUSH STICK ON THE GO CHARMING, 5 g;Maquiagem;64,90;;;137;sim;
+O Boticário;90648;pink nebula NAH CARDOSO LÁPIS NAH CARDOSO PARA CONTORNO GLOSS LABIAL LABIAL SOFT PEPTIDE LIPS;Maquiagem;79,90;57,90;;137;sim;sim
+O Boticário;56977;BATOM VOLUMÃO SEMIMATE, 3,4;Maquiagem;57,90;;;140;sim;
+O Boticário;56978;BATOM VOLUMÃO LÍQUIDO MATE, 4 ml;Maquiagem;62,90;;;140;sim;
+O Boticário;56973;BATOM MATE PIGMENTAÇÃO;Maquiagem;52,90;57,90;;140;sim;
+O Boticário;75316;ALTA 3,8 g laranjalê vinholê BATOM MATE PIGMENTAÇÃO;Maquiagem;52,90;57,90;;140;não;sim
+O Boticário;56848;1 GLOSS DOS NHOS, 4 ml;Maquiagem;49,90;;;141;sim;
+O Boticário;56850;amorli GLOSS DOS NHOS, 4 ml;Maquiagem;49,90;;;141;sim;
+O Boticário;56943;vermeli GLOSS DOS NHOS, 4 ml;Maquiagem;49,90;;;141;sim;
+O Boticário;97821;GLOSS LABIAL MELANCIA, 4 ml;Maquiagem;52,90;39,90;;142;sim;
+O Boticário;97822;morango EDIÇÃO LIMITADA GLOSS CHOCO- LATUDO, 4 ml;Maquiagem;52,90;39,90;;142;não;
+O Boticário;59499;BERENICE? BY CUIDE-SE BEM HIDRATANTE incolor LABIAL, 6,2 g;Corpo e banho;39,90;31,92;;142;sim;
+O Boticário;97823;chocolate EDIÇÃO LIMITADA GLOSS CHOCO- LATUDO, 4 ml;Maquiagem;52,90;39,90;;142;não;
+O Boticário;86134;POP LÁPIS PARA OLHOS, 1,1 g;Maquiagem;19,90;;;143;não;
+O Boticário;86119;POP MÁSCARA PARA POP BASE LÍ- CÍLIOS, 10 g QUIDA, 30 ml;Maquiagem;34,90;34,90;;143;sim;
+O Boticário;56806;PÓ COMPACTO FACIAL TRANSLÚCIDO INSTAMATTE, 5,5 g;Maquiagem;79,90;;;144;não;
+O Boticário;55592;PRIMER LÍQUIDO FACIAL INSTAMATTE, 20 ml;Maquiagem;67,90;;;144;não;
+O Boticário;49909;cor 190 PINCEL SUPERACABAMENTO;Acessórios;76,90;;;145;não;
+O Boticário;59357;BASE LÍQUIDA TÔ natural NO GLOW, 30 ml Cobertura média;Maquiagem;74,90;;;146;não;
+O Boticário;85533;cor 3 PÓ SOLTO TÔ NO GLOW, 9 g;Maquiagem;89,90;;;146;sim;
+O Boticário;79133;PINCEL MULTIU- SO PÓ E BLUSH;Maquiagem;77,90;;;147;sim;
+O Boticário;78957;PINCEL MULTIEFEITOS;Acessórios;77,90;;;147;sim;
+O Boticário;55207;PINCEL MÚLTIPLO ACABAMENTO;Acessórios;49,90;;;147;sim;
+O Boticário;89863;PINCEL TUDO EM 1;Acessórios;89,90;;;147;sim;
+O Boticário;49914;PINCEL PARA CORRETIVO;Maquiagem;47,90;;;148;não;
+O Boticário;30181;de vendas de produtos da linha no ano de 2024. 12 Corretivo Líquido de COBERTURA Duração disfarça ALTA e olheiras com ação antifadiga Além disso, CORRETIVO LÍQUIDO textura leve é fácil de LONGA DURAÇÃO, 4 ml;Maquiagem;58,90;;;148;sim;sim
+O Boticário;49900;PINCEL MULTIUSO;Acessórios;76,90;;;148;sim;
+O Boticário;49906;PINCEL PARA BLUSH;Maquiagem;76,90;;;149;sim;
+O Boticário;58288;ILUMINADOR EM PÓ COMPACTO BRONZE, 5 g;Maquiagem;79,90;;;149;não;
+O Boticário;56578;Ideal para todas PINCEL SUPER KABUKI as ocasiões;Acessórios;74,90;;;149;sim;
+O Boticário;87762;PALETA MULTIFUNCIO- NAL TÔ NO GLOW, 14,2 g;Maquiagem;129,90;;;150;não;
+O Boticário;56047;ESPONJA PARA MA- QUIAGEM COLOR;Acessórios;37,90;;;150;não;
+O Boticário;78923;PINCEL SUPERDENSO;Acessórios;77,90;;;150;não;
+O Boticário;77834;PARA OLHOS, 1 g;Cuidados com o rosto;54,90;54,90;;151;não;
+O Boticário;55595;MÁSCARA PARA CÍLIOS ALONGAMENTO RESIS- TENTE À ÁGUA, 10 g;Maquiagem;52,90;;;152;não;
+O Boticário;55596;MÁSCARA PARA CÍLIOS DOS SONHOS, 10 g;Maquiagem;52,90;;;152;não;
+O Boticário;77917;DELINEADOR LÍQUI- DO PARA OLHOS PRETOLINO, 2,5 ml;Maquiagem;52,90;;;152;sim;
+O Boticário;77918;CANETA DELINEADORA DE OLHOS FININHA, 1 ml;Cuidados com o rosto;58,90;;;152;sim;
+O Boticário;58159;NÉCESSAIRE QDB;Acessórios;62,90;5,91;;152;sim;
+O Boticário;47196;MÁSCARA PARA CÍLIOS BIG BANG 360º, 10 g;Maquiagem;79,90;57,90;;153;não;
+O Boticário;50713;MÁSCARA PARA CÍLIOS BIG BANG SEM LIMITES, 10 g;Maquiagem;79,90;69,90;;153;não;
+O Boticário;52832;k MÁSCARA TRANSPA- a m RENTE PARA CÍLIOS E SOBRANCELHA ALINHA TUDO, 12 g;Maquiagem;45,90;54,90;;153;não;sim
+O Boticário;74186;DESOBEDIENTE EAU DE PARFUM, 100 ml;Perfumaria;279,90;;;154;sim;
+O Boticário;53422;MUITO DESOBEDIENTE EAU DE PARFUM, 100 ml;Perfumaria;279,90;;;154;sim;
+O Boticário;51892;ÓLEO PARA MASSAGEM CORPORAL PRAZER, BERÊ, 100 ml;Corpo e banho;69,90;;;154;sim;
+O Boticário;51888;LOÇÃO DESODORANTE HIDRATANTE CORPORAL PRAZER, BERÊ, 200 ml;Corpo e banho;42,90;;;154;sim;
+O Boticário;90703;GEL DE LIMPEZA FACIAL COMBATE OLEOSIDADE, 150 ml;Cuidados com o rosto;56,90;;;154;não;
+O Boticário;90702;ESPUMA DE LIMPEZA NUTRITIVA, 150 ml;Outros;79,90;;;154;não;
+O Boticário;83965;ESFOLIANTE AÇÃO 360º, 50 g;Corpo e banho;74,90;;;154;não;
+O Boticário;87223;REFIL, 110 ml;Perfumaria;45,90;;;154;não;
+O Boticário;56470;KIT INDISCIPLINADA FACIAL;Kits e presentes;89,90;50,15;;155;não;
+O Boticário;50568;SÉRUM RESTAURADOR ACORDEI NO GLOW, 30 ml;Cuidados com o rosto;104,90;;;155;não;
+O Boticário;59766;CREMÃO HIDRATANTE REPARA E ACALMA, 30 g;Corpo e banho;57,90;70,40;;155;não;
+O Boticário;87480;SÉRUM FACIAL FACIAL LEVANTA TUDO, 30 ml REGENERADA;Cuidados com o rosto;119,90;57,90;;155;não;
+O Boticário;56052;BALM LABIAL HIDRATANTE, 7;Corpo e banho;55,90;;;155;não;
+O Boticário;50016;TODA 50 ml HIDRATAÇÃO REPARADORA SÉRUM FACIAL FACIAL LEVANTA TUDO, 30 ml REGENERADA;Cuidados com o rosto;119,90;57,90;;155;não;
+O Boticário;86114;QUEM DISSE, BERENICE? BY CUIDE-SE BEM GLOSS LABIAL CACHOS DE UVA, 4 ml;Maquiagem;47,90;;;156;sim;
+O Boticário;57755;KIT ESPONJAS DUPLA INFALÍVEL;Kits e presentes;62,90;;;156;sim;
+O Boticário;87425;LENÇO REMOVE- DOR DE OLEOSIDA- DE, 50 unidades;Outros;49,90;;;156;sim;
+O Boticário;89991;TAPETINHO LIMPA- -PINCÉIS E ESPONJAS;Outros;59,90;;;156;sim;
+O Boticário;79484;SABONETE LÍQUI- DO DEMAQUILANTE FACIAL, 90 ml;Cuidados com o rosto;63,90;;;156;sim;
+O Boticário;57850;ESPONJA PARA SELA TUDO!;Acessórios;27,90;;;156;sim;
+O Boticário;49916;PINCEL DUPLO PARA DELINEAR;Acessórios;44,90;;;156;sim;
+O Boticário;49902;PINCEL ESFUMA- DOR DE SOMBRA;Maquiagem;44,90;;;156;sim;
+O Boticário;56577;KIT DE PINCÉIS TUDÃO;Kits e presentes;87,90;;;156;sim;
+O Boticário;88720;HARRY POTTER LOÇÃO HIDRATANTE ILUMINADORA AULA DE HERBOLOGIA, 110 ml;Corpo e banho;79,90;63,90;;156;sim;
+O Boticário;49901;(13 cm) PINCEL APLICA- 1 pincel para aplicar Pincéis DOR DE SOMBRA sombra (12,3 cm) base PINCEL ESFUMA- DOR DE SOMBRA;Maquiagem;44,90;;;156;sim;sim
+O Boticário;52146;cor 260 rosa OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;não;
+O Boticário;52154;cor 345 BOCA LÁPIS-BATOM, 1,2 g;Maquiagem;29,90;;;157;sim;
+O Boticário;52282;cor 215 BOCA BATOM CREMOSO, 3,8 g;Maquiagem;36,90;;;157;sim;
+O Boticário;52816;BRILHO LABIAL INCOLOR, 5 ml;Outros;45,90;36,90;;157;sim;
+O Boticário;02215;telha OLHOS OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;sim;
+O Boticário;75590;MÁSCARA PARA CÍLIOS 4 POWER, 11 g;Maquiagem;54,90;;;157;sim;
+O Boticário;75655;OLHOS, 1,1 g;Cuidados com o rosto;47,90;54,90;;157;sim;
+O Boticário;51953;POP! MÁSCARA PARA CÍLIOS VOLUME, 10 g;Maquiagem;34,90;;;157;sim;
+O Boticário;02483;POP! LÁPIS PRETO PARA OLHOS, 1,1;Maquiagem;17,90;;;157;sim;
+O Boticário;45557;BOTI APONTADOR;Outros;31,90;;;157;sim;
+O Boticário;52155;cor 120 OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;sim;
+O Boticário;52163;cor 250 OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;não;
+O Boticário;76597;rosado OLHOS OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;sim;
+O Boticário;76598;nude OLHOS OLHOS OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;sim;
+O Boticário;76599;vermelho nude OLHOS OLHOS OLHOS LÁPIS PARA OLHOS, 1,1 g;Maquiagem;47,90;;;157;sim;
+O Boticário;58511;PELÚCIA DR. BOTICA;Outros;59,90;;;158;sim;
+O Boticário;52172;LIMPAR LOÇÃO HIDRATANTE TRIO DE POÇÃO DAS SABONETES NUVENS, 400 ml BARRA, 3 unidades;Corpo e banho;79,90;44,90;;159;sim;
+O Boticário;52022;200 ml;Outros;64,90;97,90;;160;não;sim
+O Boticário;52023;400 ml;Outros;87,90;;;160;não;sim
+O Boticário;53726;MOCHILA MATERNIDADE;Outros;279,90;;;160;sim;
+O Boticário;53725;FRASQUEIRA;Outros;159,90;;;160;sim;
+O Boticário;73388;TOALHA DE BANHO;Outros;119,90;;;160;sim;
+O Boticário;52040;REFIL LOÇÃO DE BANHO E PÓS-BANHO, 350 ml;Perfumaria;72,90;;;160;sim;
+O Boticário;51802;100 ml 200 ml;Outros;64,90;97,90;;160;sim;sim
+O Boticário;52025;400 ml B E I A D N;Outros;69,90;;;161;não;sim
+O Boticário;51801;200 ml;Outros;49,90;;;161;não;sim
+O Boticário;52019;200 ml;Outros;44,90;;;161;não;sim
+O Boticário;52018;400 ml;Outros;68,90;;;161;não;sim
+O Boticário;51808;200 ml;Outros;46,90;;;161;não;sim
+O Boticário;51803;400 ml;Outros;69,90;;;161;não;sim
+O Boticário;52024;REFIL SABONETE LÍQUIDO DE GLICERINA, 350 ml;Perfumaria;59,90;;;161;sim;
+O Boticário;52021;REFIL SHAMPOO SUAVE, 350 ml;Perfumaria;53,90;;;161;sim;
+O Boticário;51806;REFIL CONDICIONADOR SUAVE, 350 ml;Perfumaria;55,90;;;161;sim;
+O Boticário;51805;• Hidrata e repara CICABABY CREME intensivamente REPARADOR • Acalma a pele HIDRATANTE, 50 g ressecada e frágil;Corpo e banho;69,90;;;161;sim;sim
+O Boticário;59132;BOTI BABY COLÔNIA DA LUA, 100 ml;Perfumaria;97,90;;;162;não;
+O Boticário;59845;LOÇÃO DE BANHO E PÓS-BANHO LUA, 200 ml;Corpo e banho;64,90;;;162;não;
+O Boticário;59957;ESPUMA DE BANHO LUA, 150 ml;Outros;54,90;;;162;não;
+O Boticário;54879;de banho e KIT PRESENTE BOTI pós-banho, 65 ml BABY NINHO • Sabonete líquido;Kits e presentes;52,90;;;162;sim;sim
+O Boticário;54886;• Loção hidratante KIT PRESENTE de banho e BOTI BABY pós-banho, 200 ml CASINHA • Sabonete líquido;Kits e presentes;167,90;;;162;sim;sim
+O Boticário;45025;"Você poderá FRASQUEIRA COM versão TROCADOR ""Boti Baby";Outros;144,90;;;162;sim;
+O Boticário;87353;pelúcia superfofa NANINHA FIDO;Outros;74,90;;;162;sim;
+O Boticário;88510;NEXT SABONETE FRAGRÂNCIA LÍQUIDO TOY FLORIENTAL STORY GOSMA FRUTADA INTERGALÁCTICA, 150 ml;Corpo e banho;49,90;;;163;não;sim
+O Boticário;89637;NEXT MINI BAG ALIEN REMIX SURPRESA;Acessórios;59,90;;;163;sim;
+O Boticário;86059;chapéu cintilante SOPHIE SHIMMER SPLASH CORPO E CABELO, 110;Cabelos;79,90;;;163;sim;
+O Boticário;88509;NEXT COLÔNIA TOY STORY RODEIO DO XERIFE, 75 ml;Perfumaria;109,90;;;163;não;
+O Boticário;88506;SOPHIE COLÔNIA TOY STORY VAQUEIRA VALENTE, 100 ml;Perfumaria;119,90;;;163;não;
+O Boticário;88508;SOPHIE BALM LABIAL TOY STORY LAÇADA BRILHANTE, 3 g;Outros;59,90;;;163;não;
+O Boticário;88507;SOPHIE PALETTE MULTIFUNCIONAL TOY STORY MEMÓRIAS FELIZES, 10 g;Maquiagem;149,90;;;163;sim;
+O Boticário;86058;brilho Intergaláctico ml FRAGRÂNCIA FLORAL FRUTAL SOPHIE SHIMMER SPLASH CORPO E CABELO, 110;Cabelos;79,90;;;163;sim;sim
+O Boticário;86061;amizade iluminada Efeito glow com glitter 159 FRAGRÂNCIA FLORAL FRUTAL SOPHIE SHIMMER SPLASH CORPO E CABELO, 110;Cabelos;79,90;;;163;sim;sim
+O Boticário;96372;SABONETE LÍQUIDO POÇÃO DA DIVERSÃO, 150 ml;Corpo e banho;39,90;;;164;sim;
+O Boticário;96371;LOÇÃO HIDRATANTE POÇÃO DA DIVERSÃO, 150 ml;Corpo e banho;42,90;;;164;sim;
+O Boticário;89561;Poção da Aventura, KIT PRESENTE DR. 120 ml BOTICA POÇÃO • Dr. Botica DA AVENTURA brinquedo foguete;Kits e presentes;148,80;119,90;;164;sim;sim
+O Boticário;55243;crespos 1. LIMPAR SHAMPOO POÇÃO DA ESPUMA, 400 ml;Cabelos;63,90;;;165;não;
+O Boticário;52175;SABONETE LÍQUIDO POÇÃO DAS BOLHAS, 400 ml;Corpo e banho;69,90;;;165;sim;
+O Boticário;55222;ESPUMA DE BANHO NUVEM DE IDEIAS, 150 ml;Outros;62,90;;;165;sim;
+O Boticário;55223;SPRAY CAPILAR DESEMBARAÇANTE CHUVA DE IMAGINAÇÃO, 100 ml;Cabelos;56,90;;;165;sim;
+O Boticário;59701;MOCHILA;Outros;119,90;;;165;sim;sim
+O Boticário;52164;crespos 2. CONDICIONAR CONDICIONADOR POÇÃO DO BRILHO, 400 ml;Cabelos;64,90;;;165;não;
+O Boticário;56601;cacheados LIMPAR SHAMPOO POÇÃO DA ESPUMA, 400 ml;Cabelos;63,90;;;165;não;
+O Boticário;52147;cacheados CONDICIONAR CONDICIONADOR POÇÃO DO BRILHO, 400 ml;Cabelos;64,90;;;165;não;
+O Boticário;58138;NÉCESSAIRE PINK STARS;Acessórios;52,90;;;166;sim;
+O Boticário;51438;SABONETE EM BARRA, 3 unidades de 80 g cada;Corpo e banho;49,90;;;166;sim;
+O Boticário;70693;LOÇÃO HIDRATANTE CORPORAL, 200 ml;Corpo e banho;52,90;;;166;sim;
+O Boticário;59170;CREME DE PENTEAR PARA CACHOS, 200 ml;Corpo e banho;52,90;;;166;não;
+O Boticário;86297;Gwen colônia, KIT SOPHIE 100 ml SPIDER-GWEN • Loção;Kits e presentes;169,90;;;166;sim;sim
+O Boticário;55253;DESODORANTE EM CREME, 50 ml;Corpo e banho;34,90;;;168;não;
+O Boticário;55083;NEXT COLÔNIA, 75 ml;Perfumaria;107,90;;;168;não;
+O Boticário;85452;PASTA MODELADORA CAPILAR, 150 g;Cabelos;63,90;;;168;não;
+O Boticário;55194;SHAMPOO REFRESCANTE, 230 ml;Cabelos;49,90;;;168;não;
+O Boticário;56198;DR. BOTICA ROUPÃO;Outros;119,90;;;169;sim;
+O Boticário;53922;barra, 80 g DR. BOTICA KIT • Livro Dr. DO CORAÇÃO Botica;Kits e presentes;127,90;159,90;;169;sim;sim
+O Boticário;05009;MA CHÉRIE DESODO- RANTE COLÔNIA, 100 ml;Perfumaria;152,90;;;169;não;
+O Boticário;05125;MA CHÉRIE LOÇÃO DESODORANTE HI- DRATANTE, 200 ml;Corpo e banho;59,90;;;169;não;
+O Boticário;56686;KIT DR. BOTICA O MÁGICO TEATRO DE BONECOS;Kits e presentes;159,90;;;169;sim;
+O Boticário;58930;KIT MA CHÉRIE;Kits e presentes;224,90;;;169;sim;
+O Boticário;90750;LEAVE-IN ESCUDO DE HIDRATAÇÃO, 150 ml;Cabelos;63,90;;;170;sim;
+O Boticário;89694;CONDICIONADOR ESCUDO DE HIDRATAÇÃO, 280 ml;Cabelos;49,90;;;170;sim;
+O Boticário;90706;CONDICIONADOR NUTRIÇÃO PROFUNDA, 280 ml;Cabelos;49,90;;;171;sim;
+O Boticário;84741;250 ml;Outros;37,90;8,00;;171;sim;sim
+O Boticário;84743;250 ml;Outros;62,90;19,00;;171;não;sim
+O Boticário;89788;MÁSCARA CAPILAR NUTRIÇÃO PROFUNDA, 250 g;Maquiagem;67,90;;;171;sim;
+O Boticário;89789;MÁSCARA CAPILAR NUTRIÇÃO PROFUNDA, 70 g;Maquiagem;34,90;;;171;sim;
+O Boticário;59574;ÓLEO CAPILAR ÁSPEROS E SECOS NUTRIÇÃO PROFUNDA, 50 ml;Cabelos;82,90;;;171;sim;
+O Boticário;85548;REFIL, 250 ml;Perfumaria;39,90;31,90;;171;não;
+O Boticário;84739;SHAMPOO NUTRIÇÃO PROFUNDA, 50 ml;Cabelos;18,90;;;171;sim;
+O Boticário;59580;ÓLEO BIFÁSICO NUTRIÇÃO REGENERADORA, 90 ml;Corpo e banho;82,90;;;172;sim;
+O Boticário;59582;280 ml ÓLEO BIFÁSICO NUTRIÇÃO REGENERADORA, 90 ml;Corpo e banho;82,90;;;172;sim;
+O Boticário;88003;CONDICIONADOR LISO PROLONGADO, 280 ml;Cabelos;49,90;;;173;sim;
+O Boticário;82847;MÁSCARA CAPILAR LISO PROLONGADO, 250 g;Maquiagem;67,90;;;173;sim;
+O Boticário;83145;REFIL, 250 ml;Perfumaria;39,90;;;173;sim;
+O Boticário;86666;reconstrução BOOSTER CIÊNCIA DAS CURVAS, 90 ml;Outros;42,90;;;174;sim;
+O Boticário;94617;CREME PARA PENTEAR CACHOS 2ABC a 3ABC CIÊNCIA DAS CURVAS, 450 ml;Corpo e banho;64,90;;;174;não;
+O Boticário;53543;SÉRUM COURO CABELUDO CIÊNCIA DAS CURVAS, 50 ml;Cuidados com o rosto;44,90;;;174;sim;
+O Boticário;86667;LEAVE-IN LEVE CIÊNCIA DAS CURVAS, 250 ml;Cabelos;49,90;;;174;sim;
+O Boticário;86674;ÓLEO CACHEADOS OU MULTIBENEFÍCIOS CRESPOS CIÊNCIA DAS CURVAS, 50 ml;Corpo e banho;82,90;;;174;sim;
+O Boticário;52741;REFIL, 400 ml;Perfumaria;49,90;;;174;não;
+O Boticário;86665;nutrição REFIL, 400 ml;Perfumaria;49,90;;;174;sim;
+O Boticário;52075;crespos 4abc CREME MÁSCARA PENTEAR CRESPOS HIDRATANTE CIÊNCIA 4ABC CIÊNCIA DAS CURVAS, 350 g CURVAS;Maquiagem;69,90;64,90;;175;não;sim
+O Boticário;86673;FINALIZADOR JELLY MODELADOR CIÊNCIA DAS CURVAS, 350 ml;Cabelos;77,90;;;175;sim;
+O Boticário;86668;CONDICIONADOR HIDRATANTE E LEAVE-IN DE DEFINIÇÃO CIÊNCIA DAS CURVAS, 300 ml;Cabelos;49,90;;;175;sim;
+O Boticário;86671;SHAMPOO CIÊNCIA DAS CURVAS, 300 ml;Cabelos;47,90;;;175;sim;
+O Boticário;94200;cachos 2abc a 3abc CREME MÁSCARA PENTEAR CRESPOS HIDRATANTE CIÊNCIA 4ABC CIÊNCIA DAS CURVAS, 350 g CURVAS;Maquiagem;69,90;64,90;;175;sim;sim
+O Boticário;86670;PARA DAS 450 ml CREME MÁSCARA PENTEAR CRESPOS HIDRATANTE CIÊNCIA 4ABC CIÊNCIA DAS CURVAS, 350 g CURVAS;Maquiagem;69,90;64,90;;175;sim;sim
+O Boticário;56811;MÁSCARA SCIENCE TÔNICO CAPILAR CRESCIMENTO, 250 g SCIENCE CRESCIMENTO;Maquiagem;69,90;57,90;;176;sim;
+O Boticário;88008;SHAMPOO SCIENCE CRESCIMENTO, 300 ml;Cabelos;47,90;;;176;sim;
+O Boticário;88007;CONDICIONADOR SCIENCE CRESCIMENTO, 280 ml;Cabelos;49,90;;;176;sim;
+O Boticário;94619;65 ml VEGANA • FIOS COM NATURAL MÁSCARA SCIENCE TÔNICO CAPILAR CRESCIMENTO, 250 g SCIENCE CRESCIMENTO;Maquiagem;69,90;57,90;;176;não;sim
+O Boticário;88006;CONDICIONADOR MATIZADOR descoloração, LOIROS, 280 ml;Cabelos;49,90;;;177;sim;
+O Boticário;94531;CONDICIONADOR SCIENCE RECONSTRUÇÃO, 280 ml;Cabelos;49,90;;;178;sim;
+O Boticário;94962;AMPOLA SCIENCE RECONSTRUÇÃO, 30 ml;Outros;34,90;;;178;sim;
+O Boticário;90151;MÁSCARA SCIENCE RECONSTRUÇÃO, 250 g;Maquiagem;69,90;;;178;sim;
+O Boticário;94530;CONDICIONADOR SCIENCE PRÉ E PÓS- QUÍMICA, 280 ml;Cabelos;49,90;;;179;sim;
+O Boticário;56798;MÁSCARA SCIENCE PRÉ E PÓS- QUÍMICA, 250 g;Maquiagem;69,90;;;179;sim;
+O Boticário;89857;SHAMPOO OLEOSIDADE CONTROLADA, 300 ml;Cabelos;47,90;;;180;sim;
+O Boticário;89819;SHAMPOO HIDRATAÇÃO E BRILHO, 300 ml;Cabelos;47,90;;;180;sim;
+O Boticário;83156;REFIL, 250 ml;Perfumaria;37,90;;;180;sim;
+O Boticário;86272;SPRAY HIDRATAÇÃO E BRILHO, 100 ml;Outros;59,90;;;180;sim;
+O Boticário;49150;SPRAY MULTIBENEFÍCIOS LAB, 150 ml;Outros;64,90;;;181;sim;
+O Boticário;88555;ACIDIFICANTE LAB, 100 ml;Outros;67,90;;;181;sim;
+O Boticário;47968;LEAVE-IN RECONS- TRUTOR LAB, 150 ml;Cabelos;54,90;;;181;sim;
+O Boticário;87064;SHAMPOO CACHOS DE UVA, 270 ml;Cabelos;24,90;;;182;não;
+O Boticário;87066;CONDICIONADOR CACHOS DE UVA, 250 ml;Cabelos;29,90;24,90;;182;não;
+O Boticário;86092;BODY SPLASH DESODORANTE COLÔNIA CACHOS DE UVA, 200 ml;Perfumaria;94,90;;;182;sim;
+O Boticário;56680;NÉCESSAIRE FEIRA;Acessórios;52,90;;;182;sim;
+O Boticário;87068;CREME PARA PENTEAR CACHOS DE UVA, 300 ml;Corpo e banho;42,90;36,90;;182;sim;
+O Boticário;87067;MÁSCARA CACHOS DE UVA, 250 ml;Maquiagem;45,90;39,90;;182;sim;
+O Boticário;59188;CUIDE-SE BEM SHAMPOO BANANA, 230 ml;Cabelos;27,90;24,90;;183;sim;
+O Boticário;59193;CONDICIONADOR BANANA, 170 ml;Cabelos;32,90;27,90;;183;não;
+O Boticário;87078;MÁSCARA BANANA, 250 ml;Maquiagem;42,90;36,90;;183;não;
+O Boticário;57091;SHAMPOO VINAGRE DE MAÇÃ, 230 ml;Cabelos;27,90;24,90;;183;sim;
+O Boticário;55104;SHAMPOO VINAGRE DE FRAMBOESA, 230 ml;Cabelos;27,90;24,90;;183;sim;
+O Boticário;55106;CONDICIONADOR MEL VEGANO, 170 ml;Cabelos;32,90;27,90;;183;sim;
+O Boticário;55105;CREME PARA PENTEAR SEIVA DE BABOSA, 200 ml;Corpo e banho;39,90;33,90;;183;sim;
+O Boticário;87454;CONDICIONADOR ÓLEO DE COCO, 170 ml;Cabelos;32,90;27,90;;184;não;
+O Boticário;87073;SHAMPOO ÓLEO DE COCO, 230 ml;Cabelos;27,90;24,90;;184;não;
+O Boticário;57982;SHAMPOO HIDRATANTE, 250 ml;Cabelos;37,90;31,90;;184;sim;
+O Boticário;58521;MÁSCARA CAPILAR HIDRATANTE, 250 g;Maquiagem;54,90;46,90;;184;sim;
+O Boticário;58020;CONDICIONADOR HIDRATANTE, 250 ml;Cabelos;37,90;31,90;;184;sim;
+O Boticário;87079;SHAMPOO PASTA DE ABACATE, 230 ml;Cabelos;27,90;24,90;;185;não;
+O Boticário;87081;MÁSCARA PASTA DE ABACATE, 250 ml;Maquiagem;42,90;36,90;;185;não;
+O Boticário;59197;CONDICIONADOR PASTA DE ABACATE, 170 ml;Cabelos;32,90;27,90;;185;não;
+O Boticário;58299;LENÇO UMEDECIDO ADULTOS, 50 unidades;Outros;29,90;;;186;sim;
+O Boticário;89501;DEDAL DENTAL, 30 unidades;Outros;59,90;;;187;não;
+O Boticário;57210;BANHO A SECO, FLORAL FRUTAL 240 ml CÍTRICA;Outros;59,90;;;187;não;
+O Boticário;57206;FLORAL LIMPA E HIDRATA FRUTAL I M PATINHAS, 120 ml CÍTRICA;Outros;46,90;;;187;não;sim
+O Boticário;57207;SHAMPOO 5 EM 1, 400 ml;Cabelos;59,90;;;187;sim;
+O Boticário;57208;CONDICIONADOR, 400 ml;Cabelos;59,90;;;187;sim;
+O Boticário;51123;3. BEM BODY REFIL DESODORANTE LOÇÃO BOA HIDRATANTE 200 ml CORPORAL;Perfumaria;94,90;;;188;não;
+O Boticário;59027;MALBEC SENSITIVE ESPUMA PARA BARBEAR, 200 ml;Barba;74,90;59,90;;191;sim;
