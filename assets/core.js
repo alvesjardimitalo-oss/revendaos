@@ -41,6 +41,16 @@ export function pode(mod, nivel = 'ver') {
 // ---------------- ícones (traço) ----------------
 const IC = {
   home: '<path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/>',
+  filtro: '<path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/>',
+  cal: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  olhofechado: '<path d="M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.3 4.2M6.6 6.6A17 17 0 0 0 2 12s3.6 7 10 7a9.6 9.6 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/>',
+  nota: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
+  seta: '<path d="M15 18l-6-6 6-6"/>',
+  dir: '<path d="M9 18l6-6-6-6"/>',
+  dado: '<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="15.5" cy="15.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/><circle cx="8.5" cy="15.5" r="1"/>',
+  seta_cima: '<path d="M12 19V5M5 12l7-7 7 7"/>',
+  cifrao: '<path d="M12 2v20M17 6.5C16 5 14.3 4.5 12 4.5c-2.8 0-4.5 1.4-4.5 3.4 0 4.6 9.5 2.4 9.5 7.2 0 2-1.9 3.6-5 3.6-2.4 0-4.3-.8-5.2-2.4"/>',
+  porc: '<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/>',
   cart: '<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>',
   cash: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>',
   users: '<circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M22 21c0-3-1.8-5.5-4.5-6.5"/>',
@@ -186,6 +196,8 @@ export function corEtiqueta(t) {
   return CORES_ETQ[(h % (CORES_ETQ.length - 5)) + 5];
 }
 export const chip = t => `<span class="chip-etq" style="background:${corEtiqueta(t)}">${esc(t)}</span>`;
+export const iniciais = n => { const p = String(n || '?').trim().split(/\s+/).filter(w => w.length > 1 || /^[A-ZÀ-Ú]/.test(w)); return ((p[0] || '?')[0] + (p.length > 1 ? p[1][0] : '')).toUpperCase(); };
+export const avatar = (n, cls = '') => `<span class="avm ${cls}">${esc(iniciais(n))}</span>`;
 export const badge = (txt, cls = '') => `<span class="badge ${cls}">${esc(txt)}</span>`;
 export const STATUS_REC = { aberto: ['Em aberto', 'info'], vencido: ['Vencido', 'perigo'], pago: ['Pago', 'ok'], cancelado: ['Cancelado', 'mudo'] };
 export const vazio = (txt, acao = '') => `<div class="vazio">${icon('box')}<p>${esc(txt)}</p>${acao}</div>`;

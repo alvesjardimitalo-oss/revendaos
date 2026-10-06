@@ -1,7 +1,7 @@
 // Vendas: lista, nova venda (PDV), detalhes, recibo e cancelamento
 import { $, $$, esc, brl, nfmt, parseNum, uid, r2, norm, fmtData, hoje, addMeses, addDias, mesAtual, waLink, preencher, fmtFone } from '../utils.js';
 import { creditosCliente, opsResgate } from './consorcios.js';
-import { S, cfg, pode, icon, modal, ask, toast, commit, qtdProduto, prodPorId, cliPorId, buscaProduto, selectClientes, saldoRec, statusRec, STATUS_REC, badge, vazio, FORMAS, ENTREGA, baixarLotes, devolverLotes, proxNumero, abertoCliente, ehKit, precoVenda, promoAtiva, taxaCartao, selecionarVarios } from '../core.js';
+import { S, cfg, pode, icon, modal, ask, toast, commit, qtdProduto, prodPorId, cliPorId, buscaProduto, selectClientes, saldoRec, statusRec, STATUS_REC, badge, vazio, FORMAS, ENTREGA, baixarLotes, devolverLotes, proxNumero, abertoCliente, ehKit, precoVenda, promoAtiva, taxaCartao, selecionarVarios, avatar } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
 import { formCliente } from './clientes.js';
 import { receber, enviarPix } from './cobrancas.js';
@@ -33,7 +33,19 @@ export function render(el) {
   const val = l.filter(v => !v.cancelada);
   const tot = val.reduce((s, v) => s + v.total, 0), lucro = val.reduce((s, v) => s + lucroVenda(v), 0);
 
-  el.innerHTML = `
+  const stVenda = v => { if (v.cancelada) return ['Cancelada', 'mudo']; const pg = pagoVenda(v.id); return pg >= v.total - 0.004 ? ['Pago', 'ok'] : pg > 0.004 ? ['Pago parcialmente', 'info'] : ['Pendente', 'aviso']; };
+  const mob = `<div class="so-mob">
+    <div class="mchips"><select id="mmes" class="chip-sel">${meses.map(m => `<option value="${m}" ${F.mes === m ? 'selected' : ''}>${m === mesAtual() ? 'Mês atual' : m.split('-').reverse().join('/')}</option>`).join('')}<option value="todos" ${F.mes === 'todos' ? 'selected' : ''}>Todo o período</option></select>
+      <select id="mpag" class="chip-sel"><option value="">Todas</option><option value="aberto" ${F.pag === 'aberto' ? 'selected' : ''}>Com saldo em aberto</option><option value="quitado" ${F.pag === 'quitado' ? 'selected' : ''}>Pagas</option></select></div>
+    <div class="mkpis"><div class="mkpi"><i>${icon('seta_cima')}</i><div><span>Vendas realizadas</span><b>${val.length}</b></div></div>
+      <div class="mkpi"><i>${icon('cifrao')}</i><div><span>Valor em vendas</span><b class="valor">${brl(tot)}</b></div></div>
+      ${pode('relatorios') ? `<div class="mkpi"><i>${icon('porc')}</i><div><span>Lucro</span><b class="valor">${brl(lucro)}</b></div></div>` : ''}</div>
+    <div class="campo-ic mbusca">${icon('search')}<input type="search" id="qm" placeholder="Buscar por cliente ou produto" value="${esc(F.q)}"></div>
+    ${l.length ? `<div class="mlista">${l.map(v => { const [st, c] = stVenda(v); return `<div class="mrow" data-id="${v.id}">${avatar(v.clienteNome || 'C F')}<div class="mrow-m"><b>${esc(v.clienteNome || 'Consumidor final')}</b><small>${fmtData(v.data)} · ${(v.itens || []).reduce((a, i) => a + i.qtd, 0)} un.${v.statusEntrega !== 'entregue' && !v.cancelada ? ' · <span class="t-aviso">a entregar</span>' : ''}</small></div><div class="mrow-d"><b class="valor">${brl(v.total)}</b><span class="pill ${c}">${st}</span></div></div>`; }).join('')}</div>`
+      : `<div class="mvazio">${icon('cart')}<p>Nenhuma venda encontrada</p></div>`}
+    ${ed ? `<button class="fab" id="fabv">${icon('plus')}Adicionar venda</button>` : ''}
+  </div>`;
+  el.innerHTML = mob + `<div class="so-desk">
   <div class="kpis">
     <div class="kpi"><span>Vendido no período</span><b>${brl(tot)}</b><small>${val.length} venda(s)</small></div>
     <div class="kpi"><span>Ticket médio</span><b>${brl(val.length ? tot / val.length : 0)}</b></div>
@@ -60,10 +72,13 @@ export function render(el) {
       <td>${v.cancelada ? '—' : ed ? `<select class="sel-mini" data-ent="${v.id}">${Object.entries(ENTREGA).map(([k, t]) => `<option value="${k}" ${v.statusEntrega === k ? 'selected' : ''}>${t}</option>`).join('')}</select>` : ENTREGA[v.statusEntrega] || ''}</td>
       <td class="acoes"><button class="btn-ic" title="Detalhes">${icon('eye')}</button></td></tr>`;
   }).join('')}</tbody></table></div>`
-      : vazio('Nenhuma venda no período.', ed ? `<button class="btn pri" id="nova2">${icon('plus')}Registrar venda</button>` : '')}`;
+      : vazio('Nenhuma venda no período.', ed ? `<button class="btn pri" id="nova2">${icon('plus')}Registrar venda</button>` : '')}</div>`;
 
   const re = () => render(el);
-  $('#q', el).oninput = e => { F.q = e.target.value; re(); const i = $('#q', el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); };
+  ['q', 'qm'].forEach(k => $('#' + k, el).oninput = e => { F.q = e.target.value; re(); const i = $('#' + k, el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); });
+  $('#mmes', el).onchange = e => { F.mes = e.target.value; re(); }; $('#mpag', el).onchange = e => { F.pag = e.target.value; re(); };
+  const fv = $('#fabv', el); if (fv) fv.onclick = () => novaVenda();
+  $$('.mrow[data-id]', el).forEach(r => r.onclick = () => verVenda(r.dataset.id));
   ['mes', 'entrega', 'pag', 'de', 'ate'].forEach(k => { const x = $('#' + k, el); if (x) x.onchange = e => { F[k] = e.target.value; re(); }; });
   const ih = $('#imphist', el); if (ih) ih.onclick = async () => (await import('./importar-vendas.js')).importarHistorico();
   [$('#nova', el), $('#nova2', el)].forEach(b => b && (b.onclick = () => novaVenda()));
@@ -330,37 +345,55 @@ async function salvarVenda(o) {
 export function verVenda(id) {
   const v = S.d.vendas.find(x => x.id === id); if (!v) return;
   const ed = pode('vendas', 'editar'), edc = pode('cobrancas', 'editar');
-  const recs = recsDaVenda(id), pago = pagoVenda(id);
+  const recs = recsDaVenda(id), pago = r2(pagoVenda(id)), resta = r2(Math.max(0, v.total - pago));
+  const lucro = lucroVenda(v), entregue = v.statusEntrega === 'entregue';
+  const foto = i => { const p = prodPorId(i.prodId) || S.d.produtos.find(x => norm(x.nome) === norm(i.nome)); return p && p.foto ? `<img src="${esc(p.foto)}" alt="" loading="lazy">` : `<span>${icon('box')}</span>`; };
+  const nomeRec = r => r.consorcio ? 'Crédito do consórcio' : r.forma === 'Crediário' || !r.forma ? 'Crediário' : r.forma;
   const m = modal({
-    titulo: `Venda #${v.numero}`, largo: true,
-    corpo: `<div class="det-topo">
-      <div><small class="mudo">Data</small><b>${fmtData(v.data)}</b></div>
-      <div><small class="mudo">Cliente</small><b>${esc(v.clienteNome || 'Consumidor final')}</b></div>
-      <div><small class="mudo">Vendedor(a)</small><b>${esc(v.vendedorNome || '—')}</b></div>
-      <div><small class="mudo">Pagamento</small><b>${esc(v.forma)}${v.parcelas > 1 ? ' · ' + v.parcelas + 'x' : ''}</b></div>
-      <div><small class="mudo">Entrega</small><b>${v.cancelada ? badge('Cancelada', 'mudo') : ENTREGA[v.statusEntrega]}</b></div>
-    </div>
-    <table class="tabela mini"><thead><tr><th>Produto</th><th class="n">Qtd.</th><th class="n">Preço</th><th class="n">Subtotal</th></tr></thead>
-    <tbody>${v.itens.map(i => `<tr><td>${esc(i.nome)}<small class="bl mudo">${esc(i.marca || '')}</small></td><td class="n">${nfmt(i.qtd)}</td><td class="n">${brl(i.preco)}</td><td class="n">${brl(i.qtd * i.preco)}</td></tr>`).join('')}</tbody>
-    <tfoot>
-      <tr><td colspan="3">Subtotal</td><td class="n">${brl(v.subtotal)}</td></tr>
-      ${v.desconto ? `<tr><td colspan="3">Desconto</td><td class="n">− ${brl(v.desconto)}</td></tr>` : ''}
-      ${v.frete ? `<tr><td colspan="3">Frete</td><td class="n">${brl(v.frete)}</td></tr>` : ''}
-      ${v.juros ? `<tr><td colspan="3">Juros do cartão</td><td class="n">${brl(v.juros)}</td></tr>` : ''}
-      <tr class="forte"><td colspan="3">Total</td><td class="n">${brl(v.total)}</td></tr>
-      ${v.taxaCartaoValor ? `<tr class="mudo"><td colspan="3">Taxa da maquininha (${nfmt(v.taxaCartaoPct, 2)}%)</td><td class="n">− ${brl(v.taxaCartaoValor)}</td></tr>` : ''}
-      ${pode('relatorios') ? `<tr class="mudo"><td colspan="3">Custo · lucro bruto${v.comissaoValor ? ' · comissão' : ''}</td><td class="n">${brl(v.custoTotal)} · ${brl(lucroVenda(v))}${v.comissaoValor ? ' · ' + brl(v.comissaoValor) : ''}</td></tr>` : ''}
-    </tfoot></table>
-    <div class="sub-h"><h4>Pagamentos e parcelas</h4><span>${badge(pago >= v.total - 0.004 ? 'Quitada' : 'Falta ' + brl(v.total - pago), pago >= v.total - 0.004 ? 'ok' : 'info')}</span></div>
-    ${recs.length ? `<table class="tabela mini"><thead><tr><th>Parcela</th><th>Vencimento</th><th class="n">Valor</th><th class="n">Pago</th><th>Status</th><th></th></tr></thead><tbody>
-      ${recs.map(r => { const s = statusRec(r); return `<tr><td>${r.consorcio ? 'Consórcio' : r.parcela === 0 ? 'Entrada' : r.parcela + '/' + r.totalParcelas}</td><td>${fmtData(r.vencimento)}</td><td class="n">${brl(r.valor)}</td><td class="n">${brl(r.pago)}</td><td>${badge(...STATUS_REC[s])}</td>
-      <td class="acoes">${edc && (s === 'aberto' || s === 'vencido') ? `<button class="btn sm" data-rec="${r.id}">Receber</button><button class="btn-ic" data-pix="${r.id}" title="Pix">${icon('pix')}</button>` : ''}${(r.pagamentos || []).filter(p => p.comprovante).map(p => `<button class="btn-ic" data-vcomp="${r.id}" title="Ver comprovante">${icon('eye')}</button>`).slice(0, 1).join('')}</td></tr>`; }).join('')}
-    </tbody></table>` : '<p class="mudo">Sem valores a receber.</p>'}
-    ${v.obs ? `<p><b>Obs.:</b> ${esc(v.obs)}</p>` : ''}`,
-    rodape: `${ed && !v.cancelada ? `<button class="btn perigo-txt" id="canc">${icon('undo')}Cancelar venda</button>` : ''}<span class="grow"></span>
-      <button class="btn" id="imp">${icon('print')}Imprimir</button>
+    titulo: 'Detalhes da venda', largo: true,
+    corpo: `<div class="vd">
+      <div class="vd-cli">${avatar(v.clienteNome || 'C F')}<b>${esc(v.clienteNome || 'Consumidor final')}</b><span class="vd-data">${icon('cal')}${fmtData(v.data)}</span></div>
+      <div class="vd-tot"><b>${brl(v.total)}</b>${v.cancelada ? '<span class="pill mudo">Cancelada</span>' : `<button class="pill-ent ${entregue ? 'ok' : 'aviso'}" id="ent" ${ed ? '' : 'disabled'}>${icon(entregue ? 'check' : 'truck')}${entregue ? 'Já entregue' : 'A entregar'}</button>`}</div>
+      ${v.obs ? `<div class="vd-obs"><div><small>Observações</small><p>${esc(v.obs)}</p></div>${ed ? `<button class="btn-ic" id="obs">${icon('edit')}</button>` : ''}</div>` : ed ? `<a href="#" class="vd-addobs" id="obs">${icon('nota')}Adicionar observações</a>` : ''}
+      <div class="vd-abas"><button data-aba="itens" class="ativo">Itens</button><button data-aba="pag">Pagamento</button><button data-aba="det">Detalhes</button></div>
+      <div data-painel="itens"><div class="vd-itens">${v.itens.map(i => `<div class="vd-item"><div class="vd-foto">${foto(i)}</div><div><b>${esc(i.nome)}</b><small>${i.preco ? brl(i.preco) + ' - ' : ''}${nfmt(i.qtd)} unidade${i.qtd > 1 ? 's' : ''}</small></div></div>`).join('')}</div></div>
+      <div data-painel="pag" hidden>
+        <div class="vd-prog"><div><small>Total pago</small><b>${brl(pago)}</b></div><div class="ta-d"><small>Restante</small><b>${brl(resta)}</b></div></div>
+        <div class="prog grossa"><i style="width:${v.total ? Math.min(100, pago / v.total * 100) : 0}%"></i></div>
+        ${recs.length ? recs.map(r => { const s = statusRec(r), ultimo = (r.pagamentos || []).slice(-1)[0];
+          return `<div class="vd-parc"><span class="vd-ic">${icon('cal')}</span><div><small>${esc(nomeRec(r))}${r.totalParcelas > 1 && r.parcela ? ` · ${r.parcela}/${r.totalParcelas}` : ''}</small><b>${brl(r.valor)}</b></div>
+            <div class="ta-d"><small>Vencimento</small><b>${fmtData(r.vencimento)}</b>${s === 'pago' ? `<span class="pill ok">Pago${ultimo ? ' em ' + fmtData(ultimo.data).slice(0, 5) : ''}</span>` : s === 'vencido' ? '<span class="pill perigo">Vencida</span>' : (Number(r.pago) || 0) > 0 ? `<span class="pill info">Pago ${brl(r.pago)}</span>` : '<span class="pill mudo">Pendente</span>'}</div>
+            <div class="vd-acoes">${edc && (s === 'aberto' || s === 'vencido') ? `<button class="btn sm pri" data-rec="${r.id}">Receber</button><button class="btn-ic" data-pix="${r.id}" title="Cobrar no Pix">${icon('pix')}</button>` : ''}${(r.pagamentos || []).some(p => p.comprovante) ? `<button class="btn-ic" data-vcomp="${r.id}" title="Ver comprovante">${icon('eye')}</button>` : ''}</div></div>`; }).join('') : '<p class="mudo">Sem valores a receber.</p>'}
+      </div>
+      <div data-painel="det" hidden><div class="vd-det">
+        <div><span>Total em produtos</span><span>${brl(v.subtotal)}</span></div>
+        ${v.desconto ? `<div><span>Desconto</span><span>− ${brl(v.desconto)}</span></div>` : ''}
+        ${v.frete ? `<div><span>Frete</span><span>${brl(v.frete)}</span></div>` : ''}
+        ${v.juros ? `<div><span>Juros do cartão</span><span>${brl(v.juros)}</span></div>` : ''}
+        <div class="forte"><span>Valor Total</span><span>${brl(v.total)}</span></div>
+        ${v.consorcio ? `<div><span>Crédito do consórcio G${v.consorcio.grupo}</span><span>${brl(v.consorcio.credito)}</span></div>` : ''}
+        <div><span>Valor Pago</span><span class="t-ok">${brl(pago)}</span></div>
+        <div><span>Valor Restante</span><span class="t-perigo">${brl(resta)}</span></div>
+        ${v.taxaCartaoValor ? `<div><span>Taxa da maquininha</span><span>− ${brl(v.taxaCartaoValor)}</span></div>` : ''}
+        ${pode('relatorios') ? `<div><span>${lucro < 0 ? 'Prejuízo' : 'Lucro'}</span><button class="btn sm" id="verlucro">Toque para ver</button></div>` : ''}
+        <div><span>Forma de pagamento</span><span>${esc(v.forma || '')}</span></div>
+        <div><span>Vendedor(a)</span><span>${esc(v.vendedorNome || '—')}</span></div>
+        <div><span>Nº da venda</span><span>#${v.numero}${v.importado ? ' · trazida do Revendi' : ''}</span></div>
+      </div></div>
+    </div>`,
+    rodape: `${ed && !v.cancelada ? `<button class="btn perigo-txt" id="canc">${icon('undo')}Cancelar</button>` : ''}<span class="grow"></span>
+      <button class="btn" id="imp">${icon('print')}<span class="so-desk-i">Imprimir</span></button>
       <button class="btn wa" id="wa">${icon('wa')}Enviar recibo</button>`
   });
+  m.el.classList.add('cheia');
+  m.$$('[data-aba]').forEach(b => b.onclick = () => { m.$$('[data-aba]').forEach(x => x.classList.toggle('ativo', x === b)); m.$$('[data-painel]').forEach(p => p.hidden = p.dataset.painel !== b.dataset.aba); });
+  const vl = m.$('#verlucro'); if (vl) vl.onclick = () => { vl.outerHTML = `<b class="${lucro < 0 ? 't-perigo' : 't-ok'}">${brl(Math.abs(lucro))}</b>`; };
+  const en = m.$('#ent'); if (en && ed) en.onclick = async () => { await mudarEntrega(v.id, entregue ? 'pendente' : 'entregue'); m.fechar(); verVenda(id); };
+  const ob = m.$('#obs'); if (ob) ob.onclick = e => {
+    e.preventDefault();
+    const mm = modal({ titulo: 'Observações', corpo: `<textarea id="tx" rows="4" style="width:100%">${esc(v.obs || '')}</textarea>`, rodape: `<button class="btn" data-fechar>Cancelar</button><button class="btn pri" id="ok">Salvar</button>` });
+    mm.$('#ok').onclick = async () => { if (await commit([{ op: 'upd', col: 'vendas', id: v.id, data: { obs: mm.$('#tx').value.trim() } }])) { mm.fechar(); m.fechar(); verVenda(id); } };
+  };
   m.$$('[data-rec]').forEach(b => b.onclick = () => { m.fechar(); receber(S.d.recebiveis.find(r => r.id === b.dataset.rec)); });
   m.$$('[data-pix]').forEach(b => b.onclick = () => enviarPix(S.d.recebiveis.find(r => r.id === b.dataset.pix)));
   m.$$('[data-vcomp]').forEach(b => b.onclick = async () => { const r = S.d.recebiveis.find(x => x.id === b.dataset.vcomp); (await import('./cobrancas.js')).verComprovante(r.pagamentos.find(p => p.comprovante).comprovante); });

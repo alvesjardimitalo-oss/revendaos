@@ -30,8 +30,8 @@ export function aplicarTema() {
   const escuro = t === 'escuro' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
   const cor = (S.conta.config || {}).cor;
-  document.documentElement.style.setProperty('--pri', cor || '#c2185b');
-  const meta = $('meta[name=theme-color]'); if (meta) meta.content = cor || '#c2185b';
+  document.documentElement.style.setProperty('--pri', cor || '#7209b7');
+  const meta = $('meta[name=theme-color]'); if (meta) meta.content = cor || '#7209b7';
 }
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', aplicarTema);
 
@@ -168,6 +168,8 @@ function render(forcar = false) {
   const main = $('#main'); if (!main) return;
   if (!forcar && main.dataset.sujo) { atualizarShell(); return; }
   delete main.dataset.sujo;
+  if (forcar) main.classList.remove('mostrar-filtros');
+  document.body.dataset.rota = S.rota;
   const m = MODS.find(x => x.id === S.rota);
   $('#titulo').textContent = m ? m.nome : '';
   document.title = (m ? m.nome + ' · ' : '') + (S.conta.nome || APP_NOME);
@@ -205,6 +207,8 @@ function ligarConvites() {
 
 async function iniciar() {
   window.__appIniciado = true;
+  try { if (localStorage.getItem('revendaos:ocultar')) document.body.classList.add('ocultar-valores'); } catch { }
+  window.__notifN = () => notificacoes.contagem();
   aplicarTema();
   try { S.db = await getDB(); }
   catch (e) { document.body.innerHTML = `<div class="login"><div class="login-card"><h1>Falha ao carregar</h1><p>${esc(e.message)}</p></div></div>`; return; }

@@ -1,6 +1,6 @@
 // Clientes: cadastro, ficha, aniversariantes, histórico e crédito
 import { $, $$, esc, brl, nfmt, parseNum, uid, r2, norm, fmtData, hoje, waLink, fmtFone, toCSV, parseCSV, baixar, lerArquivo, soDigitos } from '../utils.js';
-import { S, pode, icon, modal, ask, toast, commit, cliPorId, abertoCliente, saldoRec, statusRec, STATUS_REC, badge, vazio, datalist, chip, corEtiqueta } from '../core.js';
+import { S, pode, icon, modal, ask, toast, commit, cliPorId, abertoCliente, saldoRec, statusRec, STATUS_REC, badge, vazio, datalist, chip, corEtiqueta, avatar } from '../core.js';
 
 let F = { q: '', tag: '', filtro: '', vis: (() => { try { return localStorage.getItem('revendaos:clivis') || 'cartoes'; } catch { return 'cartoes'; } })() };
 const sepEtiquetas = s => String(s || '').split(/\s*[|;\n]\s*/).map(t => t.trim()).filter(Boolean);
@@ -24,14 +24,21 @@ export function render(el) {
   }).sort((a, b) => a.nome.localeCompare(b.nome));
   const anivs = aniversariantes();
 
-  el.innerHTML = `
+  const mob = `<div class="so-mob">
+    <div class="mtopo"><div class="campo-ic mbusca">${icon('search')}<input type="search" id="qm" placeholder="Buscar por clientes" value="${esc(F.q)}"></div>
+      <button class="mfiltro ${F.filtro || F.tag ? 'on' : ''}" id="mf">${icon('filtro')}</button></div>
+    ${l.length ? `<div class="mlista">${l.map(c => { const ab = abertoCliente(c.id); return `<div class="mrow" data-id="${c.id}">${avatar(c.nome, 'grande')}<div class="mrow-m"><b class="mnome">${esc(c.nome)}</b><small>${c.whatsapp ? fmtFone(c.whatsapp) : 'Sem número'}${ab > 0 ? ` · <span class="t-perigo">deve ${brl(ab)}</span>` : ''}</small>${(c.tags || []).length ? `<div class="cli-tags mini">${c.tags.map(chip).join('')}</div>` : ''}</div></div>`; }).join('')}</div>`
+      : `<div class="mvazio">${icon('users')}<p>Nenhum cliente encontrado</p></div>`}
+    ${ed ? `<button class="fab" id="fabc">${icon('plus')}Adicionar cliente</button>` : ''}
+  </div>`;
+  el.innerHTML = mob + `<div class="so-desk">
   <div class="kpis">
     <div class="kpi"><span>Clientes</span><b>${S.d.clientes.length}</b></div>
     <div class="kpi" data-f="aniv"><span>Aniversariantes do mês</span><b>${anivs.length}</b><small>${anivs.slice(0, 3).map(c => esc(c.nome.split(' ')[0]) + ' ' + c.aniversario.slice(8) + '/' + c.aniversario.slice(5, 7)).join(', ')}</small></div>
     <div class="kpi" data-f="debito"><span>Com saldo em aberto</span><b>${S.d.clientes.filter(c => abertoCliente(c.id) > 0).length}</b></div>
     <div class="kpi" data-f="inativos"><span>Sem comprar há 90 dias</span><b>${S.d.clientes.filter(c => { const u = (stats[c.id] || {}).ult; return !u || u < new Date(Date.now() - 90 * 864e5).toISOString().slice(0, 10); }).length}</b></div>
   </div>
-  <div class="barra">
+  <div class="barra filtros-m">
     ${ed ? `<button class="btn pri" id="novo">${icon('plus')}Novo cliente</button>` : ''}
     <div class="campo-ic grow">${icon('search')}<input type="search" id="q" placeholder="Nome, WhatsApp, cidade ou etiqueta" value="${esc(F.q)}"></div>
     <select id="filtro"><option value="">Todos</option><option value="aniv" ${F.filtro === 'aniv' ? 'selected' : ''}>Aniversariantes do mês</option><option value="debito" ${F.filtro === 'debito' ? 'selected' : ''}>Com saldo em aberto</option><option value="inativos" ${F.filtro === 'inativos' ? 'selected' : ''}>Sem comprar há 90 dias</option></select>
@@ -52,10 +59,13 @@ export function render(el) {
       <td class="n">${brl(s.tot)}<small class="bl mudo">${s.n} compra(s)</small></td><td>${fmtData(s.ult)}</td>
       <td class="n">${ab > 0 ? `<b class="${S.d.recebiveis.some(r => r.clienteId === c.id && statusRec(r) === 'vencido') ? 't-perigo' : ''}">${brl(ab)}</b>` : '—'}</td>
       <td class="acoes">${c.whatsapp ? `<a class="btn-ic wa" href="${waLink(c.whatsapp, 'Olá ' + c.nome.split(' ')[0] + '! ')}" target="_blank" title="WhatsApp">${icon('wa')}</a>` : ''}</td></tr>`; }).join('')}
-  </tbody></table></div>` : !l.length ? vazio(S.d.clientes.length ? 'Nenhum cliente com esses filtros.' : 'Cadastre suas clientes para controlar compras, aniversários e cobranças.') : ''}`;
+  </tbody></table></div>` : !l.length ? vazio(S.d.clientes.length ? 'Nenhum cliente com esses filtros.' : 'Cadastre suas clientes para controlar compras, aniversários e cobranças.') : ''}</div>`;
 
   const re = () => render(el);
-  $('#q', el).oninput = e => { F.q = e.target.value; re(); const i = $('#q', el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); };
+  ['q', 'qm'].forEach(k => $('#' + k, el).oninput = e => { F.q = e.target.value; re(); const i = $('#' + k, el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); });
+  $('#mf', el).onclick = () => el.classList.toggle('mostrar-filtros');
+  const fc = $('#fabc', el); if (fc) fc.onclick = () => formCliente();
+  $$('.mrow[data-id]', el).forEach(r => r.onclick = () => fichaCliente(r.dataset.id));
   $('#filtro', el).onchange = e => { F.filtro = e.target.value; re(); };
   $('#tag', el).onchange = e => { F.tag = e.target.value; re(); };
   $$('[data-vis]', el).forEach(b => b.onclick = () => { F.vis = b.dataset.vis; try { localStorage.setItem('revendaos:clivis', F.vis); } catch { } re(); });

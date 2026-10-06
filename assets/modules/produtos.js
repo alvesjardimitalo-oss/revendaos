@@ -47,14 +47,25 @@ export function render(el) {
   const nVenc = ativos.filter(p => situacao(p).vencendo).length, nVencido = ativos.filter(p => situacao(p).vencido).length;
   const nBaixo = ativos.filter(p => { const s = situacao(p); return s.baixo || s.zerado; }).length;
 
-  el.innerHTML = `
+  const unid = ps.filter(p => p.ativo !== false && !ehKit(p)).reduce((a, p) => a + qtdProduto(p), 0);
+  const mob = `<div class="so-mob">
+    <div class="mtopo"><div class="campo-ic mbusca">${icon('search')}<input type="search" id="qm" placeholder="Buscar" value="${esc(F.q)}"><button class="btn-ic" id="scanm" title="Código de barras">${icon('scan')}</button></div>
+      <button class="mfiltro ${F.filtro !== 'todos' || F.marca || F.cat ? 'on' : ''}" id="mf">${icon('filtro')}</button></div>
+    <div class="mkpis"><div class="mkpi"><i>${icon('box')}</i><div><span>Produtos</span><b>${ps.filter(p => p.ativo !== false).length}</b></div></div><div class="mkpi"><i>${icon('dado')}</i><div><span>Unidades</span><b>${nfmt(unid)}</b></div></div></div>
+    ${l.length ? `<div class="mlista">${l.map(p => { const q = qtdProduto(p), pr = promoAtiva(p); return `<div class="mrow prod" data-id="${p.id}"><div class="mfoto">${p.foto ? `<img src="${esc(p.foto)}" alt="" loading="lazy">` : icon('box')}</div>
+      <div class="mrow-m"><b>${esc(p.nome)}</b><small>${esc(p.marca || '')}${p.sku ? ' • ' + esc(p.sku) : ''}</small>
+      <div class="mpreco"><b class="valor">${pr ? brl(pr.preco) : p.preco ? brl(p.preco) : 'Sem preço'}</b>${pr ? `<s>${brl(pr.base)}</s>` : ''}<span class="pill ${q > 0 ? 'mudo' : 'cinza'}">${q > 0 ? nfmt(q) + ' un.' : 'Sem estoque'}</span></div></div></div>`; }).join('')}</div>`
+      : `<div class="mvazio">${icon('box')}<p>${ps.length ? 'Nenhum produto com esses filtros' : 'Nenhum produto cadastrado'}</p></div>`}
+    ${ed ? `<button class="fab" id="fabp">${icon('plus')}Adicionar produto</button>` : ''}
+  </div>`;
+  el.innerHTML = mob + `<div class="so-desk">
   <div class="kpis">
     <div class="kpi"><span>Produtos ativos</span><b>${ativos.length}</b><small>${nfmt(un)} unidades</small></div>
     <div class="kpi"><span>Estoque a preço de custo</span><b>${brl(vCusto)}</b><small>Venda estimada ${brl(vVenda)}</small></div>
     <div class="kpi ${nVenc + nVencido ? 'alerta' : ''}" data-f="vencendo"><span>Vencendo em ${diasAlerta()} dias</span><b>${nVenc}</b><small>${nVencido} já vencido(s)</small></div>
     <div class="kpi ${nBaixo ? 'alerta' : ''}" data-f="baixo"><span>Estoque baixo ou zerado</span><b>${nBaixo}</b><small>abaixo do mínimo</small></div>
   </div>
-  <div class="barra">
+  <div class="barra filtros-m">
     <div class="campo-ic grow">${icon('search')}<input type="search" id="q" placeholder="Buscar por código do produto, nome ou marca" value="${esc(F.q)}"></div>
     <button class="btn" id="scan" title="Buscar pelo código de barras">${icon('scan')}</button>
     <select id="filtro">
@@ -86,10 +97,14 @@ export function render(el) {
         <td class="acoes">${ed && !ehKit(p) ? `<button class="btn-ic" data-aj="${p.id}" title="Entrada/saída de estoque">${icon('box')}</button>` : ''}</td>
       </tr>`;
     }).join('')}</tbody></table></div>`
-      : vazio(ps.length ? 'Nenhum produto com esses filtros.' : 'Cadastre seus produtos ou importe um catálogo em CSV para começar.', ed && !ps.length ? `<button class="btn pri" onclick="document.getElementById('novo').click()">${icon('plus')}Cadastrar produto</button>` : '')}`;
+      : vazio(ps.length ? 'Nenhum produto com esses filtros.' : 'Cadastre seus produtos ou importe um catálogo em CSV para começar.', ed && !ps.length ? `<button class="btn pri" onclick="document.getElementById('novo').click()">${icon('plus')}Cadastrar produto</button>` : '')}</div>`;
 
   const re = () => render(el);
-  $('#q', el).oninput = e => { F.q = e.target.value; re(); const i = $('#q', el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); };
+  ['q', 'qm'].forEach(k => $('#' + k, el).oninput = e => { F.q = e.target.value; re(); const i = $('#' + k, el); i.focus(); i.setSelectionRange(i.value.length, i.value.length); });
+  $('#mf', el).onclick = () => el.classList.toggle('mostrar-filtros');
+  $('#scanm', el).onclick = () => $('#scan', el).click();
+  const fp = $('#fabp', el); if (fp) fp.onclick = () => formProduto();
+  $$('.mrow[data-id]', el).forEach(r => r.onclick = () => formProduto(prodPorId(r.dataset.id)));
   ['filtro', 'marca', 'cat', 'ord'].forEach(k => $('#' + k, el).onchange = e => { F[k] = e.target.value; re(); });
   $$('.kpi[data-f]', el).forEach(k => k.onclick = () => { F.filtro = k.dataset.f; re(); });
   $('#scan', el).onclick = () => scanner(c => { const p = S.d.produtos.find(x => String(x.codigo) === c); if (p) formProduto(p); else { F.q = c; re(); toast('Código não cadastrado.', 'aviso'); } });
