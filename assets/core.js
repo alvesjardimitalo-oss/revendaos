@@ -256,9 +256,28 @@ export function buscaProduto(container, onPick, { placeholder = 'Código do prod
     const l = achar(q);
     sug.hidden = false;
     const pareceCodigo = /^[A-Za-z0-9.\- ]{2,14}$/.test(q) && /\d/.test(q);
-    sug.innerHTML = (l.length ? l.map(p => `<button type="button" data-id="${p.id}">${p.foto ? `<img src="${p.foto}" alt="">` : '<span class="mini-ph"></span>'}<span><b>${esc(p.nome)}</b><small>${esc(p.marca || '')} · estoque ${qtdProduto(p)}</small></span><em>${brl(p.preco)}</em></button>`).join('')
-      : `<div class="mudo pq" style="padding:10px">Nenhum produto seu com esse nome ou código.</div>`)
-      + (pareceCodigo && !l.some(p => normRefC(p.sku) === normRefC(q)) ? `<button type="button" data-global>${icon('book')}<span><b>Buscar o código ${esc(q)} no catálogo global</b><small>Cadastra no seu estoque e adiciona aqui</small></span></button>` : '');
+    const fp = p => p.foto || (p.sku && p.marca ? `catalogo-img/${norm(p.marca).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}/${normRefC(p.sku)}.jpg` : '');
+    sug.innerHTML = (l.length ? `<div class="sug-tit">No seu estoque</div>` + l.map(p => `<button type="button" data-id="${p.id}"><span class="sug-foto">${fp(p) ? `<img src="${esc(fp(p))}" alt="">` : ''}</span><span><b>${esc(p.nome)}</b><small>${esc(p.marca || '')}${p.sku ? ' · ' + esc(p.sku) : ''} · estoque ${qtdProduto(p)}</small></span><em>${brl(p.preco)}</em></button>`).join('') : '')
+      + `<div id="sugcat"><div class="sug-tit">Catálogo de marcas</div><div class="mudo pq" style="padding:8px 12px">Procurando…</div></div>`;
+    const tk = ++busca;
+    clearTimeout(tBusca); tBusca = setTimeout(async () => {
+      let r = [];
+      try { r = await (await import('./modules/catalogo.js')).buscarNoCatalogo(q, 10); } catch (e) { console.warn(e); }
+      if (tk !== busca) return;
+      const meus = new Set(l.map(p => normRefC(p.sku) + '|' + norm(p.marca)));
+      r = r.filter(i => !meus.has(normRefC(i.ref) + '|' + norm(i.marca)));
+      catRes = r;
+      const box = $('#sugcat', sug); if (!box) return;
+      box.innerHTML = r.length ? `<div class="sug-tit">Catálogo de marcas · toque para cadastrar e adicionar</div>` + r.map((i, k) => `<button type="button" data-cat="${k}"><span class="sug-foto">${i.fotoVer ? `<img src="${esc(i.fotoVer)}" alt="">` : ''}</span><span><b>${esc(i.nome)}</b><small>${esc(i.marca || '')}${i.ref ? ' · código ' + esc(i.ref) : ''}</small></span><em>${i.preco ? brl(i.preco) : ''}</em></button>`).join('')
+        : (l.length ? '' : `<div class="mudo pq" style="padding:10px 12px">Nada encontrado com “${esc(q)}”. Confira o código da revista ou cadastre o produto.</div>`);
+    }, 220);
+  };
+  let busca = 0, tBusca = null, catRes = [];
+  const doCatalogoItem = async item => {
+    sug.hidden = true; inp.value = '';
+    const cat = await import('./modules/catalogo.js');
+    const id = await cat.criarDoCatalogo(item); if (!id) return;
+    for (let k = 0; k < 30; k++) { const p = prodPorId(id); if (p) { onPick(p); toast(`${p.nome} cadastrado no seu estoque.`); return; } await new Promise(r => setTimeout(r, 100)); }
   };
   const doCatalogo = async q => {
     sug.hidden = true;
@@ -280,10 +299,11 @@ export function buscaProduto(container, onPick, { placeholder = 'Código do prod
       const exato = S.d.produtos.find(p => p.ativo !== false && ((p.codigo && String(p.codigo) === q) || (p.sku && normRefC(p.sku) === normRefC(q))));
       const p = exato || achar(q)[0];
       if (p) { onPick(p); inp.value = ''; mostrar(); }
+      else if (catRes.length) doCatalogoItem(catRes[0]);
       else if (/\d/.test(q)) { inp.value = ''; mostrar(); doCatalogo(q); }
     }
   });
-  sug.addEventListener('click', e => { if (e.target.closest('[data-global]')) { const q = inp.value.trim(); inp.value = ''; mostrar(); return doCatalogo(q); } const b = e.target.closest('button[data-id]'); if (!b) return; onPick(prodPorId(b.dataset.id)); inp.value = ''; mostrar(); inp.focus(); });
+  sug.addEventListener('click', e => { const bc = e.target.closest('[data-cat]'); if (bc) return doCatalogoItem(catRes[+bc.dataset.cat]); if (e.target.closest('[data-global]')) { const q = inp.value.trim(); inp.value = ''; mostrar(); return doCatalogo(q); } const b = e.target.closest('button[data-id]'); if (!b) return; onPick(prodPorId(b.dataset.id)); inp.value = ''; mostrar(); inp.focus(); });
   document.addEventListener('click', e => { if (!container.contains(e.target)) sug.hidden = true; });
   $('[data-scan]', container).onclick = () => scanner(code => {
     const p = S.d.produtos.find(x => String(x.codigo) === code);

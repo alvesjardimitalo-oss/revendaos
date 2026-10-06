@@ -38,6 +38,33 @@ async function carregarItens(slug) {
   return CAT.itens[slug];
 }
 
+// ---------- busca por nome/código em todas as marcas (usada na venda e na compra) ----------
+let TODOS = null;
+export async function todosItens() {
+  if (TODOS) return TODOS;
+  if (!CAT.marcas) CAT.marcas = await S.db.lerCol('catalogo');
+  const l = []; for (const mk of CAT.marcas) l.push(...await carregarItens(mk.id));
+  return (TODOS = l);
+}
+export async function buscarNoCatalogo(q, lim = 8) {
+  const ws = norm(q).split(/\s+/).filter(w => w.length > 1), nr = normRef(q), temNum = /\d/.test(q);
+  const res = [];
+  for (const i of await todosItens()) {
+    const nn = norm(i.nome + ' ' + (i.marca || '')), r = normRef(i.ref); let sc = -1;
+    if (nr && r === nr) sc = 100;
+    else if (temNum && nr.length >= 3 && r.startsWith(nr)) sc = 60;
+    else if (ws.length && ws.every(w => nn.includes(w))) sc = 30 + (norm(i.nome).startsWith(ws[0]) ? 10 : 0) - Math.min(9, i.nome.length / 20);
+    if (sc >= 0) res.push([sc, i]);
+  }
+  return res.sort((a, b) => b[0] - a[0]).slice(0, lim).map(x => ({ ...x[1], fotoVer: x[1].foto || urlFotoRepo(x[1]) }));
+}
+export async function criarDoCatalogo(i) {
+  const ex = existente(i); if (ex) return ex.id;
+  const id = uid();
+  const p = { nome: i.nome, marca: i.marca || '', categoria: i.categoria || '', codigo: i.codigo || '', sku: i.ref || '', descricao: i.descricao || '', foto: i.foto || '', fotos: [], kit: [], custo: 0, preco: Number(i.preco) || 0, precoLoja: 0, estoqueMin: cfg().estoqueMin ?? 1, ativo: true, naLoja: !!(S.conta.loja || {}).ativa, lotes: [], origemCatalogo: i.marcaSlug || '', criadoEm: Date.now(), atualizadoEm: Date.now() };
+  return (await commit([{ op: 'set', col: 'produtos', id, data: p }, ...opsItemLoja({ ...p, id })], `Cadastrou ${p.nome} a partir do catálogo`)) ? id : null;
+}
+
 const chave = (nome, marca) => norm(marca) + '|' + norm(nome);
 function existente(i) {
   return S.d.produtos.find(p => (i.codigo && String(p.codigo) === String(i.codigo)) || (normRef(i.ref) && normRef(p.sku) === normRef(i.ref) && slugify(p.marca) === (i.marcaSlug || slugify(i.marca))) || chave(p.nome, p.marca) === chave(i.nome, i.marca));
@@ -180,6 +207,7 @@ async function publicarMarca(nomeMarca, novos, modo = 'mesclar') {
   ops.push({ op: 'set', path: `catalogo/${slug}`, data: { nome: nomeMarca, total: itens.length, partes: partes.length, categorias: [...new Set(itens.map(i => i.categoria).filter(Boolean))].sort(), atualizadoEm: Date.now(), por: S.user.email || '' } });
   if (!await commit(ops)) return 0;
   CAT.itens[slug] = itens.map(i => ({ ...i, marcaSlug: slug, marca: nomeMarca }));
+  TODOS = null;
   CAT.marcas = null;
   return itens.length;
 }
@@ -259,7 +287,7 @@ function abaCatalogo(a) {
     ligarCuradoria(a);
     return;
   }
-  if (!F.marca || !(F.marca === '*' || ms.some(m => m.id === F.marca))) F.marca = ms[0].id;
+  if (!F.marca || !(F.marca === '*' || ms.some(m => m.id === F.marca))) F.marca = '*';
   const slugs = F.marca === '*' ? ms.map(m => m.id) : [F.marca];
   const faltam = slugs.filter(s => !CAT.itens[s]);
   const total = ms.reduce((s, m) => s + (m.total || 0), 0);
@@ -278,7 +306,7 @@ function abaCatalogo(a) {
   if (F.cat && !cats.includes(F.cat)) F.cat = '';
   const n = norm(F.q), qd = soDigitos(F.q);
   let l = todos.filter(i => (!F.cat || i.categoria === F.cat)
-    && (!n || norm(`${i.nome} ${i.linha || ''} ${i.marca}`).includes(n) || (normRef(F.q) && normRef(i.ref) === normRef(F.q)) || (qd.length >= 6 && (i.codigo || '').includes(qd)))
+    && (!n || n.split(/\s+/).every(w => norm(`${i.nome} ${i.linha || ''} ${i.marca} ${i.categoria || ''}`).includes(w)) || (normRef(F.q) && normRef(i.ref).startsWith(normRef(F.q)) && /\d/.test(F.q)) || (qd.length >= 6 && (i.codigo || '').includes(qd)))
     && (!F.soNovos || !existente(i)));
   const k = i => i.marcaSlug + ':' + i.id;
   const ed = pode('produtos', 'editar');

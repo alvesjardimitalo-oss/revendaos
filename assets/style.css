@@ -731,3 +731,9 @@ img.falhou { visibility: hidden; }
 .foto-acoes { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; } .foto-acoes p { flex-basis: 100%; margin: 4px 0 0; }
 .foto-prev { background: #fff !important; } .foto-prev img { object-fit: contain !important; }
 .foto-acoes label.btn, .foto-up label.btn { flex-direction: row !important; color: inherit; font-size: 14.5px; } .foto-acoes label.btn.pri { color: #fff; }
+
+.sugestoes .sug-tit { font-size: 12px; font-weight: 700; color: var(--txt2); padding: 10px 12px 4px; }
+.sugestoes .sug-foto { width: 44px; height: 44px; border-radius: 10px; background: #fff; flex: none; overflow: hidden; display: grid; place-items: center; border: 1px solid var(--borda); }
+.sugestoes .sug-foto img { width: 100%; height: 100%; object-fit: contain; }
+.sugestoes .sug-foto.sem-foto::after { font-size: 0; }
+.sugestoes { top: 50px; max-height: min(60vh, 460px); border-radius: 14px; } .sugestoes b { font-weight: 600; }
