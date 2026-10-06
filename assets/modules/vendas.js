@@ -6,7 +6,7 @@ import { opsItemLoja } from './loja-sync.js';
 import { formCliente } from './clientes.js';
 import { receber, enviarPix } from './cobrancas.js';
 
-let F = { mes: mesAtual(), de: '', ate: '', q: '', entrega: '', pag: '' };
+let F = { mes: 'todos', de: '', ate: '', q: '', entrega: '', pag: '' };
 const IMEDIATAS = ['Dinheiro', 'Pix', 'Cartão de débito', 'Cartão de crédito'];
 
 export const lucroVenda = v => r2(v.total - (v.frete || 0) - (v.custoTotal || 0) - (v.taxaCartaoValor || 0));
@@ -121,11 +121,11 @@ export function novaVenda(pre = {}) {
           <small id="consinfo" class="mudo"></small>
         </div>
         <div class="grid2">
-          <label>Forma de pagamento<select name="forma">${FORMAS.map(x => `<option>${x}</option>`).join('')}</select></label>
-          <label>Parcelas<select name="parcelas">${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}">${i + 1}x</option>`).join('')}</select></label>
+          <label>Forma de pagamento<select name="forma">${FORMAS.map(x => `<option ${x === (cfg().formaPadrao || 'Crediário') ? 'selected' : ''}>${x}</option>`).join('')}</select></label>
+          <label>Parcelas<select name="parcelas">${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}" ${i + 1 === (Number(cfg().parcelasPadrao) || 3) ? 'selected' : ''}>${i + 1}x</option>`).join('')}</select></label>
           <label id="lent">Entrada recebida agora (R$)<input name="entrada" inputmode="decimal" placeholder="0,00"></label>
           <label id="lvenc">1º vencimento<input type="date" name="venc" value="${addDias(hoje(), 30)}"></label>
-          <label id="lint">Intervalo<select name="intervalo"><option value="mes">Mensal</option><option value="15">A cada 15 dias</option><option value="7">Semanal</option></select></label>
+          <label id="lint">Intervalo<select name="intervalo"><option value="30">A cada 30 dias</option><option value="mes">Mesmo dia todo mês</option><option value="15">A cada 15 dias</option><option value="7">Semanal</option></select></label>
           <label class="chk" id="lrec"><input type="checkbox" name="recebido" checked> Pagamento recebido agora</label>
           <label class="chk span2" id="lrep"><input type="checkbox" name="repassar"> Repassar a taxa da maquininha ao cliente</label>
           <small class="mudo span2" id="taxainfo"></small>
@@ -230,6 +230,7 @@ export function novaVenda(pre = {}) {
     m.$('#avisos').innerHTML = av.map(a => `<div class="aviso-box">${icon('alert')}<span>${a}</span></div>`).join('');
   };
   f.addEventListener('input', calc); f.addEventListener('change', calc);
+  f.data.addEventListener('change', () => { if (f.data.value) f.venc.value = addDias(f.data.value, 30); calc(); });
   f.forma.addEventListener('change', () => { if (f.forma.value === 'Crediário') f.recebido.checked = false; calc(); });
   m.$('#novocli').onclick = () => formCliente(null, c => { f.cliente.innerHTML = selectClientes(c.id); calc(); });
   desenhar();
@@ -257,9 +258,10 @@ export function novaVenda(pre = {}) {
 
 function gerarParcelas(valor, n, venc, intervalo) {
   valor = r2(valor); if (valor <= 0) return [];
-  const base = Math.floor(valor / n * 100) / 100; const out = [];
+  // igual ao Revendi: divide em centavos e os centavos que sobram vão para as primeiras parcelas
+  const cent = Math.round(valor * 100), base = Math.floor(cent / n), resto = cent - base * n; const out = [];
   for (let i = 0; i < n; i++) {
-    const v = i === n - 1 ? r2(valor - base * (n - 1)) : base;
+    const v = (base + (i < resto ? 1 : 0)) / 100;
     const d = intervalo === 'mes' ? addMeses(venc, i) : addDias(venc, i * Number(intervalo));
     out.push({ valor: v, venc: d });
   }

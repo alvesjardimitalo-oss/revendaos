@@ -1,6 +1,6 @@
 // Configurações: negócio, personalização, Pix, metas, mensagens e backup
 import { $, $$, esc, nfmt, parseNum, uid, hoje, addDias, addMeses, soDigitos, fmtFone, baixar, lerArquivo, reduzirImagem, pixPayload } from '../utils.js';
-import { S, cfg, icon, modal, ask, toast, commit } from '../core.js';
+import { S, cfg, icon, modal, ask, toast, commit, FORMAS } from '../core.js';
 import { opsPublicarLoja } from './loja.js';
 
 const CORES = ['#7209b7', '#c2185b', '#e91e63', '#8e24aa', '#5e35b1', '#3949ab', '#1e88e5', '#00897b', '#43a047', '#f4511e', '#6d4c41', '#37474f', '#000000'];
@@ -45,6 +45,8 @@ export function render(el) {
     <section class="card"><h4>Metas e regras</h4><div class="grid2">
       <label>Meta de vendas mensal da loja (R$)<input name="metaMensal" inputmode="decimal" value="${c.metaMensal ? nfmt(c.metaMensal, 2) : ''}"></label>
       <label>Comissão padrão (%)<input name="comissaoPadrao" inputmode="decimal" value="${c.comissaoPadrao ? nfmt(c.comissaoPadrao, 1) : ''}"></label>
+      <label>Forma de pagamento padrão na venda<select name="formaPadrao">${FORMAS.map(x => `<option ${x === (c.formaPadrao || 'Crediário') ? 'selected' : ''}>${x}</option>`).join('')}</select></label>
+      <label>Parcelas padrão<select name="parcelasPadrao">${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}" ${i + 1 === (Number(c.parcelasPadrao) || 3) ? 'selected' : ''}>${i + 1}x</option>`).join('')}</select></label>
       <label>Alertar validade com quantos dias<input name="diasValidade" inputmode="numeric" value="${c.diasValidade || 30}"></label>
       <label>Estoque mínimo padrão<input name="estoqueMin" inputmode="numeric" value="${c.estoqueMin ?? 1}"></label>
     </div></section>
@@ -95,7 +97,7 @@ export function render(el) {
     e.preventDefault();
     const config = {
       ...cfg(), logo, cor: f.cor.value, telefone: soDigitos(f.telefone.value), pixChave: f.pixChave.value.trim(), pixNome: f.pixNome.value.trim(), pixCidade: f.pixCidade.value.trim(),
-      metaMensal: parseNum(f.metaMensal.value), comissaoPadrao: parseNum(f.comissaoPadrao.value), diasValidade: parseNum(f.diasValidade.value) || 30,
+      metaMensal: parseNum(f.metaMensal.value), comissaoPadrao: parseNum(f.comissaoPadrao.value), formaPadrao: f.formaPadrao.value, parcelasPadrao: +f.parcelasPadrao.value, diasValidade: parseNum(f.diasValidade.value) || 30,
       estoqueMin: f.estoqueMin.value === '' ? 0 : parseNum(f.estoqueMin.value), msgCobranca: f.msgCobranca.value.trim(), msgRecibo: f.msgRecibo.value.trim(),
       taxas: { debito: parseNum(f.tx_deb.value), credito: Array.from({ length: 12 }, (_, i) => parseNum(f['tx_c' + i].value)) },
       cosmosProxy: f.cosmosProxy.value.trim(), cosmosToken: f.cosmosToken.value.trim()
