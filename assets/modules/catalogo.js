@@ -2,7 +2,7 @@
 // - Revendedoras navegam por marca, selecionam produtos e cadastram no estoque em lote.
 // - Código de barras: busca no catálogo e, se não achar, no Open Beauty Facts.
 // - Curadoria: importa tabelas das marcas (CSV/Excel), publica a partir do estoque e aprova sugestões.
-import { $, $$, esc, brl, nfmt, parseNum, uid, norm, slugify, soDigitos, hoje, parseCSV, baixar, toCSV, fmtDataHora, reduzirImagem, nomeBonito } from '../utils.js';
+import { $, $$, esc, brl, nfmt, parseNum, uid, norm, slugify, soDigitos, hoje, parseCSV, baixar, toCSV, fmtDataHora, reduzirImagem, nomeBonito, tratarFotoProduto, linkBuscaFoto } from '../utils.js';
 import { S, cfg, pode, isAdmin, icon, modal, ask, toast, commit, qtdProduto, vazio, badge } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
 
@@ -324,14 +324,22 @@ function abaCatalogo(a) {
   });
 }
 function trocarFoto(it) {
-  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*'; inp.capture = 'environment';
-  inp.onchange = async () => {
-    const f = inp.files[0]; if (!f) return;
-    const foto = await reduzirImagem(f, 400, 0.8);
-    const nome = ((CAT.marcas || []).find(m => m.id === it.marcaSlug) || {}).nome || it.marca;
-    if (await publicarMarca(nome, [{ ...it, foto }], 'mesclar')) { toast('Foto atualizada no catálogo.'); redesenhar(); }
+  const salvar = async foto => { const nome = ((CAT.marcas || []).find(m => m.id === it.marcaSlug) || {}).nome || it.marca; if (await publicarMarca(nome, [{ ...it, foto }], 'mesclar')) { toast('Foto atualizada no catálogo.'); m.fechar(); redesenhar(); } };
+  const m = modal({ titulo: 'Foto do produto', corpo: `<p><b>${esc(it.nome)}</b><small class="bl mudo">${esc(it.marca || '')}${it.ref ? ' · código ' + esc(it.ref) : ''}</small></p>
+    <div class="foto-acoes"><label class="btn pri">${icon('up')}Escolher ou tirar foto<input type="file" accept="image/*" id="arq" hidden></label>
+    <button class="btn" id="busca">${icon('search')}Buscar na internet</button><button class="btn" id="colar">${icon('copy')}Colar foto</button>
+    <p class="mudo pq">Na busca, toque e segure na imagem, escolha <b>Copiar</b> e volte aqui em <b>Colar foto</b>. O fundo é ajustado sozinho.</p></div>` });
+  m.$('#arq').onchange = async e => { const f = e.target.files[0]; if (f) salvar(await tratarFotoProduto(f, 800).catch(() => reduzirImagem(f, 600, 0.82))); };
+  m.$('#busca').onclick = () => window.open(linkBuscaFoto(it.nome, it.marca), '_blank');
+  m.$('#colar').onclick = async () => {
+    try {
+      const itens = navigator.clipboard.read ? await navigator.clipboard.read() : [];
+      for (const c of itens) { const t = c.types.find(x => x.startsWith('image/')); if (t) return salvar(await tratarFotoProduto(await c.getType(t), 800)); }
+      const tx = (await navigator.clipboard.readText()).trim();
+      if (/^https?:\/\//.test(tx)) return salvar(await tratarFotoProduto(tx, 800).catch(() => tx));
+      toast('Copie uma imagem ou o link dela e tente de novo.', 'aviso');
+    } catch { toast('O navegador não deixou colar. Salve a imagem e use "Escolher ou tirar foto".', 'aviso'); }
   };
-  inp.click();
 }
 function ligarMarcas(a) { $$('[data-m]', a).forEach(b => b.onclick = () => { F.marca = b.dataset.m; F.cat = ''; F.pag = 60; redesenhar(); }); }
 

@@ -712,3 +712,22 @@ img.falhou { visibility: hidden; }
 .mfoto.mini { width: 44px; height: 44px; border-radius: 10px; } .mfoto.mini::after { font-size: 17px; }
 .v-foto { display: grid; place-items: center; }
 .chip-sel { background: var(--sup2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23968ba1' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 12px center; padding-right: 32px; }
+
+/* logotipo em destaque */
+.marca img, .mlogo, .v-marca img { background: #fff; object-fit: contain; box-shadow: 0 0 0 3px color-mix(in srgb, var(--pri) 25%, transparent), 0 8px 20px -10px rgba(40,10,70,.45); }
+@media (min-width: 861px) {
+  .marca { flex-direction: column; align-items: flex-start; gap: 10px; padding: 6px 10px 22px; }
+  .marca img, .marca .marca-ini { width: 72px; height: 72px; border-radius: 50%; }
+  .marca b { font-size: 16px; line-height: 1.25; }
+}
+@media (max-width: 860px) {
+  .mola { padding-top: 14px; }
+  .mlogo { width: 72px; height: 72px; }
+  .mola b { font-size: 22px; line-height: 1.2; }
+  .side .marca img, .side .marca .marca-ini { width: 56px; height: 56px; border-radius: 50%; }
+}
+.v-marca img { width: 92px; height: 92px; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,255,255,.35), 0 12px 28px -10px rgba(0,0,0,.55); }
+.v-marca .marca-ini { width: 92px; height: 92px; border-radius: 50%; font-size: 36px; }
+.foto-acoes { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; } .foto-acoes p { flex-basis: 100%; margin: 4px 0 0; }
+.foto-prev { background: #fff !important; } .foto-prev img { object-fit: contain !important; }
+.foto-acoes label.btn, .foto-up label.btn { flex-direction: row !important; color: inherit; font-size: 14.5px; } .foto-acoes label.btn.pri { color: #fff; }

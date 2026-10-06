@@ -72,7 +72,7 @@ export function render(el) {
 
   const f = $('#fc', el);
   const setLogo = v => { logo = v; $('#prev', el).innerHTML = v ? `<img src="${v}">` : icon('store'); el.dataset.sujo = 1; $('#main').dataset.sujo = 1; };
-  $('#arq', el).onchange = async e => { const a = e.target.files[0]; if (a) setLogo(await reduzirImagem(a, 240, 0.85)); };
+  $('#arq', el).onchange = async e => { const a = e.target.files[0]; if (a) setLogo(await reduzirImagem(a, 600, 0.9)); };
   $('#semlogo', el).onclick = () => setLogo('');
   $$('[data-cor]', el).forEach(b => b.onclick = () => { f.cor.value = b.dataset.cor; $$('[data-cor]', el).forEach(x => x.classList.toggle('sel', x === b)); document.documentElement.style.setProperty('--pri', b.dataset.cor); $('#main').dataset.sujo = 1; });
   f.cor.oninput = () => document.documentElement.style.setProperty('--pri', f.cor.value);

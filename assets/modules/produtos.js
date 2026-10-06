@@ -1,5 +1,5 @@
 // Estoque / Produtos
-import { $, $$, esc, brl, nfmt, pct, parseNum, uid, r2, norm, slugify, fmtData, diasAte, hoje, toCSV, parseCSV, baixar, lerArquivo, reduzirImagem, fotoProduto } from '../utils.js';
+import { $, $$, esc, brl, nfmt, pct, parseNum, uid, r2, norm, slugify, fmtData, diasAte, hoje, toCSV, parseCSV, baixar, lerArquivo, reduzirImagem, fotoProduto, tratarFotoProduto, linkBuscaFoto } from '../utils.js';
 import { S, cfg, pode, icon, modal, ask, toast, commit, qtdProduto, validadeProxima, prodPorId, scanner, datalist, vazio, badge, ehKit, custoKit, buscaProduto, promoAtiva } from '../core.js';
 import { opsItemLoja } from './loja-sync.js';
 import { buscarEAN, buscarRef, normRef, sugerir, escolherItem } from './catalogo.js';
@@ -130,9 +130,11 @@ export function formProduto(p, aoSalvar) {
     corpo: `<form class="form grid2" id="fp">
       <div class="foto-up span2">
         <div class="foto-prev" id="prev">${foto ? `<img src="${foto}">` : icon('box')}</div>
-        <div><label class="btn">${icon('up')}Escolher foto<input type="file" accept="image/*" id="arq" hidden></label>
-        ${foto ? `<button type="button" class="btn" id="semfoto">Remover</button>` : ''}
-        <p class="mudo pq">A foto é reduzida automaticamente e aparece na loja virtual.</p></div>
+        <div class="foto-acoes"><label class="btn pri">${icon('up')}Escolher foto<input type="file" accept="image/*" id="arq" hidden></label>
+        <button type="button" class="btn" id="buscafoto">${icon('search')}Buscar na internet</button>
+        <button type="button" class="btn" id="colarfoto">${icon('copy')}Colar foto</button>
+        ${foto ? `<button type="button" class="btn perigo-txt" id="semfoto">Remover</button>` : ''}
+        <p class="mudo pq">A foto é ajustada sozinha: o fundo em volta é cortado e o produto fica centralizado em fundo branco. Na busca, toque e segure na imagem, escolha <b>Copiar</b> e volte aqui em <b>Colar foto</b>.</p></div>
       </div>
       <div class="span2"><span class="rot">Mais fotos (até 4, aparecem na loja virtual)</span><div class="fotos-extra" id="fotos"></div></div>
       <div class="span2 grid2 busca-cod">
@@ -219,14 +221,27 @@ export function formProduto(p, aoSalvar) {
   m.$('#addl').onclick = () => { m.$('#lotes').insertAdjacentHTML('beforeend', linhaLote({ id: uid(), qtd: 0 })); };
   m.$('#lotes').onclick = e => { if (e.target.closest('[data-rl]')) e.target.closest('tr').remove(); };
   const setFoto = v => { foto = v; m.$('#prev').innerHTML = v ? `<img src="${v}">` : icon('box'); };
-  m.$('#arq').onchange = async e => { const a = e.target.files[0]; if (a) setFoto(await reduzirImagem(a, 900, 0.82)); };
+  m.$('#arq').onchange = async e => { const a = e.target.files[0]; if (a) setFoto(await tratarFotoProduto(a).catch(() => reduzirImagem(a, 900, 0.82))); };
+  m.$('#buscafoto').onclick = () => { const f = m.$('#fp'); window.open(linkBuscaFoto(f.nome.value || p.nome, f.marca.value || p.marca), '_blank'); };
+  m.$('#colarfoto').onclick = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.read) {
+        const itens = await navigator.clipboard.read();
+        for (const it of itens) { const tipo = it.types.find(t => t.startsWith('image/')); if (tipo) { setFoto(await tratarFotoProduto(await it.getType(tipo))); return toast('Foto colada e ajustada.'); } }
+        for (const it of itens) if (it.types.includes('text/plain')) { const t = (await (await it.getType('text/plain')).text()).trim(); if (/^https?:\/\//.test(t)) return colarLink(t); }
+      }
+      const t = await navigator.clipboard.readText(); if (/^https?:\/\//.test(t.trim())) return colarLink(t.trim());
+      toast('Copie uma imagem (toque e segure → Copiar) ou o link dela e tente de novo.', 'aviso');
+    } catch { toast('O navegador não deixou ler a área de transferência. Salve a imagem e use "Escolher foto".', 'aviso'); }
+  };
+  const colarLink = async u => { try { setFoto(await tratarFotoProduto(u)); toast('Foto ajustada.'); } catch { setFoto(u); toast('Foto adicionada pelo link.'); } };
   const sf = m.$('#semfoto'); if (sf) sf.onclick = () => setFoto('');
   // fotos adicionais
   let fotos = [...(p.fotos || [])];
   const desenharFotos = () => {
     m.$('#fotos').innerHTML = fotos.map((x, k) => `<div class="mini-foto"><img src="${x}"><button type="button" data-rf="${k}" title="Remover">×</button></div>`).join('')
       + (fotos.length < 4 && ed ? `<label class="mini-foto add">${icon('plus')}<input type="file" accept="image/*" multiple hidden id="arqs"></label>` : '');
-    const a = m.$('#arqs'); if (a) a.onchange = async e => { for (const fl of [...e.target.files].slice(0, 4 - fotos.length)) fotos.push(await reduzirImagem(fl, 700, 0.8)); desenharFotos(); };
+    const a = m.$('#arqs'); if (a) a.onchange = async e => { for (const fl of [...e.target.files].slice(0, 4 - fotos.length)) fotos.push(await tratarFotoProduto(fl, 800).catch(() => reduzirImagem(fl, 700, 0.8))); desenharFotos(); };
     m.$$('[data-rf]').forEach(b => b.onclick = () => { fotos.splice(+b.dataset.rf, 1); desenharFotos(); });
   };
   desenharFotos();

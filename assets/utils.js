@@ -157,3 +157,41 @@ export function nomeBonito(n) {
 
 // foto do produto: a cadastrada ou, se tiver código e marca, a do catálogo no repositório
 export const fotoProduto = p => p.foto || (p.sku && p.marca ? `catalogo-img/${slugify(p.marca)}/${String(p.sku).toUpperCase().replace(/[^A-Z0-9]/g, '').replace(/^0+(?=\d)/, '')}.jpg` : '');
+
+// Foto de produto com cara de catálogo: corta o fundo claro em volta, centraliza num quadrado branco e reduz.
+// Aceita File, Blob ou endereço (dataURL/URL com CORS).
+export function tratarFotoProduto(fonte, lado = 900, q = 0.86) {
+  return new Promise((res, rej) => {
+    const usar = src => {
+      const img = new Image(); img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        try {
+          const W = img.naturalWidth, H = img.naturalHeight, k0 = Math.min(1, 1600 / Math.max(W, H));
+          const w = Math.round(W * k0), h = Math.round(H * k0);
+          const c = document.createElement('canvas'); c.width = w; c.height = h;
+          const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, w, h); x.drawImage(img, 0, 0, w, h);
+          const d = x.getImageData(0, 0, w, h).data;
+          // fundo = cor média dos cantos; só recorta se o fundo for claro
+          const canto = (px, py) => { const i = (py * w + px) * 4; return d[i] + d[i + 1] + d[i + 2]; };
+          const claro = [canto(1, 1), canto(w - 2, 1), canto(1, h - 2), canto(w - 2, h - 2)].every(v => v > 690);
+          let x0 = 0, y0 = 0, x1 = w - 1, y1 = h - 1;
+          if (claro) {
+            const cheio = i => d[i] + d[i + 1] + d[i + 2] < 705;
+            x0 = w; y0 = h; x1 = 0; y1 = 0;
+            for (let yy = 0; yy < h; yy += 2) for (let xx = 0; xx < w; xx += 2) if (cheio((yy * w + xx) * 4)) { if (xx < x0) x0 = xx; if (xx > x1) x1 = xx; if (yy < y0) y0 = yy; if (yy > y1) y1 = yy; }
+            if (x1 <= x0 || y1 <= y0) { x0 = 0; y0 = 0; x1 = w - 1; y1 = h - 1; }
+          }
+          const cw = x1 - x0 + 1, ch = y1 - y0 + 1, m = Math.round(Math.max(cw, ch) * (claro ? 1.12 : 1));
+          const o = document.createElement('canvas'); const L = Math.min(lado, Math.max(m, 400)); o.width = L; o.height = L;
+          const ox = o.getContext('2d'); ox.fillStyle = '#fff'; ox.fillRect(0, 0, L, L); ox.imageSmoothingQuality = 'high';
+          const k = L / m; ox.drawImage(c, x0, y0, cw, ch, (L - cw * k) / 2, (L - ch * k) / 2, cw * k, ch * k);
+          res(o.toDataURL('image/jpeg', q));
+        } catch (e) { rej(e); }
+      };
+      img.onerror = rej; img.src = src;
+    };
+    if (typeof fonte === 'string') return usar(fonte);
+    const r = new FileReader(); r.onload = () => usar(r.result); r.onerror = rej; r.readAsDataURL(fonte);
+  });
+}
+export const linkBuscaFoto = (nome, marca) => 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent([marca, nome].filter(Boolean).join(' '));
