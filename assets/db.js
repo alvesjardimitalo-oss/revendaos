@@ -76,7 +76,7 @@ async function firebaseDB() {
       return { contaId: cid, membro: { id: user.uid, ...membro }, novo: !cv };
     },
 
-    watch: (col, cb) => fs.onSnapshot(fs.collection(db, 'contas', contaId, col), s => cb(mapa(s)), e => console.error(col, e)),
+    watch: (col, cb) => fs.onSnapshot(col === 'logs' ? fs.query(fs.collection(db, 'contas', contaId, col), fs.orderBy('quando', 'desc'), fs.limit(150)) : fs.collection(db, 'contas', contaId, col), s => cb(mapa(s)), e => console.error(col, e)),
     watchConta: cb => fs.onSnapshot(fs.doc(db, 'contas', contaId), s => cb({ id: s.id, ...s.data() })),
 
     async commit(ops) {
